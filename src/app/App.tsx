@@ -1,10 +1,10 @@
 import { FC, Suspense } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { AboutPageAsync } from "./pages/AboutPage/AboutPageAsync";
-import { MainPageAsync } from "./pages/MainPage/MainPageAsync";
-import { useTheme } from "./theme/useTheme";
+import { MainPage } from "pages/MainPage";
+import { AboutPage } from "pages/AboutPage";
+import { useTheme } from "shared/hooks";
+import { classNames } from "shared/lib";
 import "./styles/index.scss";
-import { classNames } from "./helpers/classNames";
 
 export enum Theme {
     LIGHT = "light",
@@ -21,8 +21,8 @@ export const App: FC = () => {
             <Link to="/about">О нас</Link>
             <Suspense fallback={<p>Loading....</p>}>
                 <Routes>
-                    <Route path="/about" element={<AboutPageAsync />} />
-                    <Route path="/" element={<MainPageAsync />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/" element={<MainPage />} />
                 </Routes>
             </Suspense>
         </div>
