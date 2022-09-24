@@ -1,9 +1,9 @@
 import { FC, Suspense } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import { MainPage } from "pages/MainPage";
-import { AboutPage } from "pages/AboutPage";
 import { useTheme } from "shared/hooks";
 import { classNames } from "shared/lib";
+import { Navbar } from "widgets/Navbar";
+import { Sidebar } from "widgets/Sidebar";
+import { AppRouter } from "./providers/router";
 import "./styles/index.scss";
 
 export enum Theme {
@@ -12,18 +12,15 @@ export enum Theme {
 }
 
 export const App: FC = () => {
-    const { theme, toggleTheme } = useTheme();
-    const hovered = true;
+    const { theme } = useTheme();
     return (
-        <div className={classNames("app", { hovered }, [theme])}>
-            <button onClick={toggleTheme}>TOGGLE THEME</button>
-            <Link to="/">Главная</Link>
-            <Link to="/about">О нас</Link>
-            <Suspense fallback={<p>Loading....</p>}>
-                <Routes>
-                    <Route path="/about" element={<AboutPage />} />
-                    <Route path="/" element={<MainPage />} />
-                </Routes>
+        <div className={classNames("app", {}, [theme])}>
+            <Suspense fallback="">
+                <Navbar />
+                <div className="content-page">
+                    <Sidebar />
+                    <AppRouter />
+                </div>
             </Suspense>
         </div>
     );
