@@ -2,8 +2,7 @@ import { Suspense, FC } from "react";
 import { Routes, Route } from "react-router-dom";
 import { routeConfig } from "shared/config/routeConfig/routeConfig";
 
-export const AppRouter: FC = () => {
-    return (
+export const AppRouter: FC = () => (
         <div className="page-wrapper">
             <Suspense fallback={<p>Loading....</p>}>
                 <Routes>
@@ -14,4 +13,3 @@ export const AppRouter: FC = () => {
             </Suspense>
         </div>
     );
-};
