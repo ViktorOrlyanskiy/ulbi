@@ -1,0 +1,5 @@
+{
+    "extends": ["stylelint-config-standard-scss", "stylelint-config-rational-order", "stylelint-config-prettier"],
+    "plugins": ["stylelint-order"],
+    "rules": { "selector-class-pattern": null, "custom-property-empty-line-before": null }
+}
