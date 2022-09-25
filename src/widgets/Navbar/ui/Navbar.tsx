@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
+import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { classNames } from "shared/lib";
 import { AppLink, AppLinkTheme } from "shared/ui";
 import cls from "./Navbar.module.scss";
@@ -16,7 +17,7 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
                 <AppLink to="/" theme={AppLinkTheme.INVERTED}>
                     {t("Главная")}
                 </AppLink>
-                <AppLink to="/about" theme={AppLinkTheme.INVERTED}>
+                <AppLink to={RoutePath.about} theme={AppLinkTheme.INVERTED}>
                     {t("О нас")}
                 </AppLink>
             </div>
