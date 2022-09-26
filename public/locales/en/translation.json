@@ -4,7 +4,8 @@
     "О нас": "About us",
     "Главная": "Main page",
     "Язык": "English",
-    "Loading....": "Loading....",
     "TOGGLE": "TOGGLE",
-    "Страница не найдена": "Page not found"
+    "Страница не найдена": "Page not found",
+    "Произошла непредвиденная ошибка": "An unexpected error has occurred",
+    "Обновить страницу": "Reload page"
 }
