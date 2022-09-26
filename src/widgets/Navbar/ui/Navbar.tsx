@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { RoutePath } from "shared/config/routeConfig/routeConfig";
+import { RoutePath } from "shared/const";
 import { classNames } from "shared/lib";
 import { AppLink, AppLinkTheme } from "shared/ui";
 import cls from "./Navbar.module.scss";
