@@ -20,6 +20,7 @@ export default {
     testEnvironment: "jsdom",
     coveragePathIgnorePatterns: ["\\\\node_modules\\\\"],
     moduleFileExtensions: ["js", "jsx", "ts", "tsx", "json", "node"],
+    rootDir: "../../",
     setupFilesAfterEnv: ["<rootDir>config/jest/setupTests.ts"],
     moduleDirectories: ["node_modules"],
     modulePaths: ["<rootDir>src"],
@@ -31,7 +32,6 @@ export default {
         // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
         "<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)",
     ],
-    rootDir: "../../",
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
 
