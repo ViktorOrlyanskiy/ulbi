@@ -3,6 +3,7 @@ import { classNames } from "shared/lib";
 import cls from "./Button.module.scss";
 
 export enum ButtonTheme {
+    CLEAR_INVERTED = "clearInverted",
     OUTLINE = "outline",
     OUTLINE_INVERTED = "outlineInverted",
     BACKGROUND = "background",

@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { classNames } from "shared/lib";
-import { Button } from "shared/ui";
+import { Button, ButtonSize, ButtonTheme } from "shared/ui";
 import { useTranslation } from "react-i18next";
-import { ButtonSize, ButtonTheme } from "shared/ui/Button/Button";
 
 interface LangSwitcherProps {
     className?: string;
@@ -21,7 +20,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = ({ className, short }) => {
             className={classNames("", {}, [className])}
             onClick={toggleLang}
             theme={ButtonTheme.OUTLINE_INVERTED}
-            size={short ? ButtonSize.L : ButtonSize.M}
+            size={ButtonSize.M}
             square={short}
         >
             {t(short ? "Короткий язык" : "Язык")}

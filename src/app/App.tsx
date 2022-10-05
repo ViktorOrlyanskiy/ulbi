@@ -5,7 +5,6 @@ import { Navbar } from "widgets/Navbar";
 import { PageLoader } from "widgets/PageLoader";
 import { Sidebar } from "widgets/Sidebar";
 import { AppRouter } from "./providers/AppRouter";
-import "./styles/index.scss";
 
 export enum Theme {
     LIGHT = "light",
@@ -14,10 +13,12 @@ export enum Theme {
 
 export const App: FC = () => {
     const { theme } = useTheme();
+
     return (
         <div className={classNames("app", {}, [theme])}>
             <Suspense fallback={<PageLoader />}>
                 <Navbar />
+
                 <div className="content-page">
                     <Sidebar />
                     <AppRouter />

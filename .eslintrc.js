@@ -8,6 +8,7 @@ module.exports = {
         "plugin:react/recommended",
         "airbnb",
         "plugin:i18next/recommended",
+        "plugin:react-hooks/recommended",
         "prettier",
     ],
     parser: "@typescript-eslint/parser",
@@ -39,6 +40,10 @@ module.exports = {
             "error",
             { markupOnly: true, ignoreAttribute: ["data-testid", "to"] },
         ],
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error",
     },
     globals: { __IS_DEV__: true },
     overrides: [
