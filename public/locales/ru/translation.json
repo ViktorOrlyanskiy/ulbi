@@ -8,5 +8,7 @@
     "Страница не найдена": "Страница не найдена",
     "Произошла непредвиденная ошибка": "Произошла непредвиденная ошибка",
     "Обновить страницу": "Обновить страницу",
-    "Lorem...": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor laudantium optio deserunt, nisi accusamus animi nulla laborum. Recusandae voluptatum, necessitatibus velit id reprehenderit excepturi soluta. Similique quos eum dicta repellat!"
+    "Lorem...": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor laudantium optio deserunt, nisi accusamus animi nulla laborum. Recusandae voluptatum, necessitatibus velit id reprehenderit excepturi soluta. Similique quos eum dicta repellat!",
+    "increment": "increment",
+    "decrement": "decrement"
 }
