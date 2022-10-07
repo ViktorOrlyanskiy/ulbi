@@ -3,7 +3,7 @@ import { useTheme } from "shared/hooks";
 import { classNames } from "shared/lib";
 import LightIcon from "shared/assets/icons/brightness.svg";
 import DarkIcon from "shared/assets/icons/moon.svg";
-import { Theme } from "app/providers/ThemeProviders";
+import { Theme } from "app/providers/ThemeProvider";
 import { Button } from "shared/ui";
 import cls from "./ThemeSwitcher.module.scss";
 

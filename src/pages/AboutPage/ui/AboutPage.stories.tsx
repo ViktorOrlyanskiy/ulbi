@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "app/App";
 import { ThemeDecorator } from "app/config/storybook";
+import { Theme } from "app/providers/ThemeProvider";
 import AboutPage from "./AboutPage";
 
 export default {

@@ -6,11 +6,6 @@ import { PageLoader } from "widgets/PageLoader";
 import { Sidebar } from "widgets/Sidebar";
 import { AppRouter } from "./providers/AppRouter";
 
-export enum Theme {
-    LIGHT = "light",
-    DARK = "dark",
-}
-
 export const App: FC = () => {
     const { theme } = useTheme();
 

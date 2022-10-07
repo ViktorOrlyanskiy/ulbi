@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "app/App";
+import { Theme } from "app/providers/ThemeProvider";
 import { ThemeDecorator } from "app/config/storybook";
 import MainPage from "./MainPage";
 
