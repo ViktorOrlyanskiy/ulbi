@@ -4,7 +4,7 @@ import {
     ThemeDecorator,
     RouterDecorator,
 } from "../../src/app/config/storybook";
-import { Theme } from "../../src/app/providers/ThemeProviders";
+import { Theme } from "../../src/app/providers/ThemeProvider";
 
 export const parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },
