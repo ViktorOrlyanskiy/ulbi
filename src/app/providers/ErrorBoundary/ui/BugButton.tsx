@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Button } from "shared/ui";
+import { Button, ButtonTheme } from "shared/ui";
 
 // компонент для тестирования
 export const BugButton: FC = () => {
@@ -12,6 +12,11 @@ export const BugButton: FC = () => {
     useEffect(() => {
         if (error) throw new Error();
     }, [error]);
-    // eslint-disable-next-line
-    return <Button onClick={onThrow}>throw error</Button>;
+
+    return (
+        // eslint-disable-next-line
+        <Button onClick={onThrow} theme={ButtonTheme.BACKGROUND_INVERTED}>
+            Throw error
+        </Button>
+    );
 };

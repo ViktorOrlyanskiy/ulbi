@@ -15,10 +15,13 @@ const ANIMATION_DELAY = 300;
 export const Modal: FC<ModalProps> = (props) => {
     const { className, children, isOpen, onClose } = props;
     const [isClosing, setIsClosing] = useState(false);
-    const timerRef = useRef<ReturnType<typeof setTimeout>>();
+    const [isMounted, setIsMounted] = useState(false);
+
+    const timerRefOne = useRef<ReturnType<typeof setTimeout>>();
+    const timerRefTwo = useRef<ReturnType<typeof setTimeout>>();
 
     const mods: Record<string, boolean> = {
-        [cls.opened]: isOpen,
+        [cls.opened]: isMounted,
         [cls.isClosing]: isClosing,
     };
 
@@ -26,10 +29,10 @@ export const Modal: FC<ModalProps> = (props) => {
         e.stopPropagation();
     };
 
-    const closeHandler = useCallback(() => {
+    const onCloseHandler = useCallback(() => {
         if (onClose) {
             setIsClosing(true);
-            timerRef.current = setTimeout(() => {
+            timerRefOne.current = setTimeout(() => {
                 onClose();
                 setIsClosing(false);
             }, ANIMATION_DELAY);
@@ -39,32 +42,46 @@ export const Modal: FC<ModalProps> = (props) => {
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
             if (e.key === "Escape") {
-                closeHandler();
+                onCloseHandler();
             }
         },
-        [closeHandler]
+        [onCloseHandler]
     );
 
     useEffect(() => {
-        if (isOpen) {
+        if (isOpen && !isMounted) {
+            setIsMounted(true);
+        }
+        if (!isOpen && isMounted) {
+            timerRefTwo.current = setTimeout(() => {
+                setIsMounted(false);
+            }, ANIMATION_DELAY);
+        }
+    }, [isOpen, isMounted]);
+
+    useEffect(() => {
+        if (isMounted) {
             window.addEventListener("keydown", onKeyDown);
         }
 
         return () => {
-            clearTimeout(timerRef.current);
+            clearTimeout(timerRefOne.current);
+            clearTimeout(timerRefTwo.current);
             window.addEventListener("keydown", onKeyDown);
         };
-    }, [isOpen, onKeyDown]);
+    }, [isMounted, onKeyDown]);
 
     return (
-        <Portal>
-            <div className={classNames(cls.Modal, mods, [className])}>
-                <div className={cls.overlay} onClick={closeHandler}>
-                    <div className={cls.content} onClick={onContentClick}>
-                        {children}
+        isOpen && (
+            <Portal>
+                <div className={classNames(cls.Modal, mods, [className])}>
+                    <div className={cls.overlay} onClick={onCloseHandler}>
+                        <div className={cls.content} onClick={onContentClick}>
+                            {children}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Portal>
+            </Portal>
+        )
     );
 };

@@ -1,0 +1,38 @@
+.Input {
+    width: 100%;
+    padding: 3px 10px;
+}
+
+.outline {
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 1px solid var(--secondary-color);
+    border-radius: 3px;
+
+    &:focus {
+        box-shadow: 0 0 4px 0 var(--secondary-color);
+    }
+}
+
+.outlineInverted {
+    color: var(--inverted-primary-color);
+    background-color: transparent;
+    border: 1px solid var(--inverted-secondary-color);
+    border-radius: 3px;
+
+    &:focus {
+        box-shadow: 0 0 4px 0 var(--inverted-secondary-color);
+    }
+}
+
+.size_m {
+    font: var(--font-m);
+}
+
+.size_l {
+    font: var(--font-l);
+}
+
+.size_xl {
+    font: var(--font-xl);
+}

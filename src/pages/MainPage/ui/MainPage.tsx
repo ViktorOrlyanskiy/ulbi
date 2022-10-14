@@ -4,6 +4,7 @@ import { BugButton } from "app/providers/ErrorBoundary";
 
 const MainPage: FC = () => {
     const { t } = useTranslation("main");
+
     return (
         <div>
             {t("Главная")}

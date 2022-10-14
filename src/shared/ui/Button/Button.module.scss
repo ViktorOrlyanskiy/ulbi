@@ -3,6 +3,11 @@
     align-items: center;
     justify-content: center;
     padding: 3px 10px;
+    transition: all 0.3s;
+
+    &:hover {
+        color: var(--hover-color);
+    }
 }
 
 .clearInverted {
@@ -14,6 +19,10 @@
     background-color: transparent;
     border: 1px solid var(--secondary-color);
     border-radius: 3px;
+
+    &:hover {
+        border: 1px solid var(--hover-color);
+    }
 }
 
 .outlineInverted {
@@ -21,20 +30,27 @@
     background-color: transparent;
     border: 1px solid var(--inverted-secondary-color);
     border-radius: 3px;
+
+    &:hover {
+        border: 1px solid var(--hover-color);
+    }
 }
 
 .background {
     color: var(--primary-color);
     background: var(--bg-color);
+    border-radius: 3px;
 }
 
 .backgroundInverted {
     color: var(--inverted-primary-color);
     background: var(--inverted-bg-color);
+    border-radius: 3px;
 }
 
 .square {
     padding: 0;
+    border-radius: 0;
 }
 
 .square.size_m {
