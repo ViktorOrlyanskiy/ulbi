@@ -1,11 +1,4 @@
-import React, {
-    FC,
-    InputHTMLAttributes,
-    memo,
-    useEffect,
-    useRef,
-    useState,
-} from "react";
+import React, { FC, InputHTMLAttributes, memo, useRef } from "react";
 import { classNames } from "shared/lib";
 import cls from "./Input.module.scss";
 
@@ -29,7 +22,6 @@ interface InputProps extends HTMLInputProps {
     type?: string;
     theme?: InputTheme;
     size?: InputSize;
-    autofocus?: boolean;
     value?: string;
     onChange?: (value: string) => void;
 }
@@ -40,24 +32,15 @@ export const Input: FC<InputProps> = memo((props) => {
         type = "text",
         theme = InputTheme.OUTLINE,
         size = InputSize.M,
-        autofocus = false,
         value,
         onChange,
         ...otherProps
     } = props;
 
-    const [isFocus, setIsFocus] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
-
-    useEffect(() => {
-        if (autofocus) {
-            setIsFocus(true);
-            inputRef.current.focus();
-        }
-    }, [autofocus]);
 
     return (
         <input
