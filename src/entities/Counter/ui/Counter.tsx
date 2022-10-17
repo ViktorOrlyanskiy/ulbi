@@ -19,7 +19,7 @@ export const Counter: FC<CounterProps> = () => {
     const decrement = () => {
         dispatch(counterActions.decrement());
     };
-
+    //
     return (
         <div>
             <h1 data-testid="value-title">{counterValue}</h1>
