@@ -1,0 +1,21 @@
+.title {
+    color: var(--primary-color);
+    font: var(--font-l);
+}
+
+.text {
+    color: var(--secondary-color);
+    font: var(--font-m);
+}
+
+.error {
+    .title {
+        color: var(--primary-error-color);
+        font-weight: 700;
+    }
+
+    .text {
+        color: var(--secondary-error-color);
+        font-weight: 700;
+    }
+}

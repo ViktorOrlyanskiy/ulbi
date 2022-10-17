@@ -11,5 +11,8 @@
     "Lorem...": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor laudantium optio deserunt, nisi accusamus animi nulla laborum. Recusandae voluptatum, necessitatibus velit id reprehenderit excepturi soluta. Similique quos eum dicta repellat!",
     "increment": "increment",
     "decrement": "decrement",
-    "Войти": "Войти"
+    "Войти": "Войти",
+    "Выйти": "Выйти",
+    "Форма авторизации": "Форма авторизации",
+    "Вы ввели неверный логин или пароль": "Вы ввели неверный логин или пароль"
 }

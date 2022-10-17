@@ -1,4 +1,6 @@
-import { FC } from "react";
+import { loginActions } from "features/AuthByUsername/model/slice/loginSlice";
+import { FC, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { classNames } from "shared/lib";
 import { Modal } from "shared/ui";
 import { LoginForm } from "../LoginForm/LoginForm";
@@ -11,6 +13,14 @@ interface LoginModalProps {
 
 export const LoginModal: FC<LoginModalProps> = (props) => {
     const { className, isOpen, onClose } = props;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!isOpen) {
+            dispatch(loginActions.setInitialState());
+        }
+    }, [dispatch, isOpen]);
+
     return (
         <Modal
             isOpen={isOpen}

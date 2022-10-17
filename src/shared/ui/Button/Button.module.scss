@@ -8,6 +8,15 @@
     &:hover {
         color: var(--hover-color);
     }
+
+    &:disabled {
+        &:hover {
+            color: var(--inverted-primary-color);
+        }
+
+        cursor: default;
+        opacity: 0.6;
+    }
 }
 
 .clearInverted {

@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "app/providers/ThemeProvider";
-import { ThemeDecorator } from "app/config/storybook";
+import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
 import { LoginForm } from "./LoginForm";
 
 export default {
@@ -17,7 +17,29 @@ const Template: ComponentStory<typeof LoginForm> = (args) => (
 
 export const Light = Template.bind({});
 Light.args = {};
+Light.decorators = [
+    StoreDecorator({
+        loginForm: { username: "username", password: "password" },
+    }),
+];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({
+        loginForm: { username: "username", password: "password" },
+    }),
+];
+
+export const Error = Template.bind({});
+Error.args = {};
+Error.decorators = [
+    StoreDecorator({
+        loginForm: {
+            username: "username",
+            password: "password",
+            error: "Вы ввели неверный логин или пароль",
+        },
+    }),
+];
