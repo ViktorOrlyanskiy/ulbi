@@ -1,7 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { User, userActions } from "entities/User";
-import { LOCAL_STORAGE_USER_KEY } from "shared/const/localStorage";
 
 // если сервер присылает разные коды, можно создать перечисления для каждого кода
 
@@ -28,10 +27,6 @@ export const loginByUsername = createAsyncThunk<
                 throw new Error("response empty data");
             }
 
-            localStorage.setItem(
-                LOCAL_STORAGE_USER_KEY,
-                JSON.stringify(response.data)
-            );
             thunkAPI.dispatch(userActions.setAuthData(response.data));
 
             return response.data;
