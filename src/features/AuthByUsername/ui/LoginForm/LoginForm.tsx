@@ -2,20 +2,34 @@ import { FC, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "shared/lib";
+import { useDynamicModuleLoader, ReducersList } from "shared/hooks";
 import { Button, ButtonTheme, Input, Text, TextTheme } from "shared/ui";
-import { loginActions } from "../../model/slice/loginSlice";
-import { getLoginState } from "../../model/selectors/getLoginState";
+
+import { loginActions, loginReducer } from "../../model/slice/loginSlice";
 import { loginByUsername } from "../../model/services/loginByUsername/loginByUsername";
+import { getLoginUsername } from "../../model/selectors/getLoginUsername/getLoginUsername";
+import { getLoginPassword } from "../../model/selectors/getLoginPassword/getLoginPassword";
+import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
+import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
 import cls from "./LoginForm.module.scss";
 
-interface LoginFormProps {
+export interface LoginFormProps {
     className?: string;
 }
 
-export const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
+const initialReducers: ReducersList = {
+    loginForm: loginReducer,
+};
+
+const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
+    useDynamicModuleLoader(initialReducers);
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const { username, password, isLoading, error } = useSelector(getLoginState);
+
+    const username = useSelector(getLoginUsername);
+    const password = useSelector(getLoginPassword);
+    const isLoading = useSelector(getLoginIsLoading);
+    const error = useSelector(getLoginError);
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -67,3 +81,5 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
         </div>
     );
 });
+
+export default LoginForm;

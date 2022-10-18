@@ -1,9 +1,9 @@
-import { loginActions } from "features/AuthByUsername/model/slice/loginSlice";
-import { FC, useEffect } from "react";
+import { FC, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { classNames } from "shared/lib";
-import { Modal } from "shared/ui";
-import { LoginForm } from "../LoginForm/LoginForm";
+import { Loader, Modal } from "shared/ui";
+import { loginActions } from "../../model/slice/loginSlice";
+import { LoginFormAsync } from "../LoginForm/LoginForm.async";
 
 interface LoginModalProps {
     className?: string;
@@ -27,7 +27,9 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
             onClose={onClose}
             className={classNames("", {}, [className])}
         >
-            <LoginForm />
+            <Suspense fallback={<Loader />}>
+                <LoginFormAsync />
+            </Suspense>
         </Modal>
     );
 };

@@ -5,6 +5,7 @@ import { classNames } from "shared/lib";
 const AboutPage: FC = () => {
     classNames("", {}, []);
     const { t } = useTranslation("about");
-    return <div>{t("AboutPage")}</div>;
+
+    return <div>{t("О нас")}</div>;
 };
 export default AboutPage;
