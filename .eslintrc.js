@@ -50,7 +50,7 @@ module.exports = {
         "no-param-reassign": "off",
         "react/prop-types": "off", // из-за мемо ругается
     },
-    globals: { __IS_DEV__: true },
+    globals: { __IS_DEV__: true, __API__: true },
     overrides: [
         {
             files: ["**/src/**/*.test.{ts,tsx}"],
