@@ -1,7 +1,8 @@
-import { FC, Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { FC, memo, Suspense, useEffect } from "react";
+import { useAppDispatch } from "shared/hooks";
 import { classNames } from "shared/lib";
 import { Loader, Modal } from "shared/ui";
+
 import { loginActions } from "../../model/slice/loginSlice";
 import { LoginFormAsync } from "../LoginForm/LoginForm.async";
 
@@ -11,9 +12,9 @@ interface LoginModalProps {
     onClose: () => void;
 }
 
-export const LoginModal: FC<LoginModalProps> = (props) => {
+export const LoginModal: FC<LoginModalProps> = memo((props) => {
     const { className, isOpen, onClose } = props;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (!isOpen) {
@@ -28,8 +29,8 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
             className={classNames("", {}, [className])}
         >
             <Suspense fallback={<Loader />}>
-                <LoginFormAsync />
+                <LoginFormAsync onSuccess={onClose} />
             </Suspense>
         </Modal>
     );
-};
+});

@@ -21,32 +21,6 @@
 
 .items {
     margin: 20px 0 0 16px;
-
-    .item {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        margin: 10px 0;
-    }
-
-    .iconBox {
-        width: 40px;
-        min-width: 40px;
-        margin-right: 10px;
-        text-align: center;
-    }
-
-    .icon {
-        height: 28px;
-        fill: var(--inverted-secondary-color);
-    }
-
-    .link {
-        color: var(--inverted-primary-color);
-        white-space: nowrap;
-        opacity: 1;
-        transition: opacity 0.2s ease 0.1s;
-    }
 }
 
 .collapsed {
@@ -58,11 +32,6 @@
         button:not(:last-child) {
             margin: 0 0 10px;
         }
-    }
-
-    .link {
-        width: 0;
-        opacity: 0;
     }
 }
 

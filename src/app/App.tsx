@@ -1,16 +1,16 @@
 import { userActions } from "entities/User";
-import { FC, Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useTheme } from "shared/hooks";
-import { classNames } from "shared/lib";
+import { FC, memo, Suspense, useEffect } from "react";
+
 import { Navbar } from "widgets/Navbar";
 import { PageLoader } from "widgets/PageLoader";
 import { Sidebar } from "widgets/Sidebar";
+import { useAppDispatch, useTheme } from "shared/hooks";
+import { classNames } from "shared/lib";
 import { AppRouter } from "./providers/AppRouter";
 
-export const App: FC = () => {
+export const App: FC = memo(() => {
     const { theme } = useTheme();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(userActions.initAuthData());
@@ -28,4 +28,4 @@ export const App: FC = () => {
             </Suspense>
         </div>
     );
-};
+});

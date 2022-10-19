@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { BugButton } from "app/providers/ErrorBoundary";
 
-const MainPage: FC = () => {
+const MainPage: FC = memo(() => {
     const { t } = useTranslation("main");
 
     return (
@@ -11,5 +11,5 @@ const MainPage: FC = () => {
             <BugButton />
         </div>
     );
-};
+});
 export default MainPage;

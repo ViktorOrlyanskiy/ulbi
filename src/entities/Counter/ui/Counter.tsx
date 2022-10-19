@@ -1,15 +1,17 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
+import { useAppDispatch } from "shared/hooks";
 import { Button } from "shared/ui";
 import { counterActions } from "../model/slice/counterSlice";
 import { getCounterValue } from "../model/selectors/getCounterValue/getCounterValue";
 
 interface CounterProps {}
 
-export const Counter: FC<CounterProps> = () => {
+export const Counter: FC<CounterProps> = memo(() => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const counterValue = useSelector(getCounterValue);
 
     const increment = () => {
@@ -31,4 +33,4 @@ export const Counter: FC<CounterProps> = () => {
             </Button>
         </div>
     );
-};
+});
