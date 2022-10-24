@@ -1,7 +1,16 @@
-import { profileReducer } from "entities/Profile";
-import { FC, memo } from "react";
+import { FC, memo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ReducersList, useDynamicModuleLoader } from "shared/hooks";
+
+import {
+    fetchProfileData,
+    ProfileCard,
+    profileReducer,
+} from "entities/Profile";
+import {
+    ReducersList,
+    useAppDispatch,
+    useDynamicModuleLoader,
+} from "shared/hooks";
 
 const reducers: ReducersList = {
     profile: profileReducer,
@@ -12,7 +21,16 @@ interface ProfilePageProps {}
 const ProfilePage: FC<ProfilePageProps> = memo(() => {
     useDynamicModuleLoader(reducers);
     const { t } = useTranslation("profile");
+    const dispatch = useAppDispatch();
 
-    return <div> {t("Профиль пользователя")}</div>;
+    useEffect(() => {
+        dispatch(fetchProfileData());
+    }, [dispatch]);
+
+    return (
+        <div>
+            <ProfileCard />
+        </div>
+    );
 });
 export default ProfilePage;

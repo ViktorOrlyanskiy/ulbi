@@ -1,11 +1,19 @@
-import React, { FC, useRef, useState, useEffect, useCallback } from "react";
-import { classNames } from "shared/lib";
+import React, {
+    FC,
+    ReactNode,
+    useRef,
+    useState,
+    useEffect,
+    useCallback,
+    MutableRefObject,
+} from "react";
+import { classNames, Mods } from "shared/lib";
 import { Portal } from "shared/ui";
 import cls from "./Modal.module.scss";
 
 interface ModalProps {
     className?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
 }
@@ -17,10 +25,14 @@ export const Modal: FC<ModalProps> = (props) => {
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    const timerRefOne = useRef<ReturnType<typeof setTimeout>>();
-    const timerRefTwo = useRef<ReturnType<typeof setTimeout>>();
+    const timerRefOne = useRef() as MutableRefObject<
+        ReturnType<typeof setTimeout>
+    >;
+    const timerRefTwo = useRef() as MutableRefObject<
+        ReturnType<typeof setTimeout>
+    >;
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isMounted,
         [cls.isClosing]: isClosing,
     };
@@ -71,17 +83,15 @@ export const Modal: FC<ModalProps> = (props) => {
         };
     }, [isMounted, onKeyDown]);
 
-    return (
-        isOpen && (
-            <Portal>
-                <div className={classNames(cls.Modal, mods, [className])}>
-                    <div className={cls.overlay} onClick={onCloseHandler}>
-                        <div className={cls.content} onClick={onContentClick}>
-                            {children}
-                        </div>
+    return isOpen ? (
+        <Portal>
+            <div className={classNames(cls.Modal, mods, [className])}>
+                <div className={cls.overlay} onClick={onCloseHandler}>
+                    <div className={cls.content} onClick={onContentClick}>
+                        {children}
                     </div>
                 </div>
-            </Portal>
-        )
-    );
+            </div>
+        </Portal>
+    ) : null;
 };
