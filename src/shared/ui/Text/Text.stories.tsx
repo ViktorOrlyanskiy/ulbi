@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "app/providers/ThemeProvider";
 import { ThemeDecorator } from "app/config/storybook";
 import { Text, TextTheme } from "./Text";
+import { TextAlign, TextWeight } from "..";
 
 export default {
     title: "shared/Text",
@@ -31,6 +32,48 @@ Error.args = {
     title: "Title Title",
     text: "Text Text Text Text Text Text Text",
     theme: TextTheme.ERROR,
+};
+
+export const AlignLeft = Template.bind({});
+AlignLeft.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    align: TextAlign.LEFT,
+};
+
+export const AlignCenter = Template.bind({});
+AlignCenter.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    align: TextAlign.CENTER,
+};
+
+export const AlignRight = Template.bind({});
+AlignRight.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    align: TextAlign.RIGHT,
+};
+
+export const WeightLight = Template.bind({});
+WeightLight.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    weight: TextWeight.LIGHT,
+};
+
+export const WeightNormal = Template.bind({});
+WeightNormal.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    weight: TextWeight.NORMAL,
+};
+
+export const WeightBold = Template.bind({});
+WeightBold.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    weight: TextWeight.BOLD,
 };
 
 export const OnlyTitle = Template.bind({});

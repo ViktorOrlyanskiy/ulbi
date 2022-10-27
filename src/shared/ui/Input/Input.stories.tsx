@@ -40,3 +40,9 @@ OutlineDark.args = {
     theme: InputTheme.OUTLINE,
 };
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Readonly = Template.bind({});
+Readonly.args = {
+    placeholder: "Text",
+    readonly: true,
+};

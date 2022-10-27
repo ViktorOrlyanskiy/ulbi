@@ -14,7 +14,7 @@ export enum InputSize {
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "value" | "onChange" | "size"
+    "value" | "onChange" | "size" | "readOnly"
 >;
 
 interface InputProps extends HTMLInputProps {
@@ -22,7 +22,8 @@ interface InputProps extends HTMLInputProps {
     type?: string;
     theme?: InputTheme;
     size?: InputSize;
-    value?: string;
+    value?: string | number;
+    readonly?: boolean;
     onChange?: (value: string) => void;
 }
 
@@ -32,6 +33,7 @@ export const Input: FC<InputProps> = memo((props) => {
         type = "text",
         theme = InputTheme.OUTLINE,
         size = InputSize.M,
+        readonly,
         value,
         onChange,
         ...otherProps
@@ -46,9 +48,10 @@ export const Input: FC<InputProps> = memo((props) => {
         <input
             ref={inputRef}
             type={type}
+            readOnly={readonly}
             value={value}
             onChange={onChangeHandler}
-            className={classNames(cls.Input, {}, [
+            className={classNames(cls.Input, { [cls.readonly]: readonly }, [
                 className,
                 cls[theme],
                 cls[size],
