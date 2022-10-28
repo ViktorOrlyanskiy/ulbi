@@ -24,6 +24,7 @@ interface InputProps extends HTMLInputProps {
     size?: InputSize;
     value?: string | number;
     readonly?: boolean;
+    onlyIntegerNumber?: boolean;
     onChange?: (value: string) => void;
 }
 
@@ -35,11 +36,25 @@ export const Input: FC<InputProps> = memo((props) => {
         size = InputSize.M,
         readonly,
         value,
+        onlyIntegerNumber,
         onChange,
         ...otherProps
     } = props;
 
     const inputRef = useRef<HTMLInputElement>(null);
+
+    // проверяет что в инпут вводиться только число
+    const checkForIntegerNumber = (
+        e: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+        if (!/[0-9(Backspace)(Arrow)(Delete)]/.test(e.key)) {
+            e.preventDefault();
+        }
+    };
+
+    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) =>
+        onlyIntegerNumber ? checkForIntegerNumber(e) : undefined;
+
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
@@ -50,6 +65,7 @@ export const Input: FC<InputProps> = memo((props) => {
             type={type}
             readOnly={readonly}
             value={value}
+            onKeyDown={onKeyDownHandler}
             onChange={onChangeHandler}
             className={classNames(cls.Input, { [cls.readonly]: readonly }, [
                 className,

@@ -11,6 +11,11 @@
     "Валюта": "Currency",
     "Страна": "Country",
     "Ссылка на аватар": "Link to the avatar",
+    "Имя и фамилия обязательны": "First and last name are required",
+    "Некорректный возраст": "Incorrect age",
+    "Город не указан": "The city is not specified",
+    "Данные не указаны": "Data is not specified",
+    "Серверная ошибка при сохранении": "Server error when saving",
     "Произошла ошибка при загрузке профиля": "An error occurred while loading the profile",
     "Попробуйте обновить страницу": "Try refreshing the page"
 }

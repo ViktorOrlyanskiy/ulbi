@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { ProfileCard } from "entities/Profile";
+import { ProfileCard, ValidateProfileError } from "entities/Profile";
 import { Currency } from "entities/Currency";
 import { Country } from "entities/Country";
 import { classNames } from "shared/lib";
@@ -10,7 +10,7 @@ import {
     useAppDispatch,
     useDynamicModuleLoader,
 } from "shared/hooks";
-import { Button, ButtonTheme, Text } from "shared/ui";
+import { Button, ButtonTheme, Text, TextTheme } from "shared/ui";
 
 import { getProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
@@ -18,6 +18,7 @@ import { getProfileError } from "../../model/selectors/getProfileError/getProfil
 import { getProfileReadonly } from "../../model/selectors/getProfileReadonly/getProfileReadonly";
 import { fetchProfileData } from "../../model/services/fetchProfileData/fetchProfileData";
 import { updateProfileData } from "../../model/services/updateProfileData/updateProfileData";
+import { getProfileValidateErrors } from "../../model/selectors/getProfileValidateErrors/getProfileValidateErrors";
 import { profileActions, profileReducer } from "../../model/slice/profileSlice";
 import cls from "./EditableProfileCard.module.scss";
 
@@ -36,6 +37,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
+    const validateErrors = useSelector(getProfileValidateErrors);
 
     useEffect(() => {
         dispatch(fetchProfileData());
@@ -81,13 +83,13 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
     );
     const onChangeUsername = useCallback(
         (value: string) => {
-            dispatch(profileActions.updateProfile({ city: value || "" }));
+            dispatch(profileActions.updateProfile({ username: value || "" }));
         },
         [dispatch]
     );
     const onChangeAvatar = useCallback(
         (value: string) => {
-            dispatch(profileActions.updateProfile({ city: value || "" }));
+            dispatch(profileActions.updateProfile({ avatar: value || "" }));
         },
         [dispatch]
     );
@@ -103,6 +105,19 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
         },
         [dispatch]
     );
+
+    const validateErrorTranslates = {
+        [ValidateProfileError.INCORRECT_USER_DATA]: t(
+            "Имя и фамилия обязательны"
+        ),
+        [ValidateProfileError.INCORRECT_AGE]: t("Некорректный возраст"),
+
+        [ValidateProfileError.INCORRECT_CITY]: t("Город не указан"),
+        [ValidateProfileError.NO_DATA]: t("Данные не указаны"),
+        [ValidateProfileError.SERVER_ERROR]: t(
+            "Серверная ошибка при сохранении"
+        ),
+    };
 
     return (
         <div className={classNames(cls.EditableProfileCard, {}, [className])}>
@@ -134,6 +149,14 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
                     </div>
                 )}
             </div>
+            {validateErrors?.length &&
+                validateErrors.map((err) => (
+                    <Text
+                        theme={TextTheme.ERROR}
+                        text={validateErrorTranslates[err]}
+                        key={err}
+                    />
+                ))}
             <ProfileCard
                 data={formData}
                 isLoading={isLoading}

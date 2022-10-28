@@ -3,15 +3,7 @@ import { Currency, CurrencySelect } from "entities/Currency";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib";
-import {
-    Avatar,
-    Input,
-    Loader,
-    Select,
-    Text,
-    TextTheme,
-    TextWeight,
-} from "shared/ui";
+import { Avatar, Input, Loader, Text, TextTheme, TextWeight } from "shared/ui";
 import { TextAlign } from "shared/ui/Text/Text";
 
 import { Profile } from "../../model/types/profile";
@@ -72,13 +64,6 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
         );
     }
 
-    // проверяет что в инпут вводиться только число
-    const checkForNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (!/[0-9]/.test(e.key)) {
-            e.preventDefault();
-        }
-    };
-
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.avatarWrapper}>
@@ -117,11 +102,11 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     weight={TextWeight.BOLD}
                 />
                 <Input
+                    onlyIntegerNumber
                     className={cls.input}
                     readonly={readonly}
                     value={data?.age}
                     onChange={onChangeAge}
-                    onKeyPress={checkForNumber}
                 />
             </div>
             <div className={cls.item}>
