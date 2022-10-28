@@ -40,7 +40,9 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
     const validateErrors = useSelector(getProfileValidateErrors);
 
     useEffect(() => {
-        dispatch(fetchProfileData());
+        if (__PROJECT__ !== "storybook") {
+            dispatch(fetchProfileData());
+        }
     }, [dispatch]);
 
     // обработчики кнопок
