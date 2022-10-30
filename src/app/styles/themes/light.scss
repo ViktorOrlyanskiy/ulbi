@@ -1,9 +1,13 @@
 :root {
-    --bg-color: #fff;
-    --inverted-bg-color: #303030;
-    --primary-color: #000;
-    --secondary-color: #303030;
-    --inverted-primary-color: #fff;
-    --inverted-secondary-color: #bebebe;
-    --hover-color: #7fff00;
+    --primary-bg-color: #fff;
+    --secondary-bg-color: #eee;
+    --inverted-primary-bg-color: #222;
+    --inverted-secondary-bg-color: #383838;
+    --active-bg-color: #ddd;
+    --hover-bg-color: #ccc;
+
+    --primary-text-color: #000;
+    --secondary-text-color: #333;
+
+    --overlay-color: rgb(0 0 0 / 60%);
 }

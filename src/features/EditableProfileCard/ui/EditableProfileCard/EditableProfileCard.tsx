@@ -128,7 +128,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
                 {readonly ? (
                     <div className={cls.buttons}>
                         <Button
-                            theme={ButtonTheme.BACKGROUND_INVERTED}
+                            theme={ButtonTheme.BACKGROUND}
                             onClick={onEdit}
                         >
                             {t("Редактировать")}
@@ -143,7 +143,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
                             {t("Отменить")}
                         </Button>
                         <Button
-                            theme={ButtonTheme.BACKGROUND_INVERTED}
+                            theme={ButtonTheme.BACKGROUND}
                             onClick={onSave}
                         >
                             {t("Сохранить")}

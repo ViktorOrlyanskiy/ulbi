@@ -20,7 +20,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = memo(
             <Button
                 className={classNames("", {}, [className])}
                 onClick={toggleLang}
-                theme={ButtonTheme.OUTLINE_INVERTED}
+                theme={ButtonTheme.OUTLINE}
                 size={ButtonSize.M}
                 square={short}
             >

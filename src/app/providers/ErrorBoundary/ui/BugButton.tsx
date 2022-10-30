@@ -15,7 +15,7 @@ export const BugButton: FC = () => {
 
     return (
         // eslint-disable-next-line
-        <Button onClick={onThrow} theme={ButtonTheme.BACKGROUND_INVERTED}>
+        <Button onClick={onThrow} theme={ButtonTheme.BACKGROUND}>
             Throw error
         </Button>
     );

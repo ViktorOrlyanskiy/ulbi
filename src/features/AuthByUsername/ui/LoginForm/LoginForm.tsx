@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from "react";
+import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { classNames } from "shared/lib";
@@ -56,6 +56,23 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
         }
     }, [dispatch, username, password, onSuccess]);
 
+    const onKeyDown = useCallback(
+        (e: KeyboardEvent) => {
+            if (e.key === "Enter") {
+                onLoginClick();
+            }
+        },
+        [onLoginClick]
+    );
+
+    useEffect(() => {
+        window.addEventListener("keydown", onKeyDown);
+
+        return () => {
+            window.addEventListener("keydown", onKeyDown);
+        };
+    }, [onKeyDown]);
+
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
             <Text title={t("Форма авторизации")} className={cls.title} />
@@ -80,7 +97,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
                 onChange={onChangePassword}
             />
             <Button
-                theme={ButtonTheme.BACKGROUND_INVERTED}
+                theme={ButtonTheme.BACKGROUND}
                 onClick={onLoginClick}
                 disabled={isLoading}
             >

@@ -20,10 +20,10 @@ Primary.args = {
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor laudantium optio deserunt, nisi accusamus animi nulla laborum. Recusandae voluptatum, necessitatibus velit id reprehenderit excepturi soluta. Similique quos eum dicta repellat!",
 };
 
-export const PrimaryInverted = Template.bind({});
-PrimaryInverted.args = {
+export const PrimaryDark = Template.bind({});
+PrimaryDark.args = {
     isOpen: true,
     children:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor laudantium optio deserunt, nisi accusamus animi nulla laborum. Recusandae voluptatum, necessitatibus velit id reprehenderit excepturi soluta. Similique quos eum dicta repellat!",
 };
-PrimaryInverted.decorators = [ThemeDecorator(Theme.DARK)];
+PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];

@@ -75,7 +75,7 @@ export const Modal: FC<ModalProps> = (props) => {
         if (isMounted) {
             window.addEventListener("keydown", onKeyDown);
         }
-
+ 
         return () => {
             clearTimeout(timerRefOne.current);
             clearTimeout(timerRefTwo.current);

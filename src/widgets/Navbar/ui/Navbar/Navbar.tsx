@@ -34,7 +34,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     return authData ? (
         <div className={classNames(cls.Navbar, {}, [className])}>
             <Button
-                theme={ButtonTheme.CLEAR_INVERTED}
+                theme={ButtonTheme.CLEAR}
                 className={cls.links}
                 onClick={onLogout}
             >
@@ -44,7 +44,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     ) : (
         <div className={classNames(cls.Navbar, {}, [className])}>
             <Button
-                theme={ButtonTheme.CLEAR_INVERTED}
+                theme={ButtonTheme.CLEAR}
                 className={cls.links}
                 onClick={onShowModal}
             >

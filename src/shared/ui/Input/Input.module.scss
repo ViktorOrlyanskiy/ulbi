@@ -4,24 +4,24 @@
 }
 
 .outline {
-    color: var(--primary-color);
+    color: var(--primary-text-color);
     background-color: transparent;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--active-bg-color);
     border-radius: 3px;
 
     &:focus {
-        box-shadow: 0 0 4px 0 var(--secondary-color);
+        box-shadow: 0 0 4px 0 var(--hover-bg-color);
     }
 }
 
 .outlineInverted {
-    color: var(--inverted-primary-color);
+    color: var(--primary-text-color);
     background-color: transparent;
-    border: 1px solid var(--inverted-secondary-color);
+    border: 1px solid var(--active-bg-color);
     border-radius: 3px;
 
     &:focus {
-        box-shadow: 0 0 4px 0 var(--inverted-secondary-color);
+        box-shadow: 0 0 4px 0 var(--hover-bg-color);
     }
 }
 
@@ -39,7 +39,7 @@
 
 // сброс стилей для состояния readonly
 .readonly {
-    color: var(--primary-color);
+    color: var(--primary-text-color);
     background-color: transparent;
     border: 1px solid rgb(255 255 255 / 0%);
 

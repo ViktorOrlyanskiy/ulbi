@@ -1,9 +1,5 @@
 .icon {
     height: 28px;
     transition: all 0.3s;
-    fill: var(--inverted-secondary-color);
-
-    &:hover {
-        fill: var(--hover-color);
-    }
+    fill: var(--inverted-primary-bg-color);
 }
