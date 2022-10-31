@@ -1,13 +1,15 @@
 :root {
+    // background
     --primary-bg-color: #fff;
     --secondary-bg-color: #eee;
     --inverted-primary-bg-color: #222;
     --inverted-secondary-bg-color: #383838;
     --active-bg-color: #ddd;
     --hover-bg-color: #ccc;
+    --transparent-bg-color: rgb(0 0 0 / 0%);
+    --overlay-bg-color: rgb(0 0 0 / 60%);
 
+    // text
     --primary-text-color: #000;
     --secondary-text-color: #333;
-
-    --overlay-color: rgb(0 0 0 / 60%);
 }

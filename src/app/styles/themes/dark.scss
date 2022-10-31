@@ -1,13 +1,15 @@
 .app_dark_theme {
+    // background
     --primary-bg-color: #222;
     --secondary-bg-color: #383838;
     --inverted-primary-bg-color: #fff;
     --inverted-secondary-bg-color: #eee;
     --active-bg-color: #4e4e4e;
     --hover-bg-color: #616161;
+    --transparent-bg-color: rgb(0 0 0 / 0%);
+    --overlay-bg-color: rgb(0 0 0 / 60%);
 
+    // text
     --primary-text-color: #fff;
     --secondary-text-color: #bebebe;
-
-    --overlay-color: rgb(0 0 0 / 60%);
 }

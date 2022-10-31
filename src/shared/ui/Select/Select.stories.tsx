@@ -1,4 +1,6 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Theme } from "app/providers/ThemeProvider";
+import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
 import { Select } from "./Select";
 
 export default {
@@ -13,8 +15,30 @@ const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+    value: "Armenia",
     options: [
-        { value: "123", content: "Первый пункт" },
-        { value: "1234", content: "Второй пункт" },
+        { value: "Armenia", content: "Armenia" },
+        { value: "Belarus", content: "Belarus" },
     ],
 };
+Primary.decorators = [];
+
+export const Readonly = Template.bind({});
+Readonly.args = {
+    value: "Armenia",
+    readonly: true,
+    options: [
+        { value: "Armenia", content: "Armenia" },
+        { value: "Belarus", content: "Belarus" },
+    ],
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+    value: "Armenia",
+    options: [
+        { value: "Armenia", content: "Armenia" },
+        { value: "Belarus", content: "Belarus" },
+    ],
+};
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
