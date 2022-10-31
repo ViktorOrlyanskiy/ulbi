@@ -7,6 +7,7 @@ interface UseThemeResult {
     toggleTheme: () => void;
 }
 
+// изменяет цветовую тему приложения
 export function useTheme(): UseThemeResult {
     const { theme, setTheme } = useContext(ThemeContext);
 

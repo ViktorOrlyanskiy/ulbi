@@ -6,6 +6,7 @@ import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
+    useKeyDown,
 } from "shared/hooks";
 import { Button, ButtonTheme, Input, Text, TextTheme } from "shared/ui";
 
@@ -56,22 +57,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
         }
     }, [dispatch, username, password, onSuccess]);
 
-    const onKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.key === "Enter") {
-                onLoginClick();
-            }
-        },
-        [onLoginClick]
-    );
-
-    useEffect(() => {
-        window.addEventListener("keydown", onKeyDown);
-
-        return () => {
-            window.addEventListener("keydown", onKeyDown);
-        };
-    }, [onKeyDown]);
+    useKeyDown("Enter", onLoginClick);
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>

@@ -1,6 +1,4 @@
-export { useTheme } from "./useTheme/useTheme";
-export { useAppDispatch } from "./useAppDispatch/useAppDispatch";
-export {
-    useDynamicModuleLoader,
-    ReducersList,
-} from "./useDynamicModuleLoader/useDynamicModuleLoader";
+export { useTheme } from "./useTheme";
+export { useKeyDown } from "./useKeyDown";
+export { useAppDispatch } from "./useAppDispatch";
+export { useDynamicModuleLoader, ReducersList } from "./useDynamicModuleLoader";

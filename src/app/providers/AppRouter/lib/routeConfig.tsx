@@ -6,7 +6,7 @@ import { NotFoundPage } from "pages/NotFoundPage";
 import { AppRoutes, RoutePath } from "shared/const";
 import { MapPage } from "pages/MapPage";
 
-type AppRoutesProps = RouteProps & {
+export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
 };
 

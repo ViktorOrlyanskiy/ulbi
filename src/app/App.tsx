@@ -1,5 +1,6 @@
-import { userActions } from "entities/User";
+import { getUserInited, userActions } from "entities/User";
 import { FC, memo, Suspense, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { Navbar } from "widgets/Navbar";
 import { PageLoader } from "widgets/PageLoader";
@@ -11,6 +12,7 @@ import { AppRouter } from "./providers/AppRouter";
 export const App: FC = memo(() => {
     const { theme } = useTheme();
     const dispatch = useAppDispatch();
+    const inited = useSelector(getUserInited);
 
     useEffect(() => {
         dispatch(userActions.initAuthData());
@@ -23,7 +25,7 @@ export const App: FC = memo(() => {
 
                 <div className="content-page">
                     <Sidebar />
-                    <AppRouter />
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>
