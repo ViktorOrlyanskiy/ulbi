@@ -1,7 +1,4 @@
-$height-header: 28px;
-
 .Select {
-    position: relative;
     width: 100%;
     cursor: pointer;
     user-select: none;
@@ -43,19 +40,15 @@ $height-header: 28px;
 
 .body {
     position: absolute;
-    top: calc($height-header + 5px);
     z-index: var(--modal-z-index);
-    display: none;
-    width: 100%;
+    display: block;
     max-height: 200px;
     overflow-y: auto;
     background: var(--primary-bg-color);
     border: 1px solid var(--hover-bg-color);
     border-radius: 3px;
-
-    &.open {
-        display: block;
-    }
+    cursor: pointer;
+    user-select: none;
 }
 
 .option {

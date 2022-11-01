@@ -5,28 +5,46 @@ import {
     useMemo,
     useState,
     useCallback,
+    useRef,
 } from "react";
+import { useOutsideClick } from "shared/hooks";
 import { classNames } from "shared/lib";
+import { Portal } from "shared/ui";
 import ChevronIcon from "./chevronDown.svg";
 import cls from "./Select.module.scss";
 
 export interface SelectOption {
-    value: string;
+    value: string | number;
     content: string;
 }
 
 interface NewSelectProps {
     className?: string;
-    options?: SelectOption[];
-    value?: string;
+    options: SelectOption[];
+    label?: string;
+    value?: string | number;
     onChange?: (value: string) => void;
     readonly?: boolean;
 }
 
 export const Select: FC<NewSelectProps> = (props) => {
-    const { className, options, onChange, value, readonly } = props;
+    const { className, options, onChange, label, value, readonly } = props;
+    const refHeader = useRef<HTMLDivElement | null>(null);
+    const refBody = useRef<HTMLDivElement | null>(null);
     const [isOpen, setOpen] = useState(false);
-    const [currentValue, setCurrentValue] = useState(value);
+    const [currentValue, setCurrentValue] = useState<string | number>(
+        label || ""
+    );
+    const [topBody, setTopBody] = useState(0);
+    const [leftBody, setLeftBody] = useState(0);
+    const [widthBody, setWidthBody] = useState(0);
+
+    useOutsideClick(refBody, isOpen, setOpen);
+
+    const searchField = (options: SelectOption[], field: string | number) => {
+        const option = options.find((item) => item.value === field);
+        return option?.content || "";
+    };
 
     const onToggle = () => {
         if (!readonly) {
@@ -37,8 +55,9 @@ export const Select: FC<NewSelectProps> = (props) => {
     const onChangeValue = useCallback(
         (e: MouseEvent<HTMLDivElement>) => {
             const { value } = e.currentTarget.dataset;
-            setCurrentValue(value || "");
+            const content = e.currentTarget.innerHTML;
             onChange?.(value || "");
+            setCurrentValue(content || "");
             setOpen(false);
         },
         [onChange]
@@ -59,25 +78,29 @@ export const Select: FC<NewSelectProps> = (props) => {
         [options, onChangeValue]
     );
 
-    const onClose = (e: globalThis.MouseEvent) => {
-        const { classList } = e.target as HTMLElement;
-
-        if (!classList.contains(cls.option)) {
-            setOpen(false);
+    useEffect(() => {
+        if (!label && options?.length && value) {
+            setCurrentValue(searchField(options, value));
         }
-    };
+    }, [label, options, value]);
 
     useEffect(() => {
-        if (isOpen) {
-            document.addEventListener("click", onClose);
-        }
+        const headerElement = refHeader?.current;
 
-        return () => document.removeEventListener("click", onClose);
+        if (headerElement) {
+            const { left, bottom, width } =
+                headerElement.getBoundingClientRect();
+
+            setTopBody(bottom + 5);
+            setLeftBody(left);
+            setWidthBody(width);
+        }
     }, [isOpen]);
 
     return (
         <div className={classNames(cls.Select, {}, [className])}>
             <div
+                ref={refHeader}
                 className={classNames(
                     cls.header,
                     { [cls.open]: isOpen, [cls.readonly]: readonly },
@@ -88,9 +111,22 @@ export const Select: FC<NewSelectProps> = (props) => {
                 {currentValue}
                 <ChevronIcon className={cls.icon} />
             </div>
-            <div className={classNames(cls.body, { [cls.open]: isOpen }, [])}>
-                {optionsList}
-            </div>
+
+            {isOpen && (
+                <Portal>
+                    <div
+                        ref={refBody}
+                        style={{
+                            top: topBody,
+                            left: leftBody,
+                            width: widthBody,
+                        }}
+                        className={classNames(cls.body, {}, [])}
+                    >
+                        {optionsList}
+                    </div>
+                </Portal>
+            )}
         </div>
     );
 };
