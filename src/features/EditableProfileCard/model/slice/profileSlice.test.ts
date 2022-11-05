@@ -15,7 +15,7 @@ const data = {
 };
 
 describe("profileSlice", () => {
-    test("test set readonly", () => {
+    test("test setReadonly", () => {
         const state: DeepPartial<ProfileSchema> = { readonly: true };
         expect(
             profileReducer(
@@ -25,7 +25,7 @@ describe("profileSlice", () => {
         ).toEqual({ readonly: false });
     });
 
-    test("test cansel edit", () => {
+    test("test cancelEdit", () => {
         const state: DeepPartial<ProfileSchema> = { data, readonly: false };
         expect(
             profileReducer(state as ProfileSchema, profileActions.cancelEdit())
@@ -37,7 +37,7 @@ describe("profileSlice", () => {
         });
     });
 
-    test("test update profile", () => {
+    test("test updateProfile", () => {
         const state: DeepPartial<ProfileSchema> = {
             form: data,
         };
@@ -52,7 +52,7 @@ describe("profileSlice", () => {
         ).toEqual({ form: { ...data, first: "first", lastname: "lastname" } });
     });
 
-    test("test update profile service pending", () => {
+    test("test updateProfileData pending", () => {
         const state: DeepPartial<ProfileSchema> = {
             isLoading: false,
             validateError: [ValidateProfileError.INCORRECT_USER_DATA],
@@ -62,7 +62,7 @@ describe("profileSlice", () => {
         ).toEqual({ isLoading: true, validateError: undefined });
     });
 
-    test("test update profile service fulfilled", () => {
+    test("test updateProfileData fulfilled", () => {
         const state: DeepPartial<ProfileSchema> = {
             isLoading: true,
         };
@@ -80,7 +80,7 @@ describe("profileSlice", () => {
         });
     });
 
-    test("test update profile service rejected", () => {
+    test("test updateProfileData service rejected", () => {
         const state: DeepPartial<ProfileSchema> = {
             isLoading: true,
         };

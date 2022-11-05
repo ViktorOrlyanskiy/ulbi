@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { BugButton } from "app/providers/ErrorBoundary";
-import { Select } from "shared/ui";
+import { Checkbox, Select } from "shared/ui";
 
 const options = [
     { value: "csv", content: "CSV" },
@@ -15,6 +15,8 @@ const MainPage: FC = memo(() => {
         <div>
             {t("Главная")}
             {/* <BugButton /> */}
+            {/* eslint-disable-next-line */}
+            <Checkbox label="label" />
             <Select options={options} label="2222" />
         </div>
     );

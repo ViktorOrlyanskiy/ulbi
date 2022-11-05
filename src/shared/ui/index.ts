@@ -1,9 +1,13 @@
 export { Avatar } from "./Avatar/Avatar";
 export { AppLink, AppLinkTheme } from "./AppLink/AppLink";
 export { Button, ButtonTheme, ButtonSize } from "./Button/Button";
+export { Checkbox } from "./Checkbox/Checkbox";
+export { Code } from "./Code/Code";
+export { Icon } from "./Icon/Icon";
 export { Input, InputTheme, InputSize } from "./Input/Input";
 export { Loader } from "./Loader/Loader";
 export { Modal } from "./Modal/Modal";
 export { Portal } from "./Portal/Portal";
-export { Text, TextTheme, TextAlign, TextWeight } from "./Text/Text";
+export { Text, TextTheme, TextAlign, TextWeight, TextSize } from "./Text/Text";
 export { Select, SelectOption } from "./Select/Select";
+export { Skeleton } from "./Skeleton/Skeleton";

@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "app/providers/ThemeProvider";
 import { ThemeDecorator } from "app/config/storybook";
-import { Text, TextTheme } from "./Text";
+import { Text, TextSize, TextTheme } from "./Text";
 import { TextAlign, TextWeight } from "..";
 
 export default {
@@ -32,6 +32,20 @@ Error.args = {
     title: "Title Title",
     text: "Text Text Text Text Text Text Text",
     theme: TextTheme.ERROR,
+};
+
+export const SizeM = Template.bind({});
+SizeM.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    size: TextSize.M,
+};
+
+export const SizeL = Template.bind({});
+SizeL.args = {
+    title: "Title Title",
+    text: "Text Text Text Text Text Text Text",
+    size: TextSize.L,
 };
 
 export const AlignLeft = Template.bind({});

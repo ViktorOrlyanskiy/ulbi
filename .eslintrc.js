@@ -50,6 +50,7 @@ module.exports = {
         "no-param-reassign": "off",
         "no-undef": "off",
         "react/prop-types": "off", // из-за мемо ругается
+        "jsx-a11y/label-has-associated-control": "off",
     },
     globals: { __IS_DEV__: true, __API__: true, __PROJECT__: true },
     overrides: [

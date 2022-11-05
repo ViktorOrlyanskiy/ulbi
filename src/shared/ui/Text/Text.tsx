@@ -7,6 +7,12 @@ export enum TextTheme {
     ERROR = "error",
 }
 
+export enum TextSize {
+    M = "size_m",
+    L = "size_l",
+    XL = "size_xl",
+}
+
 export enum TextAlign {
     RIGHT = "right",
     LEFT = "left",
@@ -24,6 +30,7 @@ interface TextProps {
     title?: string;
     text?: string;
     theme?: TextTheme;
+    size?: TextSize;
     align?: TextAlign;
     weight?: TextWeight;
 }
@@ -34,6 +41,7 @@ export const Text: FC<TextProps> = memo((props) => {
         title,
         text,
         theme = TextTheme.PRIMARY,
+        size = TextSize.M,
         align = TextAlign.LEFT,
         weight = TextWeight.NORMAL,
     } = props;
@@ -42,6 +50,7 @@ export const Text: FC<TextProps> = memo((props) => {
             className={classNames("", {}, [
                 className,
                 cls[theme],
+                cls[size],
                 cls[align],
                 cls[weight],
             ])}

@@ -1,6 +1,6 @@
 .title {
     color: var(--primary-text-color);
-    font: var(--font-l);
+    font: var(--font-m);
 }
 
 .text {
@@ -11,12 +11,10 @@
 .error {
     .title {
         color: var(--primary-error-color);
-        font-weight: 700;
     }
 
     .text {
         color: var(--secondary-error-color);
-        font-weight: 700;
     }
 }
 
@@ -49,5 +47,26 @@
 .bold {
     p {
         font-weight: 700;
+    }
+}
+
+// размер шрифта
+.size_m {
+    .title {
+        font: var(--font-l);
+    }
+
+    .text {
+        font: var(--font-m);
+    }
+}
+
+.size_l {
+    .title {
+        font: var(--font-xl);
+    }
+
+    .text {
+        font: var(--font-l);
     }
 }

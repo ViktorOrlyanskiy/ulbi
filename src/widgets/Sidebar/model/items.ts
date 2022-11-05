@@ -1,10 +1,10 @@
 import React from "react";
 import { RoutePath } from "shared/const";
-import MainIcon from "shared/assets/icons/home.svg";
-import AboutIcon from "shared/assets/icons/about.svg";
-import ProfileIcon from "shared/assets/icons/profile.svg";
-import ArticlesIcon from "shared/assets/icons/article.svg";
-import MapIcon from "shared/assets/icons/map.svg";
+import MainIcon from "shared/assets/icons/sidebar/home.svg";
+import AboutIcon from "shared/assets/icons/sidebar/about.svg";
+import ProfileIcon from "shared/assets/icons/sidebar/profile.svg";
+import ArticlesIcon from "shared/assets/icons/sidebar/article.svg";
+import MapIcon from "shared/assets/icons/sidebar/map.svg";
 
 export interface SidebarItemType {
     path: string;

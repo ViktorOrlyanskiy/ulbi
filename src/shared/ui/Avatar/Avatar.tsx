@@ -13,13 +13,7 @@ interface AvatarProps {
 export const Avatar = memo((props: AvatarProps) => {
     const { className, src = AvatarImg, alt, size } = props;
 
-    const styles = useMemo<CSSProperties>(
-        () => ({
-            width: size,
-            height: size,
-        }),
-        [size]
-    );
+    const styles = { width: size, height: size };
 
     return (
         <img

@@ -1,4 +1,5 @@
 .Select {
+    // position: relative;
     width: 100%;
     cursor: pointer;
     user-select: none;
@@ -11,6 +12,7 @@
     padding: 2px 5px;
     color: var(--primary-text-color);
     background: transparent;
+    background: red;
     border: 1px solid var(--active-bg-color);
     border-radius: 3px;
 

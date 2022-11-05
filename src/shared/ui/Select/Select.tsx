@@ -14,7 +14,7 @@ import ChevronIcon from "./chevronDown.svg";
 import cls from "./Select.module.scss";
 
 export interface SelectOption {
-    value: string | number;
+    value: string;
     content: string;
 }
 
@@ -22,7 +22,7 @@ interface NewSelectProps {
     className?: string;
     options: SelectOption[];
     label?: string;
-    value?: string | number;
+    value?: string;
     onChange?: (value: string) => void;
     readonly?: boolean;
 }
@@ -32,16 +32,14 @@ export const Select: FC<NewSelectProps> = (props) => {
     const refHeader = useRef<HTMLDivElement | null>(null);
     const refBody = useRef<HTMLDivElement | null>(null);
     const [isOpen, setOpen] = useState(false);
-    const [currentValue, setCurrentValue] = useState<string | number>(
-        label || ""
-    );
+    const [currentValue, setCurrentValue] = useState<string>(label || "");
     const [topBody, setTopBody] = useState(0);
     const [leftBody, setLeftBody] = useState(0);
     const [widthBody, setWidthBody] = useState(0);
 
     useOutsideClick(refBody, isOpen, setOpen);
 
-    const searchField = (options: SelectOption[], field: string | number) => {
+    const searchField = (options: SelectOption[], field: string) => {
         const option = options.find((item) => item.value === field);
         return option?.content || "";
     };
@@ -84,12 +82,31 @@ export const Select: FC<NewSelectProps> = (props) => {
         }
     }, [label, options, value]);
 
+    const x = () => {
+        console.log(document.documentElement.clientWidth);
+    };
+
+    useEffect(() => {
+        document.addEventListener("resize", x);
+    });
+
+    // определяет координаты
     useEffect(() => {
         const headerElement = refHeader?.current;
 
+        function getCoords(elem: any) {
+            const box = elem.getBoundingClientRect();
+            return {
+                top: box.top + window.pageYOffset,
+                right: box.right + window.pageXOffset,
+                bottom: box.bottom + window.pageYOffset,
+                left: box.left + window.pageXOffset,
+                width: box.width,
+            };
+        }
+
         if (headerElement) {
-            const { left, bottom, width } =
-                headerElement.getBoundingClientRect();
+            const { left, bottom, width } = getCoords(headerElement);
 
             setTopBody(bottom + 5);
             setLeftBody(left);
@@ -113,19 +130,20 @@ export const Select: FC<NewSelectProps> = (props) => {
             </div>
 
             {isOpen && (
-                <Portal>
-                    <div
-                        ref={refBody}
-                        style={{
-                            top: topBody,
-                            left: leftBody,
-                            width: widthBody,
-                        }}
-                        className={classNames(cls.body, {}, [])}
-                    >
-                        {optionsList}
-                    </div>
-                </Portal>
+                // <Portal>
+                <div
+                    ref={refBody}
+                    style={{
+                        position: "absolute",
+                        top: topBody,
+                        left: leftBody,
+                        width: widthBody,
+                    }}
+                    className={classNames(cls.body, {}, [])}
+                >
+                    {optionsList}
+                </div>
+                // </Portal>
             )}
         </div>
     );
