@@ -1,5 +1,7 @@
 {
     "Articles": "Articles",
     "Статья не найдена": "Article not found",
-    "Произошла ошибка при загрузки страницы": "An error occurred while loading the page"
+    "Комментарии": "Comments",
+    "Произошла ошибка при загрузки страницы": "An error occurred while loading the page",
+    "Ни один пользователь еще не оставил комментарий": "No user has left a comment yet"
 }

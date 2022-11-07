@@ -30,13 +30,11 @@ export const Checkbox: FC<CheckboxProps> = memo((props) => {
         onChange,
         ...otherProps
     } = props;
-    const inputRef = useRef<HTMLInputElement>(null);
 
     return (
         <label className={classNames(cls.label, {}, [className, cls[size]])}>
             {label}
             <input
-                ref={inputRef}
                 type="checkbox"
                 onChange={onChange}
                 className={cls.defaultCheckbox}

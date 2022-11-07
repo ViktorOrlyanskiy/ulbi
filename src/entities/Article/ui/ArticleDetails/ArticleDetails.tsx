@@ -1,10 +1,11 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
+    useInitialEffect,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
 import {
@@ -50,6 +51,10 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
 
+    useInitialEffect(() => {
+        dispatch(fetchArticleById(id));
+    });
+
     const renderBlock = (block: ArticleBlock) => {
         switch (block.type) {
             case ArticleBlockType.CODE:
@@ -83,12 +88,6 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
                 return null;
         }
     };
-
-    useEffect(() => {
-        if (__PROJECT__ !== "storybook") {
-            dispatch(fetchArticleById(id));
-        }
-    }, [dispatch, id]);
 
     if (isLoading) {
         return (

@@ -1,4 +1,4 @@
-import { CSSProperties, memo, useMemo } from "react";
+import { memo } from "react";
 import { classNames } from "shared/lib";
 import AvatarImg from "./default-avatar.png";
 import cls from "./Avatar.module.scss";

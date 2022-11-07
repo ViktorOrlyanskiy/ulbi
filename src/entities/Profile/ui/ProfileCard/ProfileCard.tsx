@@ -67,7 +67,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.avatarWrapper}>
-                <Avatar src={data?.avatar} />
+                <Avatar src={data?.avatar} size={100} />
             </div>
             <div className={cls.item}>
                 <Text

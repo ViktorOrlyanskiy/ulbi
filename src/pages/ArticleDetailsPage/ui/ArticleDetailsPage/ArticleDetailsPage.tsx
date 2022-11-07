@@ -1,6 +1,7 @@
 import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { FetchArticleDetailsComments } from "features/FetchArticleDetailsComments";
 import { ArticleDetails } from "entities/Article";
 import { classNames } from "shared/lib";
 import cls from "./ArticleDetailsPage.module.scss";
@@ -27,6 +28,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     return (
         <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
             <ArticleDetails id={id} />
+            <FetchArticleDetailsComments id={id} />
         </div>
     );
 };
