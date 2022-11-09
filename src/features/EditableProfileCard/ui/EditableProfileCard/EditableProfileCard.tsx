@@ -15,6 +15,7 @@ import {
 } from "shared/hooks";
 import { Button, ButtonTheme, Text, TextTheme } from "shared/ui";
 
+import { getCanEdit } from "../../model/selectors/getCanEdit/getCatEdit";
 import { getProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
@@ -38,14 +39,12 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
     const dispatch = useAppDispatch();
     const { id } = useParams<{ id: string }>();
 
-    const authData = useSelector(getUserAuthData);
     const formData = useSelector(getProfileForm);
+    const canEdit = useSelector(getCanEdit);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
-
-    const canEdit = authData?.id === formData?.id;
 
     useInitialEffect(() => {
         if (id) {

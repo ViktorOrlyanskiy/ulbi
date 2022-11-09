@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BurgerButton } from "./BurgerButton";
 
 export default {
-    title: "widgets/BurgerButton",
+    title: "shared/BurgerButton",
     component: BurgerButton,
     argTypes: {
         backgroundColor: { control: "color" },

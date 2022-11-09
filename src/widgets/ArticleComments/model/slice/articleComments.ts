@@ -6,26 +6,24 @@ import {
 import { StateSchema } from "app/providers/StoreProvider";
 import { Comment } from "entities/Comment";
 import { fetchCommentsByArticleId } from "../services/fetchCommentsByArticleId";
-import { ArticleDetailsCommentsSchema } from "../types/articleDetailsCommentsSchema";
+import { ArticleCommentsSchema } from "../types/articleComments";
 
 const commentsAdapter = createEntityAdapter<Comment>({
     selectId: (comment) => comment.id,
 });
 
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
-    (state) => state.articleDetailsComments || commentsAdapter.getInitialState()
+    (state) => state.articleComments || commentsAdapter.getInitialState()
 );
 
-export const articleDetailsCommentsSlice = createSlice({
-    name: "articleDetailsComments",
-    initialState: commentsAdapter.getInitialState<ArticleDetailsCommentsSchema>(
-        {
-            isLoading: false,
-            error: undefined,
-            ids: [],
-            entities: {},
-        }
-    ),
+export const articleCommentsSlice = createSlice({
+    name: "articleComments",
+    initialState: commentsAdapter.getInitialState<ArticleCommentsSchema>({
+        isLoading: false,
+        error: undefined,
+        ids: [],
+        entities: {},
+    }),
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -47,7 +45,5 @@ export const articleDetailsCommentsSlice = createSlice({
     },
 });
 
-export const { actions: articleDetailsCommentsActions } =
-    articleDetailsCommentsSlice;
-export const { reducer: articleDetailsCommentsReducer } =
-    articleDetailsCommentsSlice;
+export const { actions: articleCommentsActions } = articleCommentsSlice;
+export const { reducer: articleCommentsReducer } = articleCommentsSlice;

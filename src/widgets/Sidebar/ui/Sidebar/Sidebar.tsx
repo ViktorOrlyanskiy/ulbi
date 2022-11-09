@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { classNames } from "shared/lib";
 import { LangSwitcher } from "widgets/LangSwitcher";
 import { ThemeSwitcher } from "widgets/ThemeSwitcher";
+import { BurgerButton } from "shared/ui/BurgerButton/BurgerButton";
 import { getSidebarItems } from "../../model/selectors/getSidebarItems";
-import { BurgerButton } from "../BurgerButton/BurgerButton";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import cls from "./Sidebar.module.scss";
 

@@ -29,6 +29,18 @@
       "userId": "1",
       "text": "новый коммент",
       "id": "xf0SyP-"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "еще один новый коммент",
+      "id": "FFwGxbO"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "лалалала",
+      "id": "N66KPIT"
     }
   ],
   "users": [
