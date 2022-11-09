@@ -1,7 +1,8 @@
 import { FC, memo } from "react";
 import { classNames } from "shared/lib";
 import { Comment } from "entities/Comment";
-import { Avatar, Skeleton, Text, TextWeight } from "shared/ui";
+import { RoutePath } from "shared/const";
+import { AppLink, Avatar, Skeleton, Text, TextWeight } from "shared/ui";
 import cls from "./CommentCard.module.scss";
 
 interface CommentCardProps {
@@ -13,9 +14,18 @@ interface CommentCardProps {
 export const CommentCard: FC<CommentCardProps> = memo((props) => {
     const { comment, isLoading, className } = props;
 
+    if (!comment) {
+        return null;
+    }
+
     if (isLoading) {
         return (
-            <div className={classNames(cls.CommentList, {}, [className])}>
+            <div
+                className={classNames(cls.CommentList, {}, [
+                    className,
+                    cls.loading,
+                ])}
+            >
                 <div className={cls.header}>
                     <Skeleton width={30} height={30} borderRadius="50%" />
                     <Skeleton width={100} height={16} />
@@ -27,10 +37,13 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
 
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
-            <div className={cls.header}>
+            <AppLink
+                to={`${RoutePath.profile}${comment?.user.id}`}
+                className={cls.header}
+            >
                 <Avatar src={comment?.user.avatar} size={30} />
                 <Text title={comment?.user.username} weight={TextWeight.BOLD} />
-            </div>
+            </AppLink>
             <Text text={comment?.text} />
         </div>
     );

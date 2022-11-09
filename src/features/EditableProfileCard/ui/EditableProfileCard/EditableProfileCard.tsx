@@ -1,7 +1,9 @@
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 import { ProfileCard, ValidateProfileError } from "entities/Profile";
+import { getUserAuthData } from "entities/User";
 import { Currency } from "entities/Currency";
 import { Country } from "entities/Country";
 import { classNames } from "shared/lib";
@@ -9,6 +11,7 @@ import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
+    useInitialEffect,
 } from "shared/hooks";
 import { Button, ButtonTheme, Text, TextTheme } from "shared/ui";
 
@@ -33,17 +36,22 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
     const { className } = props;
     const { t } = useTranslation("profile");
     const dispatch = useAppDispatch();
+    const { id } = useParams<{ id: string }>();
+
+    const authData = useSelector(getUserAuthData);
     const formData = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
 
-    useEffect(() => {
-        if (__PROJECT__ !== "storybook") {
-            dispatch(fetchProfileData());
+    const canEdit = authData?.id === formData?.id;
+
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id));
         }
-    }, [dispatch]);
+    });
 
     // обработчики кнопок
     const onEdit = useCallback(() => {
@@ -125,31 +133,32 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
         <div className={classNames(cls.EditableProfileCard, {}, [className])}>
             <div className={cls.header}>
                 <Text title={t("Профиль")} />
-                {readonly ? (
-                    <div className={cls.buttons}>
-                        <Button
-                            theme={ButtonTheme.BACKGROUND}
-                            onClick={onEdit}
-                        >
-                            {t("Редактировать")}
-                        </Button>
-                    </div>
-                ) : (
-                    <div className={cls.buttons}>
-                        <Button
-                            theme={ButtonTheme.OUTLINE}
-                            onClick={onCancelEdit}
-                        >
-                            {t("Отменить")}
-                        </Button>
-                        <Button
-                            theme={ButtonTheme.BACKGROUND}
-                            onClick={onSave}
-                        >
-                            {t("Сохранить")}
-                        </Button>
-                    </div>
-                )}
+                {canEdit &&
+                    (readonly ? (
+                        <div className={cls.buttons}>
+                            <Button
+                                theme={ButtonTheme.BACKGROUND}
+                                onClick={onEdit}
+                            >
+                                {t("Редактировать")}
+                            </Button>
+                        </div>
+                    ) : (
+                        <div className={cls.buttons}>
+                            <Button
+                                theme={ButtonTheme.OUTLINE}
+                                onClick={onCancelEdit}
+                            >
+                                {t("Отменить")}
+                            </Button>
+                            <Button
+                                theme={ButtonTheme.BACKGROUND}
+                                onClick={onSave}
+                            >
+                                {t("Сохранить")}
+                            </Button>
+                        </div>
+                    ))}
             </div>
             {validateErrors?.length &&
                 validateErrors.map((err) => (

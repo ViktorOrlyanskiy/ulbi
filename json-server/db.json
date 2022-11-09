@@ -14,27 +14,57 @@
     "comments": [
         {
             "id": "1",
-            "body": "some comment",
-            "postId": "1"
+            "text": "some comment",
+            "articleId": "1",
+            "userId": "1"
+        },
+        {
+            "id": "2",
+            "text": "some comment 2",
+            "articleId": "1",
+            "userId": "1"
         }
     ],
     "users": [
         {
             "id": "1",
             "username": "admin",
-            "password": "123"
+            "password": "123",
+            "role": "ADMIN",
+            "avatar": "https://sun9-3.userapi.com/impg/CVJYoaq3is6rOrSTdf5mw53mB8ENPt1eH6s-ig/ExN8gC_wYC0.jpg?size=1024x1024&quality=96&sign=dd5481dba32b738c00250b7bd0a89143&c_uniq_tag=efpNFsc-oN30CAJtG2XDCMy76e-9OtV1TR4B94OX0lU&type=album"
+        },
+        {
+            "id": "2",
+            "username": "user",
+            "password": "123",
+            "role": "USER",
+            "avatar": "https://sun9-3.userapi.com/impg/CVJYoaq3is6rOrSTdf5mw53mB8ENPt1eH6s-ig/ExN8gC_wYC0.jpg?size=1024x1024&quality=96&sign=dd5481dba32b738c00250b7bd0a89143&c_uniq_tag=efpNFsc-oN30CAJtG2XDCMy76e-9OtV1TR4B94OX0lU&type=album"
         }
     ],
-    "profile": {
-        "first": "Виктор",
-        "lastname": "Орлянский",
-        "age": 28,
-        "currency": "EUR",
-        "country": "Kazakhstan",
-        "city": "Moscow",
-        "username": "admin",
-        "avatar": "https://sun9-3.userapi.com/impg/CVJYoaq3is6rOrSTdf5mw53mB8ENPt1eH6s-ig/ExN8gC_wYC0.jpg?size=1024x1024&quality=96&sign=dd5481dba32b738c00250b7bd0a89143&c_uniq_tag=efpNFsc-oN30CAJtG2XDCMy76e-9OtV1TR4B94OX0lU&type=album"
-    },
+    "profile": [
+        {
+            "id": "1",
+            "first": "Виктор",
+            "lastname": "Орлянский",
+            "age": 28,
+            "currency": "EUR",
+            "country": "Kazakhstan",
+            "city": "Moscow",
+            "username": "admin",
+            "avatar": "https://sun9-3.userapi.com/impg/CVJYoaq3is6rOrSTdf5mw53mB8ENPt1eH6s-ig/ExN8gC_wYC0.jpg?size=1024x1024&quality=96&sign=dd5481dba32b738c00250b7bd0a89143&c_uniq_tag=efpNFsc-oN30CAJtG2XDCMy76e-9OtV1TR4B94OX0lU&type=album"
+        },
+        {
+            "id": "2",
+            "first": "Сергей",
+            "lastname": "Петров",
+            "age": 28,
+            "currency": "RUB",
+            "country": "Kazakhstan",
+            "city": "Kiev",
+            "username": "user",
+            "avatar": ""
+        }
+    ],
     "articles": [
         {
             "id": "1",
@@ -104,42 +134,6 @@
                     ]
                 }
             ]
-        }
-    ],
-    "comments": [
-        {
-            "id": "1",
-            "text": "some comment",
-            "articleId": "1",
-            "userId": "1"
-        },
-        {
-            "id": "2",
-            "text": "some comment 2",
-            "articleId": "1",
-            "userId": "1"
-        },
-        {
-            "id": "3",
-            "text": "some comment 3",
-            "articleId": "1",
-            "userId": "1"
-        }
-    ],
-    "users": [
-        {
-            "id": "1",
-            "username": "admin",
-            "password": "123",
-            "role": "ADMIN",
-            "avatar": "https://sun9-3.userapi.com/impg/CVJYoaq3is6rOrSTdf5mw53mB8ENPt1eH6s-ig/ExN8gC_wYC0.jpg?size=1024x1024&quality=96&sign=dd5481dba32b738c00250b7bd0a89143&c_uniq_tag=efpNFsc-oN30CAJtG2XDCMy76e-9OtV1TR4B94OX0lU&type=album"
-        },
-        {
-            "id": "2",
-            "username": "user",
-            "password": "123",
-            "role": "USER",
-            "avatar": "https://sun9-3.userapi.com/impg/CVJYoaq3is6rOrSTdf5mw53mB8ENPt1eH6s-ig/ExN8gC_wYC0.jpg?size=1024x1024&quality=96&sign=dd5481dba32b738c00250b7bd0a89143&c_uniq_tag=efpNFsc-oN30CAJtG2XDCMy76e-9OtV1TR4B94OX0lU&type=album"
         }
     ]
 }

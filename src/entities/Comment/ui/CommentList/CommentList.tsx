@@ -28,11 +28,22 @@ export const CommentList: FC<CommentListProps> = memo((props) => {
         );
     }
 
+    if (isLoading) {
+        return (
+            <div className={classNames("", {}, [className])}>
+                <CommentCard isLoading />
+                <CommentCard isLoading />
+                <CommentCard isLoading />
+            </div>
+        );
+    }
+
     return (
         <div className={classNames("", {}, [className])}>
             {comments?.length &&
                 comments.map((comment) => (
                     <CommentCard
+                        key={comment.id}
                         comment={comment}
                         isLoading={isLoading}
                         className={cls.comment}
