@@ -1,13 +1,12 @@
 import { FC, memo, useCallback, useState } from "react";
+import { useSelector } from "react-redux";
 import { classNames } from "shared/lib";
 import { LangSwitcher } from "widgets/LangSwitcher";
 import { ThemeSwitcher } from "widgets/ThemeSwitcher";
-import { Button, ButtonSize, ButtonTheme } from "shared/ui";
-
-import { SidebarItemsList } from "../../model/items";
+import { getSidebarItems } from "../../model/selectors/getSidebarItems";
+import { BurgerButton } from "../BurgerButton/BurgerButton";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import cls from "./Sidebar.module.scss";
-import { BurgerButton } from "../BurgerButton/BurgerButton";
 
 interface SidebarProps {
     className?: string;
@@ -15,6 +14,7 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
     const [collapsed, setCollapsed] = useState(false);
+    const sidebarItemsList = useSelector(getSidebarItems);
 
     const onToggle = useCallback(() => {
         setCollapsed((prev) => !prev);
@@ -33,7 +33,7 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
                 className={cls.collapseBtn}
             />
             <div className={cls.items}>
-                {SidebarItemsList.map((item) => (
+                {sidebarItemsList.map((item) => (
                     <SidebarItem
                         item={item}
                         key={item.path}
