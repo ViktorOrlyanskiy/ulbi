@@ -1,6 +1,6 @@
 import { CommentList } from "entities/Comment";
 import { AddNewComment } from "features/AddNewComment";
-import { FC, memo, useCallback } from "react";
+import { FC, memo, Suspense, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import {
@@ -10,7 +10,7 @@ import {
     useInitialEffect,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
-import { Text, TextSize } from "shared/ui";
+import { Loader, Text, TextSize } from "shared/ui";
 import {
     getArticleCommentsError,
     getArticleCommentsIsLoading,
@@ -23,7 +23,7 @@ import { addCommentForArticle } from "../../model/services/addCommentForArticle"
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId";
 import cls from "./ArticleComments.module.scss";
 
-interface ArticleCommentsProps {
+export interface ArticleCommentsProps {
     id: string;
     className?: string;
 }
@@ -32,7 +32,7 @@ const reducers: ReducersList = {
     articleComments: articleCommentsReducer,
 };
 
-export const ArticleComments: FC<ArticleCommentsProps> = memo((props) => {
+const ArticleComments: FC<ArticleCommentsProps> = memo((props) => {
     useDynamicModuleLoader(reducers);
     const { id, className } = props;
     const { t } = useTranslation();
@@ -54,21 +54,25 @@ export const ArticleComments: FC<ArticleCommentsProps> = memo((props) => {
         dispatch(fetchCommentsByArticleId(id));
     });
     return (
-        <div className={classNames(cls.ArticleComments, {}, [className])}>
-            <Text
-                title={t("Комментарии")}
-                size={TextSize.M}
-                className={cls.title}
-            />
-            <AddNewComment
-                className={cls.block}
-                onSendComment={onSendComment}
-            />
-            <CommentList
-                comments={comments}
-                isLoading={isLoading}
-                error={error}
-            />
-        </div>
+        <Suspense fallback={<Loader />}>
+            <div className={classNames("", {}, [className])}>
+                <Text
+                    title={t("Комментарии")}
+                    size={TextSize.M}
+                    className={cls.title}
+                />
+                <AddNewComment
+                    className={cls.block}
+                    onSendComment={onSendComment}
+                />
+
+                <CommentList
+                    comments={comments}
+                    isLoading={isLoading}
+                    error={error}
+                />
+            </div>
+        </Suspense>
     );
 });
+export default ArticleComments;

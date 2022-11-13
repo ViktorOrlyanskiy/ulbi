@@ -1,28 +1,28 @@
 import { FC, useCallback } from "react";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { ProfileCard, ValidateProfileError } from "entities/Profile";
-import { getUserAuthData } from "entities/User";
-import { Currency } from "entities/Currency";
+
 import { Country } from "entities/Country";
-import { classNames } from "shared/lib";
+import { Currency } from "entities/Currency";
+import { ProfileCard, ValidateProfileError } from "entities/Profile";
 import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
     useInitialEffect,
 } from "shared/hooks";
+import { classNames } from "shared/lib";
 import { Button, ButtonTheme, Text, TextTheme } from "shared/ui";
 
 import { getCanEdit } from "../../model/selectors/getCanEdit/getCatEdit";
+import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
 import { getProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
-import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
 import { getProfileReadonly } from "../../model/selectors/getProfileReadonly/getProfileReadonly";
+import { getProfileValidateErrors } from "../../model/selectors/getProfileValidateErrors/getProfileValidateErrors";
 import { fetchProfileData } from "../../model/services/fetchProfileData/fetchProfileData";
 import { updateProfileData } from "../../model/services/updateProfileData/updateProfileData";
-import { getProfileValidateErrors } from "../../model/selectors/getProfileValidateErrors/getProfileValidateErrors";
 import { profileActions, profileReducer } from "../../model/slice/profileSlice";
 import cls from "./EditableProfileCard.module.scss";
 

@@ -15,27 +15,28 @@ const Template: ComponentStory<typeof CommentCard> = (args) => (
     <CommentCard {...args} />
 );
 
+const comment = {
+    id: "1",
+    user: {
+        id: "1",
+        username: "Admin",
+    },
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore perspiciatis itaque nisi in. Ad sit earum placeat maiores sunt ratione odit? Pariatur consequuntur, qui neque eius sint aut totam tempore?",
+};
+
 export const Primary = Template.bind({});
 Primary.args = {
-    comment: {
-        id: "1",
-        user: {
-            id: "1",
-            username: "Admin",
-        },
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore perspiciatis itaque nisi in. Ad sit earum placeat maiores sunt ratione odit? Pariatur consequuntur, qui neque eius sint aut totam tempore?",
-    },
+    comment,
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+    isLoading: true,
+    comment,
 };
 
 export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
-    comment: {
-        id: "1",
-        user: {
-            id: "1",
-            username: "Admin",
-        },
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore perspiciatis itaque nisi in. Ad sit earum placeat maiores sunt ratione odit? Pariatur consequuntur, qui neque eius sint aut totam tempore?",
-    },
+    comment,
 };
 PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];

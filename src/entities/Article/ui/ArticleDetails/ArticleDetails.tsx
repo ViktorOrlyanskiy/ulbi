@@ -1,6 +1,10 @@
-import { FC, memo } from "react";
-import { useSelector } from "react-redux";
+import { FC, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import CalendarIcon from "shared/assets/icons/articles/calendar.svg";
+import EyeIcon from "shared/assets/icons/articles/eye.svg";
+import { RoutePath } from "shared/const";
 import {
     ReducersList,
     useAppDispatch,
@@ -10,6 +14,8 @@ import {
 import { classNames } from "shared/lib";
 import {
     Avatar,
+    Button,
+    ButtonTheme,
     Icon,
     Skeleton,
     Text,
@@ -17,17 +23,14 @@ import {
     TextSize,
     TextTheme,
 } from "shared/ui";
-import EyeIcon from "shared/assets/icons/articles/eye.svg";
-import CalendarIcon from "shared/assets/icons/articles/calendar.svg";
-
-import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
-import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
-import { fetchArticleById } from "../../model/services/fetchArticleById";
 import {
     getArticleDetailsData,
-    getArticleDetailsIsLoading,
     getArticleDetailsError,
+    getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
+import { fetchArticleById } from "../../model/services/fetchArticleById";
+import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
+import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
 import { ArticleBlockCode } from "../ArticleBlockCode/ArticleBlockCode";
 import { ArticleBlockImage } from "../ArticleBlockImage/ArticleBlockImage";
 import { ArticleBlockText } from "../ArticleBlockText/ArticleBlockText";
@@ -47,9 +50,15 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
     const { id, className } = props;
     const { t } = useTranslation("articles");
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
+
+    const onClickBackToList = useCallback(() => {
+        navigate(RoutePath.articles);
+    }, [navigate]);
 
     useInitialEffect(() => {
         dispatch(fetchArticleById(id));
@@ -120,6 +129,9 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
 
     return (
         <div className={classNames(cls.ArticleDetails, {}, [className])}>
+            <Button theme={ButtonTheme.OUTLINE} onClick={onClickBackToList}>
+                {t("Назад к списку")}
+            </Button>
             <div className={cls.avatarWrapper}>
                 <Avatar
                     size={200}

@@ -31,9 +31,21 @@ export const CommentList: FC<CommentListProps> = memo((props) => {
     if (isLoading) {
         return (
             <div className={classNames("", {}, [className])}>
-                <CommentCard isLoading />
-                <CommentCard isLoading />
-                <CommentCard isLoading />
+                <CommentCard
+                    isLoading={isLoading}
+                    comment={{} as Comment}
+                    className={cls.comment}
+                />
+                <CommentCard
+                    isLoading={isLoading}
+                    comment={{} as Comment}
+                    className={cls.comment}
+                />
+                <CommentCard
+                    isLoading={isLoading}
+                    comment={{} as Comment}
+                    className={cls.comment}
+                />
             </div>
         );
     }

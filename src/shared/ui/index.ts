@@ -4,6 +4,7 @@ export { Button, ButtonTheme, ButtonSize } from "./Button/Button";
 export { BurgerButton } from "./BurgerButton/BurgerButton";
 export { Checkbox } from "./Checkbox/Checkbox";
 export { Code } from "./Code/Code";
+export { Card } from "./Card/Card";
 export { Icon } from "./Icon/Icon";
 export { Input, InputTheme, InputSize } from "./Input/Input";
 export { Loader } from "./Loader/Loader";

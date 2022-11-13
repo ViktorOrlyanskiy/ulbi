@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect } from "react";
+import { FC, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { classNames } from "shared/lib";
@@ -6,7 +6,6 @@ import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
-    useKeyDown,
 } from "shared/hooks";
 import { Button, ButtonTheme, Input, Text, TextTheme } from "shared/ui";
 
@@ -56,8 +55,6 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
             onSuccess();
         }
     }, [dispatch, username, password, onSuccess]);
-
-    useKeyDown("Enter", onLoginClick);
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>

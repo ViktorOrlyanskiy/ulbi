@@ -51,6 +51,7 @@ module.exports = {
         "no-undef": "off",
         "react/prop-types": "off", // из-за мемо ругается
         "jsx-a11y/label-has-associated-control": "off",
+        "react/no-array-index-key": "off",
     },
     globals: { __IS_DEV__: true, __API__: true, __PROJECT__: true },
     overrides: [

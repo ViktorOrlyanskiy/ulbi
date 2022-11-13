@@ -4,7 +4,7 @@ import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
 import AddNewComment from "./AddNewComment";
 
 export default {
-    title: "defaultCategory/AddNewComment",
+    title: "features/AddNewComment",
     component: AddNewComment,
     argTypes: {
         backgroundColor: { control: "color" },

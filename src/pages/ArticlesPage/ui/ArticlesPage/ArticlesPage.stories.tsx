@@ -4,7 +4,7 @@ import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
 import ArticlesPage from "./ArticlesPage";
 
 export default {
-    title: "pages/ArticlesPage",
+    title: "defaultCategory/ArticlesPage",
     component: ArticlesPage,
     argTypes: {
         backgroundColor: { control: "color" },
