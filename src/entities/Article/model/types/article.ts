@@ -52,5 +52,5 @@ export interface Article {
 
 export enum ArticleView {
     LIST = "LIST",
-    TILE = "TILE",
+    GRID = "GRID",
 }

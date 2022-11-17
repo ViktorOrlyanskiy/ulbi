@@ -6,6 +6,7 @@ import { addNewCommentReducer } from "features/AddNewComment";
 import { articleDetailsReducer } from "entities/Article";
 import { ReducersList } from "shared/hooks";
 import { articleCommentsReducer } from "widgets/ArticleComments";
+import { articlesReducer } from "features/FetchArticles";
 
 // Асинхронные редюсеры
 const defaultAsyncReducers: ReducersList = {
@@ -13,6 +14,7 @@ const defaultAsyncReducers: ReducersList = {
     profile: profileReducer,
     articleDetails: articleDetailsReducer,
     articleComments: articleCommentsReducer,
+    articles: articlesReducer,
     addNewComment: addNewCommentReducer,
 };
 

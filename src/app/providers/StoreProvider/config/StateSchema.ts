@@ -15,6 +15,7 @@ import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { AddNewCommentSchema } from "features/AddNewComment";
 import { ArticleCommentsSchema } from "widgets/ArticleComments";
+import { ArticlesSchema } from "features/FetchArticles";
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -25,7 +26,7 @@ export interface StateSchema {
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     articleComments?: ArticleCommentsSchema;
-
+    articles?: ArticlesSchema;
     addNewComment?: AddNewCommentSchema;
 }
 

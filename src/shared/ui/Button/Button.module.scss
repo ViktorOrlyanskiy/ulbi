@@ -34,8 +34,9 @@
 }
 
 .icon {
-    &:hover,
-    &:focus {
+    padding: 0;
+
+    &:hover {
         transform: scale(1.1);
     }
 }

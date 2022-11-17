@@ -1,0 +1,11 @@
+.ArticlesViewSwitcher {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: right;
+    margin-bottom: 15px;
+}
+
+.notSelected {
+    fill: var(--active-bg-color);
+}

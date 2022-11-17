@@ -49,11 +49,11 @@ const article: Article = {
 };
 
 export const LightTile = Template.bind({});
-LightTile.args = { article, view: ArticleView.TILE };
+LightTile.args = { article, view: ArticleView.GRID };
 
 export const LightList = Template.bind({});
 LightList.args = { article, view: ArticleView.LIST };
 
 export const DarkTile = Template.bind({});
-DarkTile.args = { article, view: ArticleView.TILE };
+DarkTile.args = { article, view: ArticleView.GRID };
 DarkTile.decorators = [ThemeDecorator(Theme.DARK)];

@@ -24,7 +24,7 @@ const getSkeletons = (view: ArticleView) =>
         ));
 
 export const ArticleList: FC<ArticleListProps> = memo((props) => {
-    const { articles, isLoading, view = ArticleView.TILE, className } = props;
+    const { articles, isLoading, view = ArticleView.GRID, className } = props;
 
     const renderArticle = (article: Article) => (
         <ArticleListItem
