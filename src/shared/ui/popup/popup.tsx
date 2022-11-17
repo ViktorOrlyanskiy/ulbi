@@ -1,56 +1,137 @@
-// import React, { FC, useEffect, useRef, useState } from "react";
-// import styles from "./popup.module.scss";
+import {
+    FC,
+    MutableRefObject,
+    useState,
+    useEffect,
+    useCallback,
+    CSSProperties,
+} from "react";
+import { Portal } from "shared/ui";
 
-// interface PopupProps {
-//     trigger: React.ReactNode;
-//     body: React.ReactNode;
-//     filter?: boolean;
-// }
-const x = 1;
-// export const Popup: FC<PopupProps> = ({ trigger, body, filter = false }) => {
-//     const [open, setOpen] = useState<boolean>(false);
-//     const [widthBody, setWidthBody] = useState<number>(0);
-//     const refBody = useRef<HTMLDivElement | null>(null);
-//     useOutsideClick(refBody, open, setOpen);
+enum Position {
+    TOP_LEFT = "top/left",
+    TOP_RIGHT = "top/right",
+    TOP_CENTER = "top/center",
+    BOTTOM_LEFT = "bottom/left",
+    BOTTOM_RIGHT = "bottom/right",
+    BOTTOM_CENTER = "bottom/center",
+    HIDDEN = "hidden",
+}
 
-//     const handleTrigger = () => {
-//         setOpen((prev) => !prev);
-//     };
+const getPositionPopup = (
+    widthWindow: number,
+    heightWindow: number,
+    rectTrigger: DOMRect,
+    marginFromTrigger: number,
+    maxHeightPopup: number
+) => {
+    const bottomPopup = rectTrigger.bottom + marginFromTrigger + maxHeightPopup;
 
-//     useEffect(() => {
-//         const container = document.querySelector(".container-content");
+    if (bottomPopup >= heightWindow && rectTrigger.top < heightWindow) {
+        return Position.TOP_LEFT;
+    }
 
-//         if (container && refBody.current) {
-//             const { right } = container.getBoundingClientRect();
-//             const { left } = refBody.current.getBoundingClientRect();
+    if (rectTrigger.top >= heightWindow) {
+        return Position.HIDDEN;
+    }
+    if (rectTrigger.bottom <= 0) {
+        return Position.HIDDEN;
+    }
+    return Position.BOTTOM_LEFT;
+};
 
-//             setWidthBody(right - left);
-//         }
-//     }, [open]);
+interface PopupProps {
+    refTrigger: MutableRefObject<HTMLDivElement | null>;
+    idScrollElement: string; // id родительского элемента в котором расположен trigger
+    maxHeightPopup: number;
+    hiddenPopup: () => void;
+    marginFromTrigger?: number;
+}
 
-//     return (
-//         <div className={styles.wrapper}>
-//             <div
-//                 className={classNames(
-//                     styles.trigger,
-//                     { [styles.open]: open, [styles.filter]: filter },
-//                     []
-//                 )}
-//                 onClick={handleTrigger}
-//             >
-//                 {trigger}
-//             </div>
-//             <div
-//                 ref={refBody}
-//                 style={{ width: widthBody }}
-//                 className={classNames(
-//                     styles.body,
-//                     { [styles.open]: open, [styles.filter]: filter },
-//                     []
-//                 )}
-//             >
-//                 {body}
-//             </div>
-//         </div>
-//     );
-// };
+export const Popup: FC<PopupProps> = (props) => {
+    const {
+        refTrigger,
+        idScrollElement,
+        maxHeightPopup,
+        hiddenPopup,
+        marginFromTrigger = 4,
+        children,
+    } = props;
+
+    const [widthPopup, setWidthPopup] = useState<number | undefined>(0);
+    const [heightPopup, setHeightPopup] = useState(maxHeightPopup);
+    const [topPopup, setTopPopup] = useState<number | undefined>(0);
+    const [bottomPopup, setBottomPopup] = useState<number | undefined>(0);
+    const [leftPopup, setLeftPopup] = useState<number | undefined>(0);
+
+    const setRectPopup = useCallback(() => {
+        if (refTrigger?.current) {
+            const widthWindow = document.body.clientWidth;
+            const heightWindow = document.body.clientHeight;
+            const rectTrigger = refTrigger?.current.getBoundingClientRect();
+
+            const positionPopup = getPositionPopup(
+                widthWindow,
+                heightWindow,
+                rectTrigger,
+                marginFromTrigger,
+                maxHeightPopup
+            );
+
+            if (positionPopup === Position.BOTTOM_LEFT) {
+                setTopPopup(rectTrigger.bottom + marginFromTrigger);
+                setBottomPopup(undefined);
+                setLeftPopup(rectTrigger.left);
+                setWidthPopup(rectTrigger.width);
+            }
+            if (positionPopup === Position.TOP_LEFT) {
+                setTopPopup(undefined);
+                setBottomPopup(
+                    heightWindow - rectTrigger.top + marginFromTrigger
+                );
+                setLeftPopup(rectTrigger.left);
+                setWidthPopup(rectTrigger.width);
+            }
+            if (positionPopup === Position.HIDDEN) {
+                hiddenPopup();
+            }
+        }
+    }, [refTrigger, maxHeightPopup, marginFromTrigger, hiddenPopup]);
+
+    useEffect(() => {
+        setRectPopup();
+    }, [setRectPopup]);
+
+    useEffect(() => {
+        const parentElementWithScroll =
+            document.getElementById(idScrollElement);
+
+        window.addEventListener("resize", setRectPopup);
+        parentElementWithScroll?.addEventListener("scroll", setRectPopup);
+
+        return () => {
+            window.removeEventListener("resize", setRectPopup);
+            parentElementWithScroll?.removeEventListener(
+                "scroll",
+                setRectPopup
+            );
+        };
+    }, [setRectPopup, idScrollElement]);
+
+    const styles: CSSProperties = {
+        position: "absolute",
+        zIndex: 100000,
+        top: topPopup,
+        bottom: bottomPopup,
+        left: leftPopup,
+        width: widthPopup,
+        height: heightPopup,
+        background: "green",
+    };
+
+    return (
+        <Portal>
+            <div style={styles}>{children}</div>
+        </Portal>
+    );
+};

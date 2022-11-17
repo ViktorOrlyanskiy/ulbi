@@ -19,7 +19,7 @@ export const AppRouter: FC = memo(() => {
     );
 
     return (
-        <div className="page-wrapper">
+        <div id="scroll-element" className="page-wrapper">
             <Suspense fallback={<PageLoader />}>
                 <Routes>
                     {Object.values(routeConfig).map(renderWithWrapper)}

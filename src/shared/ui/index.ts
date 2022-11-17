@@ -13,3 +13,4 @@ export { Portal } from "./Portal/Portal";
 export { Text, TextTheme, TextAlign, TextWeight, TextSize } from "./Text/Text";
 export { Select, SelectOption } from "./Select/Select";
 export { Skeleton } from "./Skeleton/Skeleton";
+export { Popup } from "./Popup/Popup";

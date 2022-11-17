@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes, memo, useRef } from "react";
+import { FC, InputHTMLAttributes, memo, useRef, useState } from "react";
 import { classNames } from "shared/lib";
 import cls from "./Input.module.scss";
 
@@ -42,6 +42,8 @@ export const Input: FC<InputProps> = memo((props) => {
     } = props;
 
     const inputRef = useRef<HTMLInputElement>(null);
+    const [typeInput, setTypeInput] = useState(type);
+    const [isVisiblePassword, setIsVisiblePassword] = useState(false);
 
     // проверяет что в инпут вводиться только число
     const checkForIntegerNumber = (
@@ -59,20 +61,35 @@ export const Input: FC<InputProps> = memo((props) => {
         onChange?.(e.target.value);
     };
 
+    const onChangeType = () => {
+        setIsVisiblePassword((prev) => !prev);
+        setTypeInput(isVisiblePassword ? "text" : "password");
+    };
+
     return (
-        <input
-            ref={inputRef}
-            type={type}
-            readOnly={readonly}
-            value={value}
-            onKeyDown={onKeyDownHandler}
-            onChange={onChangeHandler}
-            className={classNames(cls.Input, { [cls.readonly]: readonly }, [
-                className,
-                cls[theme],
-                cls[size],
-            ])}
-            {...otherProps}
-        />
+        <label className={cls.label}>
+            <input
+                ref={inputRef}
+                type={typeInput}
+                readOnly={readonly}
+                value={value}
+                onKeyDown={onKeyDownHandler}
+                onChange={onChangeHandler}
+                className={classNames(cls.Input, { [cls.readonly]: readonly }, [
+                    className,
+                    cls[theme],
+                    cls[size],
+                ])}
+                {...otherProps}
+            />
+            {type === "password" && (
+                <span
+                    onClick={onChangeType}
+                    className={`${cls.iconPassword} ${
+                        isVisiblePassword ? cls.eye : cls.eyeSlash
+                    }`}
+                />
+            )}
+        </label>
     );
 });

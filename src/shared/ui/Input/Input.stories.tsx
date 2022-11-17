@@ -41,6 +41,12 @@ OutlineDark.args = {
 };
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
 
+export const Password = Template.bind({});
+Password.args = {
+    value: "text",
+    type: "password",
+};
+
 export const Readonly = Template.bind({});
 Readonly.args = {
     placeholder: "Text",

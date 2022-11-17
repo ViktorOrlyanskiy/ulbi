@@ -40,7 +40,13 @@ module.exports = {
             "error",
             {
                 markupOnly: true,
-                ignoreAttribute: ["data-testid", "to", "name", "apikey"],
+                ignoreAttribute: [
+                    "data-testid",
+                    "to",
+                    "name",
+                    "apikey",
+                    "idScrollElement",
+                ],
             },
         ],
         "jsx-a11y/no-static-element-interactions": "off",
