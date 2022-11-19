@@ -2,8 +2,9 @@ import { ArticleDetails } from "entities/Article";
 import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { classNames } from "shared/lib";
 import { ArticleComments } from "widgets/ArticleComments";
+import { classNames } from "shared/lib";
+import { Page } from "shared/ui";
 import cls from "./ArticleDetailsPage.module.scss";
 
 interface ArticleDetailsPageProps {
@@ -17,19 +18,19 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     if (!id) {
         return (
-            <div
+            <Page
                 className={classNames(cls.ArticleDetailsPage, {}, [className])}
             >
                 {t("Статья не найдена")}
-            </div>
+            </Page>
         );
     }
 
     return (
-        <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+        <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
             <ArticleDetails id={id} />
             <ArticleComments id={id} />
-        </div>
+        </Page>
     );
 };
 export default memo(ArticleDetailsPage);

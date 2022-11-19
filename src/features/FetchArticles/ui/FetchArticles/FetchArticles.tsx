@@ -41,8 +41,8 @@ export const FetchArticles: FC<FetchArticlesProps> = memo((props) => {
 
     const dispatch = useAppDispatch();
     useInitialEffect(() => {
-        dispatch(fetchArticlesList());
         dispatch(articlesActions.initView());
+        dispatch(fetchArticlesList({ page: 1 }));
     });
 
     const onChangeView = useCallback(

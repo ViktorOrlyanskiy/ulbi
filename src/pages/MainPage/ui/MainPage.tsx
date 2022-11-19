@@ -1,7 +1,7 @@
 import { FC, memo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BugButton } from "app/providers/ErrorBoundary";
-import { Checkbox, Popup, Select } from "shared/ui";
+import { Checkbox, Page, Popup, Select } from "shared/ui";
 
 const options = [
     { value: "csv", content: "CSV" },
@@ -17,7 +17,7 @@ const MainPage: FC = memo(() => {
     };
 
     return (
-        <div>
+        <Page>
             {t("Главная")}
             {/* <BugButton /> */}
             {/* <Select options={options} label="2222" /> */}
@@ -37,7 +37,7 @@ const MainPage: FC = memo(() => {
                     11111111
                 </Popup>
             )}
-        </div>
+        </Page>
     );
 });
 export default MainPage;
