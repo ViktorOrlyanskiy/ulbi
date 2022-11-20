@@ -14,6 +14,7 @@ describe("fetchNextArticles", () => {
                 limit: 5,
                 isLoading: false,
                 hasMore: true,
+                _inited: false,
             },
         });
         await thunk.callThunk();
@@ -31,6 +32,7 @@ describe("fetchNextArticles", () => {
                 limit: 5,
                 isLoading: false,
                 hasMore: false,
+                _inited: false,
             },
         });
 

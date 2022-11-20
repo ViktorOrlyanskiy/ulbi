@@ -12,21 +12,31 @@ export type ReducersList = {
 };
 
 // Асинхронно добавляет и удаляет reducer
-export function useDynamicModuleLoader(reducers: ReducersList) {
+export function useDynamicModuleLoader(
+    reducers: ReducersList,
+    removeAfterUnmount: boolean = true
+) {
     const store = useStore() as ReduxStoreWithManager;
     const dispatch = useAppDispatch();
+    const mountedReducers = store.reducerManager.getReducerMap();
 
     useEffect(() => {
         Object.entries(reducers).forEach(([name, reducer]) => {
-            store.reducerManager.add(name as StateSchemaKey, reducer);
-            dispatch({ type: `@INIT ${name} reducer` });
+            const mounted = mountedReducers[name as StateSchemaKey];
+            // Добавляем новый редюсер только если его нет
+            if (!mounted) {
+                store.reducerManager.add(name as StateSchemaKey, reducer);
+                dispatch({ type: `@INIT ${name} reducer` });
+            }
         });
 
         return () => {
-            Object.entries(reducers).forEach(([name, reducer]) => {
-                store.reducerManager.remove(name as StateSchemaKey);
-                dispatch({ type: `@DESTROY ${name} reducer` });
-            });
+            if (removeAfterUnmount) {
+                Object.entries(reducers).forEach(([name, reducer]) => {
+                    store.reducerManager.remove(name as StateSchemaKey);
+                    dispatch({ type: `@DESTROY ${name} reducer` });
+                });
+            }
         };
 
         // eslint-disable-next-line

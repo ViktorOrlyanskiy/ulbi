@@ -13,14 +13,14 @@ import {
     getArticlesIsLoading,
     getArticlesView,
 } from "../../model/selectors/getArticles";
-import { fetchArticlesList } from "../../model/services/fetchArticlesList";
 import {
     articlesActions,
     articlesReducer,
     getArticles,
 } from "../../model/slice/articlesSlice";
-import cls from "./FetchArticles.module.scss";
+import { initArticlesList } from "../../model/services/initArticlesList";
 import { ArticlesViewSwitcher } from "../ArticlesViewSwitcher/ArticlesViewSwitcher";
+import cls from "./FetchArticles.module.scss";
 
 interface FetchArticlesProps {
     className?: string;
@@ -31,7 +31,7 @@ const reducers: ReducersList = {
 };
 
 export const FetchArticles: FC<FetchArticlesProps> = memo((props) => {
-    useDynamicModuleLoader(reducers);
+    useDynamicModuleLoader(reducers, false);
     const { className } = props;
 
     const articles = useSelector(getArticles.selectAll);
@@ -41,8 +41,7 @@ export const FetchArticles: FC<FetchArticlesProps> = memo((props) => {
 
     const dispatch = useAppDispatch();
     useInitialEffect(() => {
-        dispatch(articlesActions.initView());
-        dispatch(fetchArticlesList({ page: 1 }));
+        dispatch(initArticlesList());
     });
 
     const onChangeView = useCallback(

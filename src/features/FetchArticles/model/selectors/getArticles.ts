@@ -15,3 +15,6 @@ export const getArticlesLimit = (state: StateSchema) =>
 
 export const getArticlesHasMore = (state: StateSchema) =>
     state.articles?.hasMore;
+
+export const getArticlesInited = (state: StateSchema) =>
+    state.articles?._inited;
