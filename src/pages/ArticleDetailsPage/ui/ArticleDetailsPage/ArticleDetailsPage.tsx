@@ -2,9 +2,9 @@ import { ArticleDetails } from "entities/Article";
 import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { Page } from "widgets/Page";
 import { ArticleComments } from "widgets/ArticleComments";
 import { classNames } from "shared/lib";
-import { Page } from "shared/ui";
 import cls from "./ArticleDetailsPage.module.scss";
 
 interface ArticleDetailsPageProps {

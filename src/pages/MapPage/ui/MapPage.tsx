@@ -1,7 +1,7 @@
 import { Map } from "entities/Map";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Page } from "shared/ui";
+import { Page } from "widgets/Page";
 
 interface MapPageProps {}
 

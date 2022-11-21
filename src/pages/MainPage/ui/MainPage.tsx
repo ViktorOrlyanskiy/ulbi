@@ -1,7 +1,8 @@
 import { FC, memo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Page } from "widgets/Page";
 import { BugButton } from "app/providers/ErrorBoundary";
-import { Checkbox, Page, Popup, Select } from "shared/ui";
+import { Checkbox, Popup, Select } from "shared/ui";
 
 const options = [
     { value: "csv", content: "CSV" },

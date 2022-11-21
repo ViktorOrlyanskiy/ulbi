@@ -1,8 +1,8 @@
 import { FC, memo, useCallback } from "react";
+import { Page } from "widgets/Page";
 import { FetchArticles, fetchNextArticles } from "features/FetchArticles";
 import { useAppDispatch } from "shared/hooks";
 import { classNames } from "shared/lib";
-import { Page } from "shared/ui";
 import cls from "./ArticlesPage.module.scss";
 
 interface ArticlesPageProps {
@@ -15,11 +15,11 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
 
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextArticles());
-        console.log(1);
     }, [dispatch]);
 
     return (
         <Page
+            isSaveScroll
             onScrollEnd={onLoadNextPart}
             className={classNames(cls.ArticlesPage, {}, [className])}
         >

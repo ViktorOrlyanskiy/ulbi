@@ -15,10 +15,12 @@ import { UserSchema } from "entities/User";
 import { AddNewCommentSchema } from "features/AddNewComment";
 import { ArticleCommentsSchema } from "widgets/ArticleComments";
 import { ArticlesSchema } from "features/FetchArticles";
+import { PageSchema } from "widgets/Page";
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
+    page: PageSchema;
 
     // Aсинхронные редюсеры
     loginForm?: LoginSchema;
