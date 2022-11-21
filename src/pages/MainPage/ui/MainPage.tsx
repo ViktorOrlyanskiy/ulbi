@@ -22,7 +22,7 @@ const MainPage: FC = memo(() => {
             {/* <BugButton /> */}
             {/* <Select options={options} label="2222" /> */}
 
-            <div
+            {/* <div
                 ref={refTrigger}
                 style={{ width: 100, height: 30, background: "red" }}
                 onClick={onClick}
@@ -36,7 +36,7 @@ const MainPage: FC = memo(() => {
                 >
                     11111111
                 </Popup>
-            )}
+            )} */}
         </Page>
     );
 });
