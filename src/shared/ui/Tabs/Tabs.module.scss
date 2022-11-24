@@ -1,0 +1,15 @@
+.Tabs {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tab {
+    transition: all 0.2s;
+
+    &:active {
+        transform: scale(0.95);
+    }
+}

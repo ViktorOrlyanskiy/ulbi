@@ -33,6 +33,7 @@ export type ArticleBlock =
     | ArticleCodeBlock;
 
 export enum ArticleType {
+    ALL = "ALL",
     IT = "IT",
     SCIENCE = "SCIENCE",
     ECONOMICS = "ECONOMICS",
@@ -48,6 +49,12 @@ export interface Article {
     user: User;
     type: ArticleType[];
     blocks: ArticleBlock[];
+}
+
+export enum ArticleSort {
+    VIEWS = "views",
+    TITLE = "title",
+    CREATED = "createdAt",
 }
 
 export enum ArticleView {

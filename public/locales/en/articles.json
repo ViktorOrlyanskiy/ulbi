@@ -1,8 +1,20 @@
 {
     "Articles": "Articles",
     "Статья не найдена": "Article not found",
+    "Статьи не найдены": "Articles not found",
     "Читать далее": "Read more",
-    "Назад к списку": "Назад к списку",
+    "Назад к списку": "Back to list",
     "Произошла ошибка при загрузки страницы": "An error occurred while loading the page",
-    "Ни один пользователь еще не оставил комментарий": "No user has left a comment yet"
+    "Ни один пользователь еще не оставил комментарий": "No user has left a comment yet",
+    "Сортировать по": "Sort by",
+    "дате создания": "date of creation",
+    "названию": "name",
+    "просмотрам": "views",
+    "по возрастанию": "ascending",
+    "по убыванию": "descending",
+    "Поиск": "Search",
+    "Все статьи": "All articles",
+    "Айти": "IT",
+    "Экономика": "Economy",
+    "Наука": "Science"
 }

@@ -28,7 +28,6 @@ export function useInfiniteScroll({
                     callback();
                 }
             }, options);
-            console.log(observer);
 
             observer.observe(triggerElement);
         }

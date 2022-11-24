@@ -1,5 +1,7 @@
 import { FC, memo } from "react";
+import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib";
+import { Text } from "shared/ui";
 import { Article, ArticleView } from "../../model/types/article";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
 import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkeleton";
@@ -25,6 +27,7 @@ const getSkeletons = (view: ArticleView) =>
 
 export const ArticleList: FC<ArticleListProps> = memo((props) => {
     const { articles, isLoading, view = ArticleView.GRID, className } = props;
+    const { t } = useTranslation("articles");
 
     const renderArticle = (article: Article) => (
         <ArticleListItem
@@ -34,6 +37,14 @@ export const ArticleList: FC<ArticleListProps> = memo((props) => {
             className={cls.card}
         />
     );
+
+    if (!isLoading && !articles.length) {
+        return (
+            <div className={classNames(cls.ArticleList, {}, [className])}>
+                <Text title={t("Статьи не найдены")} />
+            </div>
+        );
+    }
 
     return (
         <div

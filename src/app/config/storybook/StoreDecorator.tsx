@@ -7,6 +7,7 @@ import { articleDetailsReducer } from "entities/Article";
 import { ReducersList } from "shared/hooks";
 import { articleCommentsReducer } from "widgets/ArticleComments";
 import { articlesReducer } from "features/FetchArticles";
+import { sortingArticlesReducer } from "features/SortingArticles";
 
 // Асинхронные редюсеры
 const defaultAsyncReducers: ReducersList = {
@@ -16,6 +17,7 @@ const defaultAsyncReducers: ReducersList = {
     articleComments: articleCommentsReducer,
     articles: articlesReducer,
     addNewComment: addNewCommentReducer,
+    sortingArticles: sortingArticlesReducer,
 };
 
 export const StoreDecorator =

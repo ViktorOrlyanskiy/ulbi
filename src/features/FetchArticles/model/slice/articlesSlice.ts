@@ -4,7 +4,13 @@ import {
     PayloadAction,
 } from "@reduxjs/toolkit";
 import { StateSchema } from "app/providers/StoreProvider";
-import { Article, ArticleView } from "entities/Article";
+import {
+    Article,
+    ArticleSort,
+    ArticleType,
+    ArticleView,
+} from "entities/Article";
+import { SortingArticlesSchema } from "features/SortingArticles";
 import { LOCAL_STORAGE_ARTICLES_VIEW } from "shared/const/localStorage";
 import { fetchArticlesList } from "../services/fetchArticlesList";
 import { ArticlesSchema } from "../types/articlesSchema";
@@ -24,10 +30,16 @@ export const articlesSlice = createSlice({
         error: undefined,
         ids: [],
         entities: {},
-        view: ArticleView.GRID,
         page: 1,
+        limit: 9,
         hasMore: true,
         _inited: false,
+
+        order: "asc",
+        sort: ArticleSort.CREATED,
+        view: ArticleView.GRID,
+        search: "",
+        type: ArticleType.ALL,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
@@ -37,30 +49,40 @@ export const articlesSlice = createSlice({
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
-        initView: (state) => {
-            const view =
-                (localStorage.getItem(
-                    LOCAL_STORAGE_ARTICLES_VIEW
-                ) as ArticleView) || ArticleView.GRID;
-            state.view = view;
-            state.limit = view === ArticleView.LIST ? 4 : 9;
+        initSortFields: (
+            state,
+            { payload }: PayloadAction<SortingArticlesSchema>
+        ) => {
+            state.sort = payload.sort;
+            state.order = payload.order;
+            state.view = payload.view;
+            state.search = payload.search;
+            state.type = payload.type;
+
+            state.page = 1;
+            state.limit = payload.view === ArticleView.LIST ? 4 : 9;
             state._inited = true;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchArticlesList.pending, (state) => {
+            .addCase(fetchArticlesList.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
-            })
-            .addCase(
-                fetchArticlesList.fulfilled,
-                (state, action: PayloadAction<Article[]>) => {
-                    state.isLoading = false;
-                    articlesAdapter.addMany(state, action.payload);
-                    state.hasMore = action.payload.length > 0;
+                if (action.meta.arg.replace) {
+                    articlesAdapter.removeAll(state);
                 }
-            )
+            })
+            .addCase(fetchArticlesList.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.hasMore = action.payload.length >= state.limit;
+
+                if (action.meta.arg.replace) {
+                    articlesAdapter.setAll(state, action.payload);
+                } else {
+                    articlesAdapter.addMany(state, action.payload);
+                }
+            })
             .addCase(fetchArticlesList.rejected, (state, action) => {
                 state.error = action.payload;
                 state.isLoading = false;

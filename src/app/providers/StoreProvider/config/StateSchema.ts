@@ -16,6 +16,7 @@ import { AddNewCommentSchema } from "features/AddNewComment";
 import { ArticleCommentsSchema } from "widgets/ArticleComments";
 import { ArticlesSchema } from "features/FetchArticles";
 import { PageSchema } from "widgets/Page";
+import { SortingArticlesSchema } from "features/SortingArticles";
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -29,6 +30,7 @@ export interface StateSchema {
     articleComments?: ArticleCommentsSchema;
     articles?: ArticlesSchema;
     addNewComment?: AddNewCommentSchema;
+    sortingArticles?: SortingArticlesSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
