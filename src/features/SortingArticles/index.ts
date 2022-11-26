@@ -11,4 +11,5 @@ export {
     getView,
     getSearch,
     getType,
+    getInited,
 } from "./model/selectors/sortingArticles";

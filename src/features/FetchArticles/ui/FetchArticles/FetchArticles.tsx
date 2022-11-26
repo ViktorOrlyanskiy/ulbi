@@ -9,6 +9,7 @@ import {
 import {
     ReducersList,
     useAppDispatch,
+    useComponentDidMount,
     useDebounce,
     useDynamicModuleLoader,
     useInitialEffect,
@@ -17,6 +18,7 @@ import { classNames } from "shared/lib";
 import { SortOrder } from "shared/types";
 import {
     getArticlesError,
+    getArticlesInited,
     getArticlesIsLoading,
 } from "../../model/selectors/getArticles";
 import { fetchArticlesList } from "../../model/services/fetchArticlesList";
@@ -44,41 +46,42 @@ export const FetchArticles: FC<FetchArticlesProps> = memo((props) => {
     useDynamicModuleLoader(reducers, false);
     const { sort, order, view, search, type, className } = props;
     const dispatch = useAppDispatch();
+    const isComponentDidMount = useComponentDidMount();
 
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesIsLoading);
     const error = useSelector(getArticlesError);
+    const initedArticles = useSelector(getArticlesInited);
 
     const fetchData = useCallback(() => {
-        dispatch(fetchArticlesList({ replace: true }));
-    }, [dispatch]);
+        dispatch(
+            fetchArticlesList({
+                sort,
+                order,
+                search,
+                type,
+                replace: true,
+            })
+        );
+    }, [dispatch, sort, order, search, type]);
 
     const fetchDataWithDelay = useDebounce(fetchData, 500);
 
-    // запрос на сервер: мгновенный
     useInitialEffect(() => {
-        dispatch(
-            articlesActions.initSortFields({ sort, order, view, search, type })
-        );
-        dispatch(fetchArticlesList({ replace: false }));
+        if (!initedArticles) {
+            dispatch(articlesActions.initState(view));
+            fetchData();
+        }
     });
 
-    // обновление стейта
+    // запрос на сервер: с задержкой 500мс
     useEffect(() => {
-        dispatch(
-            articlesActions.initSortFields({ sort, order, view, search, type })
-        );
-    }, [dispatch, sort, order, view, search, type]);
+        if (isComponentDidMount) {
+            fetchDataWithDelay();
+        }
 
-    // запрос на сервер: мгновенный
-    useEffect(() => {
-        fetchData();
-    }, [fetchData, sort, order, type]);
-
-    // запрос на сервер: с задержкой
-    useEffect(() => {
-        fetchDataWithDelay();
-    }, [fetchDataWithDelay, search]);
+        // eslint-disable-next-line
+    }, [fetchData]);
 
     return (
         <div className={classNames(cls.FetchArticles, {}, [className])}>

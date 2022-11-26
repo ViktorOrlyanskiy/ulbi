@@ -45,11 +45,11 @@ const initialReducers: ReducersList = {
 };
 
 export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
-    useDynamicModuleLoader(initialReducers);
+    useDynamicModuleLoader(initialReducers, false);
     const { className } = props;
     const { t } = useTranslation("articles");
     const dispatch = useAppDispatch();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     const sort = useSelector(getSort);
     const order = useSelector(getOrder);
@@ -58,19 +58,10 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
     const type = useSelector(getType);
 
     addQueryParams({ sort, order, search, type });
-
     const sortFromUrl = searchParams.get("sort");
     const orderFromUrl = searchParams.get("order");
     const searchFromUrl = searchParams.get("search");
-
-    // нужно плучить обьект и передать его в initState
-    const setParamsFromUrl = (params: string[]) => {
-        const newParams = {} as any;
-        params.forEach((param) => {
-            newParams[param] = searchParams.get(param);
-        });
-        return newParams;
-    };
+    const typeFromUrl = searchParams.get("type");
 
     const sortOptions = useMemo<SelectOption[]>(
         () => [
@@ -135,7 +126,13 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
     );
 
     useInitialEffect(() => {
-        dispatch(sortingArticlesActions.initState());
+        const initFilters = {
+            sort: sortFromUrl,
+            order: orderFromUrl,
+            search: searchFromUrl,
+            type: typeFromUrl,
+        };
+        dispatch(sortingArticlesActions.initState(initFilters));
     });
 
     return (

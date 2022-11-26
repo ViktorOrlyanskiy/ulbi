@@ -4,13 +4,7 @@ import {
     PayloadAction,
 } from "@reduxjs/toolkit";
 import { StateSchema } from "app/providers/StoreProvider";
-import {
-    Article,
-    ArticleSort,
-    ArticleType,
-    ArticleView,
-} from "entities/Article";
-import { SortingArticlesSchema } from "features/SortingArticles";
+import { Article, ArticleView } from "entities/Article";
 import { LOCAL_STORAGE_ARTICLES_VIEW } from "shared/const/localStorage";
 import { fetchArticlesList } from "../services/fetchArticlesList";
 import { ArticlesSchema } from "../types/articlesSchema";
@@ -30,16 +24,11 @@ export const articlesSlice = createSlice({
         error: undefined,
         ids: [],
         entities: {},
+        view: ArticleView.GRID,
         page: 1,
         limit: 9,
         hasMore: true,
-        _inited: false,
-
-        order: "asc",
-        sort: ArticleSort.CREATED,
-        view: ArticleView.GRID,
-        search: "",
-        type: ArticleType.ALL,
+        _inited: false, // чтобы не загружать данные если true
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
@@ -49,18 +38,10 @@ export const articlesSlice = createSlice({
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
-        initSortFields: (
-            state,
-            { payload }: PayloadAction<SortingArticlesSchema>
-        ) => {
-            state.sort = payload.sort;
-            state.order = payload.order;
-            state.view = payload.view;
-            state.search = payload.search;
-            state.type = payload.type;
-
+        initState: (state, action: PayloadAction<ArticleView>) => {
+            state.view = action.payload;
             state.page = 1;
-            state.limit = payload.view === ArticleView.LIST ? 4 : 9;
+            state.limit = action.payload === ArticleView.LIST ? 4 : 9;
             state._inited = true;
         },
     },

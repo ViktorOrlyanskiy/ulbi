@@ -15,3 +15,6 @@ export const getSearch = (state: StateSchema) =>
 
 export const getType = (state: StateSchema) =>
     state.sortingArticles?.type || ArticleType.ALL;
+
+export const getInited = (state: StateSchema) =>
+    state.sortingArticles?._inited || false;

@@ -2,6 +2,7 @@ import { FC, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Page } from "widgets/Page";
 import {
+    getInited,
     getOrder,
     getSearch,
     getSort,
@@ -10,7 +11,7 @@ import {
     SortingArticles,
 } from "features/SortingArticles";
 import { FetchArticles, fetchNextArticles } from "features/FetchArticles";
-import { useAppDispatch } from "shared/hooks";
+import { useAppDispatch, useDebounce } from "shared/hooks";
 import { classNames } from "shared/lib";
 import cls from "./ArticlesPage.module.scss";
 
@@ -25,12 +26,15 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     const sort = useSelector(getSort);
     const order = useSelector(getOrder);
     const view = useSelector(getView);
-    const searh = useSelector(getSearch);
+    const search = useSelector(getSearch);
     const type = useSelector(getType);
+    const initedFilters = useSelector(getInited);
 
     const onLoadNextPart = useCallback(() => {
-        dispatch(fetchNextArticles());
-    }, [dispatch]);
+        if (initedFilters) {
+            dispatch(fetchNextArticles({ sort, order, search, type }));
+        }
+    }, [dispatch, sort, order, search, type, initedFilters]);
 
     return (
         <Page
@@ -39,13 +43,15 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
             className={classNames(cls.ArticlesPage, {}, [className])}
         >
             <SortingArticles className={cls.sort} />
-            <FetchArticles
-                sort={sort}
-                order={order}
-                view={view}
-                search={searh}
-                type={type}
-            />
+            {initedFilters && (
+                <FetchArticles
+                    sort={sort}
+                    order={order}
+                    view={view}
+                    search={search}
+                    type={type}
+                />
+            )}
         </Page>
     );
 };

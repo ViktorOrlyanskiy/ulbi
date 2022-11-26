@@ -8,6 +8,7 @@ import {
     LOCAL_STORAGE_ARTICLES_TYPE,
 } from "shared/const";
 import { SortOrder } from "shared/types";
+import { checksEquality } from "../lib/checksEquality";
 import { SortingArticlesSchema } from "../types/sortingArticlesSchema";
 
 const initialState: SortingArticlesSchema = {
@@ -16,6 +17,7 @@ const initialState: SortingArticlesSchema = {
     view: ArticleView.GRID,
     search: "",
     type: ArticleType.ALL,
+    _inited: false,
 };
 
 export const sortingArticlesSlice = createSlice({
@@ -43,27 +45,43 @@ export const sortingArticlesSlice = createSlice({
             localStorage.setItem(LOCAL_STORAGE_ARTICLES_TYPE, action.payload);
         },
 
-        initState: (state) => {
-            state.sort =
+        initState: (state, { payload }: PayloadAction<any>) => {
+            const defaultSort =
                 (localStorage.getItem(
                     LOCAL_STORAGE_ARTICLES_SORT
                 ) as ArticleSort) || ArticleSort.CREATED;
-            state.order =
+            state.sort = checksEquality<ArticleSort>(payload.sort, defaultSort);
+
+            const defaultOrder =
                 (localStorage.getItem(
                     LOCAL_STORAGE_ARTICLES_ORDER
                 ) as SortOrder) || "asc";
+            state.order = checksEquality<SortOrder>(
+                payload.order,
+                defaultOrder
+            );
+
+            const defaultSearch =
+                (localStorage.getItem(
+                    LOCAL_STORAGE_ARTICLES_SEARCH
+                ) as string) ?? "";
+            state.search = checksEquality<string>(
+                payload.search,
+                defaultSearch
+            );
+
+            const defaultType =
+                (localStorage.getItem(
+                    LOCAL_STORAGE_ARTICLES_TYPE
+                ) as ArticleType) || ArticleType.ALL;
+            state.type = checksEquality<ArticleType>(payload.type, defaultType);
+
             state.view =
                 (localStorage.getItem(
                     LOCAL_STORAGE_ARTICLES_VIEW
                 ) as ArticleView) || ArticleView.GRID;
-            state.search =
-                (localStorage.getItem(
-                    LOCAL_STORAGE_ARTICLES_SEARCH
-                ) as string) ?? "";
-            state.type =
-                (localStorage.getItem(
-                    LOCAL_STORAGE_ARTICLES_TYPE
-                ) as ArticleType) || ArticleType.ALL;
+
+            state._inited = true;
         },
     },
 });
