@@ -46,6 +46,7 @@ module.exports = {
                     "name",
                     "apikey",
                     "idScrollElement",
+                    "target",
                 ],
             },
         ],

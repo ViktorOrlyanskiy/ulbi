@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { Page } from "widgets/Page";
 import { ArticleComments } from "widgets/ArticleComments";
+import { FetchRecommendedArticles } from "features/FetchRecommendedArticles";
 import { classNames } from "shared/lib";
 import cls from "./ArticleDetailsPage.module.scss";
 
@@ -18,17 +19,16 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     if (!id) {
         return (
-            <Page
-                className={classNames(cls.ArticleDetailsPage, {}, [className])}
-            >
+            <Page className={classNames("", {}, [className])}>
                 {t("Статья не найдена")}
             </Page>
         );
     }
 
     return (
-        <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-            <ArticleDetails id={id} />
+        <Page className={classNames("", {}, [className])}>
+            <ArticleDetails id={id} className={cls.block} />
+            <FetchRecommendedArticles className={cls.block} />
             <ArticleComments id={id} />
         </Page>
     );

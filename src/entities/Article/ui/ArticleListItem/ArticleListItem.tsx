@@ -1,10 +1,17 @@
-import { FC, memo, useCallback } from "react";
+import { FC, HTMLAttributeAnchorTarget, memo } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import EyeIcon from "shared/assets/icons/articles/eye.svg";
 import { RoutePath } from "shared/const";
 import { classNames } from "shared/lib";
-import { Avatar, Button, ButtonTheme, Card, Icon, Text } from "shared/ui";
+import {
+    AppLink,
+    Avatar,
+    Button,
+    ButtonTheme,
+    Card,
+    Icon,
+    Text,
+} from "shared/ui";
 import {
     Article,
     ArticleBlockType,
@@ -18,16 +25,12 @@ export interface ArticleListItemProps {
     article: Article;
     view: ArticleView;
     className?: string;
+    target?: HTMLAttributeAnchorTarget | undefined;
 }
 
 export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
-    const { article, view, className } = props;
+    const { article, view, target, className } = props;
     const { t } = useTranslation("articles");
-    const navigate = useNavigate();
-
-    const onClickArticle = useCallback(() => {
-        navigate(RoutePath.article_details + article.id);
-    }, [navigate, article]);
 
     if (view === ArticleView.LIST) {
         const textBlock = article.blocks.find(
@@ -60,12 +63,15 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                         />
                     )}
                     <div className={cls.footer}>
-                        <Button
-                            theme={ButtonTheme.OUTLINE}
-                            onClick={onClickArticle}
+                        <AppLink
+                            target={target}
+                            to={RoutePath.article_details + article.id}
                         >
-                            {t("Читать далее")}
-                        </Button>
+                            <Button theme={ButtonTheme.OUTLINE}>
+                                {t("Читать далее")}
+                            </Button>
+                        </AppLink>
+
                         <Text
                             text={String(article.views)}
                             className={cls.views}
@@ -78,8 +84,12 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
     }
 
     return (
-        <div className={classNames("", {}, [className, cls[view]])}>
-            <Card className={cls.card} onClick={onClickArticle}>
+        <AppLink
+            target={target}
+            to={RoutePath.article_details + article.id}
+            className={classNames("", {}, [className, cls[view]])}
+        >
+            <Card className={cls.card}>
                 <div className={cls.image}>
                     <img
                         src={article.img}
@@ -95,6 +105,6 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                 </div>
                 <Text text={article.title} className={cls.title} />
             </Card>
-        </div>
+        </AppLink>
     );
 });

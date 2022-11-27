@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, HTMLAttributeAnchorTarget, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib";
 import { Text } from "shared/ui";
@@ -12,6 +12,7 @@ interface ArticleListProps {
     isLoading?: boolean;
     view?: ArticleView;
     className?: string;
+    target?: HTMLAttributeAnchorTarget | undefined;
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -26,7 +27,13 @@ const getSkeletons = (view: ArticleView) =>
         ));
 
 export const ArticleList: FC<ArticleListProps> = memo((props) => {
-    const { articles, isLoading, view = ArticleView.GRID, className } = props;
+    const {
+        articles,
+        isLoading,
+        view = ArticleView.GRID,
+        target,
+        className,
+    } = props;
     const { t } = useTranslation("articles");
 
     const renderArticle = (article: Article) => (
@@ -35,6 +42,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props) => {
             view={view}
             key={article.id}
             className={cls.card}
+            target={target}
         />
     );
 

@@ -17,6 +17,7 @@ import { ArticleCommentsSchema } from "widgets/ArticleComments";
 import { ArticlesSchema } from "features/FetchArticles";
 import { PageSchema } from "widgets/Page";
 import { SortingArticlesSchema } from "features/SortingArticles";
+import { RecommendedArticlesSchema } from "features/FetchRecommendedArticles";
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -26,11 +27,14 @@ export interface StateSchema {
     // Aсинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
+
+    addNewComment?: AddNewCommentSchema;
+
+    articles?: ArticlesSchema;
+    sortingArticles?: SortingArticlesSchema;
+    recommendedArticles?: RecommendedArticlesSchema;
     articleDetails?: ArticleDetailsSchema;
     articleComments?: ArticleCommentsSchema;
-    articles?: ArticlesSchema;
-    addNewComment?: AddNewCommentSchema;
-    sortingArticles?: SortingArticlesSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

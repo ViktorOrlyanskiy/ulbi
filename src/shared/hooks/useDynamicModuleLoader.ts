@@ -4,11 +4,12 @@ import { Reducer } from "@reduxjs/toolkit";
 import {
     StateSchemaKey,
     ReduxStoreWithManager,
+    StateSchema,
 } from "app/providers/StoreProvider";
 import { useAppDispatch } from "./useAppDispatch";
 
 export type ReducersList = {
-    [name in StateSchemaKey]?: Reducer;
+    [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 };
 
 // Асинхронно добавляет и удаляет reducer
@@ -23,6 +24,7 @@ export function useDynamicModuleLoader(
     useEffect(() => {
         Object.entries(reducers).forEach(([name, reducer]) => {
             const mounted = mountedReducers[name as StateSchemaKey];
+
             // Добавляем новый редюсер только если его нет
             if (!mounted) {
                 store.reducerManager.add(name as StateSchemaKey, reducer);
