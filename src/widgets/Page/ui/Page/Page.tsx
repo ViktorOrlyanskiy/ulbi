@@ -1,5 +1,7 @@
 import { StateSchema } from "app/providers/StoreProvider";
+import { t } from "i18next";
 import { FC, MutableRefObject, UIEvent, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {
@@ -9,6 +11,7 @@ import {
     useThrottle,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
+import { Button, ButtonTheme } from "shared/ui";
 import { getPageScrollByPath } from "widgets/Page/model/selectors/page";
 import { pageActions } from "../../model/slice/pageSlice";
 import cls from "./Page.module.scss";
@@ -24,6 +27,7 @@ export const Page: FC<PageProps> = (props) => {
 
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
 
@@ -31,11 +35,11 @@ export const Page: FC<PageProps> = (props) => {
         getPageScrollByPath(state, pathname)
     );
 
-    useInfiniteScroll({
-        triggerRef,
-        wrapperRef,
-        callback: onScrollEnd,
-    });
+    // useInfiniteScroll({
+    //     triggerRef,
+    //     wrapperRef,
+    //     callback: onScrollEnd,
+    // });
 
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
         if (isSaveScroll) {
@@ -61,7 +65,14 @@ export const Page: FC<PageProps> = (props) => {
         >
             {children}
             {onScrollEnd ? (
-                <div ref={triggerRef} className={cls.trigger} />
+                // <div ref={triggerRef} className={cls.trigger} />
+                <Button
+                    theme={ButtonTheme.BACKGROUND}
+                    onClick={onScrollEnd}
+                    className={cls.button}
+                >
+                    {t("Загрузить еще")}
+                </Button>
             ) : null}
         </section>
     );
