@@ -7,6 +7,8 @@ import { AppRoutes, RoutePath } from "shared/const";
 import { MapPage } from "pages/MapPage";
 import { ArticlesPage } from "pages/ArticlesPage";
 import { ArticleDetailsPage } from "pages/ArticleDetailsPage";
+import { ArticleCreatePage } from "pages/ArticleCreatePage";
+import { ArticleEditPage } from "pages/ArticleEditPage";
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -38,9 +40,19 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <ArticlesPage />,
         authOnly: true,
     },
+    [AppRoutes.ARTICLE_CREATE]: {
+        path: RoutePath.article_create,
+        element: <ArticleCreatePage />,
+        authOnly: true,
+    },
     [AppRoutes.ARTICLE_DETAILS]: {
         path: `${RoutePath.article_details}:id`,
         element: <ArticleDetailsPage />,
+        authOnly: true,
+    },
+    [AppRoutes.ARTICLE_EDIT]: {
+        path: `${RoutePath.article_edit}`,
+        element: <ArticleEditPage />,
         authOnly: true,
     },
 

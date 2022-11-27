@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import { LoginModal } from "features/AuthByUsername";
 import { getUserAuthData, userActions } from "entities/User";
 import { useAppDispatch } from "shared/hooks";
+import { RoutePath } from "shared/const";
 import { classNames } from "shared/lib";
-import { Button, ButtonTheme } from "shared/ui";
+import { AppLink, Button, ButtonTheme } from "shared/ui";
 import cls from "./Navbar.module.scss";
 
 interface NavbarProps {
@@ -33,21 +34,18 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
     return authData ? (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <Button
-                theme={ButtonTheme.CLEAR}
-                className={cls.links}
-                onClick={onLogout}
-            >
+            <AppLink to={RoutePath.article_create}>
+                <Button theme={ButtonTheme.OUTLINE}>
+                    {t("Создать статью")}
+                </Button>
+            </AppLink>
+            <Button theme={ButtonTheme.BACKGROUND} onClick={onLogout}>
                 {t("Выйти")}
             </Button>
         </div>
     ) : (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <Button
-                theme={ButtonTheme.CLEAR}
-                className={cls.links}
-                onClick={onShowModal}
-            >
+            <Button theme={ButtonTheme.BACKGROUND} onClick={onShowModal}>
                 {t("Войти")}
             </Button>
             <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />

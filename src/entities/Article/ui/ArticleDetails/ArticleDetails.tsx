@@ -2,6 +2,7 @@ import { FC, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUserAuthData } from "entities/User";
 import CalendarIcon from "shared/assets/icons/articles/calendar.svg";
 import EyeIcon from "shared/assets/icons/articles/eye.svg";
 import { RoutePath } from "shared/const";
@@ -27,6 +28,7 @@ import {
     getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsIsLoading,
+    getCanEditArticle,
 } from "../../model/selectors/articleDetails";
 import { fetchArticleById } from "../../model/services/fetchArticleById";
 import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
@@ -55,10 +57,15 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
+    const isCanEdit = useSelector(getCanEditArticle);
 
     const onClickBackToList = useCallback(() => {
         navigate(RoutePath.articles);
     }, [navigate]);
+
+    const onEditArticle = useCallback(() => {
+        navigate(`${RoutePath.article_details}${id}/edit`);
+    }, [navigate, id]);
 
     useInitialEffect(() => {
         dispatch(fetchArticleById(id));
@@ -129,9 +136,21 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
 
     return (
         <div className={classNames(cls.ArticleDetails, {}, [className])}>
-            <Button theme={ButtonTheme.OUTLINE} onClick={onClickBackToList}>
-                {t("Назад к списку")}
-            </Button>
+            <div className={cls.header}>
+                <Button theme={ButtonTheme.OUTLINE} onClick={onClickBackToList}>
+                    {t("Назад к списку")}
+                </Button>
+                {isCanEdit && (
+                    <Button
+                        theme={ButtonTheme.BACKGROUND}
+                        onClick={onEditArticle}
+                        className={cls.editBtn}
+                    >
+                        {t("Редактировать")}
+                    </Button>
+                )}
+            </div>
+
             <div className={cls.avatarWrapper}>
                 <Avatar
                     size={200}
