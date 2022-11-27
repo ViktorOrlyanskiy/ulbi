@@ -1,5 +1,5 @@
 import { TestAsyncThunk } from "app/config/tests";
-import { ArticleBlockType, ArticleType } from "../types/article";
+import { ArticleBlockType, ArticleType } from "entities/Article";
 import { fetchArticleById } from "./fetchArticleById";
 
 const data = {

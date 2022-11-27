@@ -1,5 +1,5 @@
+import { Article, ArticleBlockType, ArticleType } from "entities/Article";
 import { fetchArticleById } from "../services/fetchArticleById";
-import { Article, ArticleBlockType, ArticleType } from "../types/article";
 import { ArticleDetailsSchema } from "../types/articleDetailsSchema";
 import { articleDetailsReducer } from "./articleDetailsSlice";
 

@@ -8,7 +8,6 @@ import {
 import { AxiosInstance } from "axios";
 
 import { LoginSchema } from "features/AuthByUsername";
-import { ArticleDetailsSchema } from "entities/Article";
 import { CounterSchema } from "entities/Counter";
 import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
@@ -18,6 +17,7 @@ import { ArticlesSchema } from "features/FetchArticles";
 import { PageSchema } from "widgets/Page";
 import { SortingArticlesSchema } from "features/SortingArticles";
 import { RecommendedArticlesSchema } from "features/FetchRecommendedArticles";
+import { ArticleDetailsSchema } from "features/FetchArticleById";
 
 export interface StateSchema {
     counter: CounterSchema;

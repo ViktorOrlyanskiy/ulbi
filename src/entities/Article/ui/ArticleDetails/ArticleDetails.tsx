@@ -1,75 +1,26 @@
-import { FC, memo, useCallback } from "react";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { getUserAuthData } from "entities/User";
+import { FC, memo } from "react";
 import CalendarIcon from "shared/assets/icons/articles/calendar.svg";
 import EyeIcon from "shared/assets/icons/articles/eye.svg";
-import { RoutePath } from "shared/const";
-import {
-    ReducersList,
-    useAppDispatch,
-    useDynamicModuleLoader,
-    useInitialEffect,
-} from "shared/hooks";
 import { classNames } from "shared/lib";
+import { Avatar, Icon, Skeleton, Text, TextSize } from "shared/ui";
 import {
-    Avatar,
-    Button,
-    ButtonTheme,
-    Icon,
-    Skeleton,
-    Text,
-    TextAlign,
-    TextSize,
-    TextTheme,
-} from "shared/ui";
-import {
-    getArticleDetailsData,
-    getArticleDetailsError,
-    getArticleDetailsIsLoading,
-    getCanEditArticle,
-} from "../../model/selectors/articleDetails";
-import { fetchArticleById } from "../../model/services/fetchArticleById";
-import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
-import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
+    Article,
+    ArticleBlock,
+    ArticleBlockType,
+} from "../../model/types/article";
 import { ArticleBlockCode } from "../ArticleBlockCode/ArticleBlockCode";
 import { ArticleBlockImage } from "../ArticleBlockImage/ArticleBlockImage";
 import { ArticleBlockText } from "../ArticleBlockText/ArticleBlockText";
 import cls from "./ArticleDetails.module.scss";
 
 interface ArticleDetailsProps {
-    id: string;
+    isLoading: boolean;
+    article?: Article;
     className?: string;
 }
 
-const initialReducers: ReducersList = {
-    articleDetails: articleDetailsReducer,
-};
-
 export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
-    useDynamicModuleLoader(initialReducers);
-    const { id, className } = props;
-    const { t } = useTranslation("articles");
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-
-    const article = useSelector(getArticleDetailsData);
-    const isLoading = useSelector(getArticleDetailsIsLoading);
-    const error = useSelector(getArticleDetailsError);
-    const isCanEdit = useSelector(getCanEditArticle);
-
-    const onClickBackToList = useCallback(() => {
-        navigate(RoutePath.articles);
-    }, [navigate]);
-
-    const onEditArticle = useCallback(() => {
-        navigate(`${RoutePath.article_details}${id}/edit`);
-    }, [navigate, id]);
-
-    useInitialEffect(() => {
-        dispatch(fetchArticleById(id));
-    });
+    const { article, isLoading, className } = props;
 
     const renderBlock = (block: ArticleBlock) => {
         switch (block.type) {
@@ -122,35 +73,8 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
         );
     }
 
-    if (error) {
-        return (
-            <div className={classNames(cls.ArticleDetails, {}, [className])}>
-                <Text
-                    theme={TextTheme.ERROR}
-                    align={TextAlign.CENTER}
-                    text={t("Произошла ошибка при загрузки страницы")}
-                />
-            </div>
-        );
-    }
-
     return (
         <div className={classNames(cls.ArticleDetails, {}, [className])}>
-            <div className={cls.header}>
-                <Button theme={ButtonTheme.OUTLINE} onClick={onClickBackToList}>
-                    {t("Назад к списку")}
-                </Button>
-                {isCanEdit && (
-                    <Button
-                        theme={ButtonTheme.BACKGROUND}
-                        onClick={onEditArticle}
-                        className={cls.editBtn}
-                    >
-                        {t("Редактировать")}
-                    </Button>
-                )}
-            </div>
-
             <div className={cls.avatarWrapper}>
                 <Avatar
                     size={200}
