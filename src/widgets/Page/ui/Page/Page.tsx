@@ -34,11 +34,11 @@ export const Page: FC<PageProps> = (props) => {
         getPageScrollByPath(state, pathname)
     );
 
-    // useInfiniteScroll({
-    //     triggerRef,
-    //     wrapperRef,
-    //     callback: onScrollEnd,
-    // });
+    useInfiniteScroll({
+        triggerRef,
+        wrapperRef,
+        callback: onScrollEnd,
+    });
 
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
         if (isSaveScroll) {
@@ -64,15 +64,15 @@ export const Page: FC<PageProps> = (props) => {
         >
             {children}
             {onScrollEnd ? (
-                // <div ref={triggerRef} className={cls.trigger} />
-                <Button
-                    theme={ButtonTheme.BACKGROUND}
-                    onClick={onScrollEnd}
-                    className={cls.button}
-                >
-                    {t("Загрузить еще")}
-                </Button>
-            ) : null}
+                <div ref={triggerRef} className={cls.trigger} />
+            ) : // <Button
+            //     theme={ButtonTheme.BACKGROUND}
+            //     onClick={onScrollEnd}
+            //     className={cls.button}
+            // >
+            //     {t("Загрузить еще")}
+            // </Button>
+            null}
         </section>
     );
 };
