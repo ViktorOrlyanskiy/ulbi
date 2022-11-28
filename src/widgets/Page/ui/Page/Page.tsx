@@ -1,5 +1,4 @@
 import { StateSchema } from "app/providers/StoreProvider";
-import { t } from "i18next";
 import { FC, MutableRefObject, UIEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
