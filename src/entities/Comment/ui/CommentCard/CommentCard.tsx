@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 import { classNames } from "shared/lib";
 import { Comment } from "entities/Comment";
 import { RoutePath } from "shared/const";
-import { AppLink, Avatar, Skeleton, Text, TextWeight } from "shared/ui";
+import { AppLink, Avatar, HStack, Skeleton, Text, TextWeight } from "shared/ui";
 import cls from "./CommentCard.module.scss";
 
 interface CommentCardProps {
@@ -26,10 +26,10 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
                     cls.loading,
                 ])}
             >
-                <div className={cls.header}>
+                <HStack gap="12" className={cls.header}>
                     <Skeleton width={30} height={30} borderRadius="50%" />
                     <Skeleton width={100} height={16} />
-                </div>
+                </HStack>
                 <Skeleton width="100%" height={50} />
             </div>
         );

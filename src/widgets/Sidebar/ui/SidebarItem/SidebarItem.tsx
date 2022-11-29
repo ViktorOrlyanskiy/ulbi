@@ -3,7 +3,7 @@ import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { classNames } from "shared/lib";
-import { AppLink } from "shared/ui";
+import { AppLink, HStack } from "shared/ui";
 import { SidebarItemType } from "../../model/types/item";
 import cls from "./SidebarItem.module.scss";
 
@@ -27,9 +27,9 @@ export const SidebarItem: FC<SidebarItemProps> = memo(({ item, collapsed }) => {
                 [cls.collapsed]: collapsed,
             })}
         >
-            <div className={cls.iconBox}>
+            <HStack justify="center" className={cls.iconBox}>
                 <item.Icon className={cls.icon} />
-            </div>
+            </HStack>
             <span className={cls.link}>{t(item.text)}</span>
         </AppLink>
     );

@@ -7,7 +7,7 @@ import {
     useAppDispatch,
     useDynamicModuleLoader,
 } from "shared/hooks";
-import { Button, ButtonTheme, Input, Text, TextTheme } from "shared/ui";
+import { Button, ButtonTheme, Input, Text, TextTheme, VStack } from "shared/ui";
 
 import { loginActions, loginReducer } from "../../model/slice/loginSlice";
 import { loginByUsername } from "../../model/services/loginByUsername/loginByUsername";
@@ -66,7 +66,11 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
     );
 
     return (
-        <div className={classNames(cls.LoginForm, {}, [className])}>
+        <VStack
+            justify="center"
+            align="end"
+            className={classNames(cls.LoginForm, {}, [className])}
+        >
             <Text title={t("Форма авторизации")} className={cls.title} />
             {error && (
                 <Text
@@ -96,7 +100,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
             >
                 {t("Войти")}
             </Button>
-        </div>
+        </VStack>
     );
 });
 

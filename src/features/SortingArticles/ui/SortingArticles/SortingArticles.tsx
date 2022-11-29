@@ -12,6 +12,7 @@ import {
 } from "shared/hooks";
 import { SortOrder } from "shared/types";
 import {
+    HStack,
     Input,
     InputSize,
     Select,
@@ -137,7 +138,7 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
 
     return (
         <div className={classNames("", {}, [className])}>
-            <div className={cls.row}>
+            <HStack gap="12">
                 <Text title={t("Сортировать по")} size={TextSize.S} />
                 <Select
                     value={sort}
@@ -152,19 +153,15 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
                     className={cls.select}
                 />
                 <ArticlesViewSwitcher view={view} onViewClick={onChangeView} />
-            </div>
+            </HStack>
             <Input
                 value={search}
                 onChange={onChangeSearch}
                 placeholder={t("Поиск")}
                 size={InputSize.M}
+                className={cls.search}
             />
-            <Tabs
-                tabs={typeOptions}
-                value={type}
-                onTabClick={onChangeType}
-                className={cls.tabs}
-            />
+            <Tabs tabs={typeOptions} value={type} onTabClick={onChangeType} />
         </div>
     );
 });

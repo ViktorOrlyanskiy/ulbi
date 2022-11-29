@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, HTMLAttributes, DetailedHTMLProps } from "react";
 import { classNames } from "shared/lib";
 import cls from "./Flex.module.scss";
 
@@ -36,9 +36,9 @@ const gapClasses: Record<FlexGap, string> = {
 
 export interface FlexProps {
     className?: string;
-    justify: FlexJustify;
-    align: FlexAlign;
-    direction: FlexDirection;
+    justify?: FlexJustify;
+    align?: FlexAlign;
+    direction?: FlexDirection;
     gap?: FlexGap;
     max?: boolean;
     wrap?: boolean;

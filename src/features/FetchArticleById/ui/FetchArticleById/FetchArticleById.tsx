@@ -15,6 +15,7 @@ import {
     AppLink,
     Button,
     ButtonTheme,
+    HStack,
     Text,
     TextAlign,
     TextTheme,
@@ -67,7 +68,7 @@ export const FetchArticleById: FC<FetchArticleByIdProps> = memo((props) => {
 
     return (
         <div className={classNames(cls.FetchArticleById, {}, [className])}>
-            <div className={cls.header}>
+            <HStack>
                 <AppLink to={RoutePath.articles}>
                     <Button theme={ButtonTheme.OUTLINE}>
                         {t("Назад к списку")}
@@ -84,7 +85,7 @@ export const FetchArticleById: FC<FetchArticleByIdProps> = memo((props) => {
                         </Button>
                     </AppLink>
                 )}
-            </div>
+            </HStack>
             <ArticleDetails article={article} isLoading={isLoading} />
         </div>
     );

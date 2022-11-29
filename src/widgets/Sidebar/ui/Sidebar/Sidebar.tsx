@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { classNames } from "shared/lib";
 import { LangSwitcher } from "widgets/LangSwitcher";
 import { ThemeSwitcher } from "widgets/ThemeSwitcher";
-import { BurgerButton } from "shared/ui/BurgerButton/BurgerButton";
+import { HStack, BurgerButton } from "shared/ui";
 import { getSidebarItems } from "../../model/selectors/getSidebarItems";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import cls from "./Sidebar.module.scss";
@@ -41,10 +41,10 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
                     />
                 ))}
             </div>
-            <div className={cls.switchers}>
+            <HStack max justify="center" gap="12" className={cls.switchers}>
                 <ThemeSwitcher />
-                <LangSwitcher short={collapsed} className={cls.langSwitcher} />
-            </div>
+                <LangSwitcher short={collapsed} />
+            </HStack>
         </div>
     );
 });

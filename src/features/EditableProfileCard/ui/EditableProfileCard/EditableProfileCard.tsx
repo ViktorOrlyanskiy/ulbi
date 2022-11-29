@@ -13,7 +13,7 @@ import {
     useInitialEffect,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
-import { Button, ButtonTheme, Text, TextTheme } from "shared/ui";
+import { Button, ButtonTheme, HStack, Text, TextTheme } from "shared/ui";
 
 import { getCanEdit } from "../../model/selectors/getCanEdit/getCatEdit";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
@@ -130,20 +130,20 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
 
     return (
         <div className={classNames(cls.EditableProfileCard, {}, [className])}>
-            <div className={cls.header}>
+            <HStack justify="between" className={cls.header}>
                 <Text title={t("Профиль")} />
                 {canEdit &&
                     (readonly ? (
-                        <div className={cls.buttons}>
+                        <HStack justify="center" gap="12">
                             <Button
                                 theme={ButtonTheme.BACKGROUND}
                                 onClick={onEdit}
                             >
                                 {t("Редактировать")}
                             </Button>
-                        </div>
+                        </HStack>
                     ) : (
-                        <div className={cls.buttons}>
+                        <HStack>
                             <Button
                                 theme={ButtonTheme.OUTLINE}
                                 onClick={onCancelEdit}
@@ -156,9 +156,9 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
                             >
                                 {t("Сохранить")}
                             </Button>
-                        </div>
+                        </HStack>
                     ))}
-            </div>
+            </HStack>
             {validateErrors?.length &&
                 validateErrors.map((err) => (
                     <Text

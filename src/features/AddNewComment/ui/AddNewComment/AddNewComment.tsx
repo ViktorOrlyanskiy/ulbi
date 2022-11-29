@@ -7,7 +7,7 @@ import {
     useDynamicModuleLoader,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
-import { Button, ButtonTheme, Input } from "shared/ui";
+import { Button, ButtonTheme, HStack, Input } from "shared/ui";
 import {
     getNewCommentError,
     getNewCommentText,
@@ -47,7 +47,11 @@ const AddNewComment: FC<AddNewCommentProps> = memo((props) => {
     }, [onSendComment, onChangeComment, text]);
 
     return (
-        <div className={classNames(cls.AddNewComment, {}, [className])}>
+        <HStack
+            justify="between"
+            gap="12"
+            className={classNames(cls.AddNewComment, {}, [className])}
+        >
             <Input
                 placeholder={t("Введите текст комментария")}
                 value={text}
@@ -56,7 +60,7 @@ const AddNewComment: FC<AddNewCommentProps> = memo((props) => {
             <Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
                 {t("Добавить")}
             </Button>
-        </div>
+        </HStack>
     );
 });
 

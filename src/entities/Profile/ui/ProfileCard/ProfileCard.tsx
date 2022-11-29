@@ -3,7 +3,16 @@ import { Currency, CurrencySelect } from "entities/Currency";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib";
-import { Avatar, Input, Loader, Text, TextTheme, TextWeight } from "shared/ui";
+import {
+    Avatar,
+    HStack,
+    Input,
+    Loader,
+    Text,
+    TextTheme,
+    TextWeight,
+    VStack,
+} from "shared/ui";
 import { TextAlign } from "shared/ui/Text/Text";
 
 import { Profile } from "../../model/types/profile";
@@ -45,135 +54,95 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 
     if (isLoading) {
         return (
-            <div className={cls.loading}>
+            <HStack justify="center">
                 <Loader />
-            </div>
+            </HStack>
         );
     }
 
     if (error) {
         return (
-            <div className={cls.error}>
+            <HStack justify="center">
                 <Text
                     theme={TextTheme.ERROR}
                     align={TextAlign.CENTER}
                     title={t("Произошла ошибка при загрузке профиля")}
                     text={t("Попробуйте обновить страницу")}
                 />
-            </div>
+            </HStack>
         );
     }
 
     return (
-        <div className={classNames(cls.ProfileCard, {}, [className])}>
-            <div className={cls.avatarWrapper}>
+        <VStack gap="12" className={classNames("", {}, [className])}>
+            <HStack>
                 <Avatar src={data?.avatar} size={100} />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Имя")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Имя")} weight={TextWeight.BOLD} />
                 <Input
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.first}
                     onChange={onChangeFirstname}
                 />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Фамилия")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Фамилия")} weight={TextWeight.BOLD} />
                 <Input
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.lastname}
                     onChange={onChangeLastname}
                 />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Возраст")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Возраст")} weight={TextWeight.BOLD} />
                 <Input
                     onlyIntegerNumber
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.age}
                     onChange={onChangeAge}
                 />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Город")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Город")} weight={TextWeight.BOLD} />
                 <Input
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.city}
                     onChange={onChangeCity}
                 />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Никнейм")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Никнейм")} weight={TextWeight.BOLD} />
                 <Input
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.username}
                     onChange={onChangeUsername}
                 />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Ссылка на аватар")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Ссылка на аватар")} weight={TextWeight.BOLD} />
                 <Input
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.avatar}
                     onChange={onChangeAvatar}
                 />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Валюта")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Валюта")} weight={TextWeight.BOLD} />
                 <CurrencySelect
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.currency}
                     onChange={onChangeCurrency}
                 />
-            </div>
-            <div className={cls.item}>
-                <Text
-                    text={t("Страна")}
-                    className={cls.label}
-                    weight={TextWeight.BOLD}
-                />
+            </HStack>
+            <HStack max justify="between" gap="12" className={cls.item}>
+                <Text text={t("Страна")} weight={TextWeight.BOLD} />
                 <CountrySelect
-                    className={cls.input}
                     readonly={readonly}
                     value={data?.country}
                     onChange={onChangeCountry}
                 />
-            </div>
-        </div>
+            </HStack>
+        </VStack>
     );
 };

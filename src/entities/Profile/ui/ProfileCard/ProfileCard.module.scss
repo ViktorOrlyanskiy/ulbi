@@ -1,35 +1,4 @@
-.loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.error {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatarWrapper {
-    display: flex;
-}
-
 .item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 50%;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
     white-space: nowrap;
     border-bottom: 1px solid var(--active-bg-color);
-}
-
-.label {
-    margin-right: 5px;
-}
-
-.input {
-    min-width: 100px;
-    max-width: 300px;
 }

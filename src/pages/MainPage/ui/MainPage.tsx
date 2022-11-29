@@ -20,7 +20,7 @@ const MainPage: FC = memo(() => {
     return (
         <Page>
             {t("Главная")}
-            {/* <BugButton /> */}
+            <BugButton />
             {/* <Select options={options} label="2222" /> */}
 
             {/* <div
