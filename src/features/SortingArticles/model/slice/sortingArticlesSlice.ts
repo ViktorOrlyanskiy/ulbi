@@ -8,7 +8,7 @@ import {
     LOCAL_STORAGE_ARTICLES_TYPE,
 } from "shared/const";
 import { SortOrder } from "shared/types";
-import { checksEquality } from "../lib/checksEquality";
+import { checksEquality } from "../../lib/checksEquality";
 import { SortingArticlesSchema } from "../types/sortingArticlesSchema";
 
 const initialState: SortingArticlesSchema = {

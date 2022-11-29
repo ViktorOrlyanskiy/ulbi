@@ -1,7 +1,6 @@
-import { FC, memo, useCallback } from "react";
+import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { ArticleDetails } from "entities/Article";
 import { RoutePath } from "shared/const";
@@ -12,7 +11,14 @@ import {
     useInitialEffect,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
-import { Button, ButtonTheme, Text, TextAlign, TextTheme } from "shared/ui";
+import {
+    AppLink,
+    Button,
+    ButtonTheme,
+    Text,
+    TextAlign,
+    TextTheme,
+} from "shared/ui";
 import {
     getArticleDetailsData,
     getArticleDetailsError,
@@ -37,20 +43,11 @@ export const FetchArticleById: FC<FetchArticleByIdProps> = memo((props) => {
     const { id, className } = props;
     const { t } = useTranslation("articles");
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
     const isCanEdit = useSelector(getCanEditArticle);
-
-    const onClickBackToList = useCallback(() => {
-        navigate(RoutePath.articles);
-    }, [navigate]);
-
-    const onEditArticle = useCallback(() => {
-        navigate(`${RoutePath.article_details}${id}/edit`);
-    }, [navigate, id]);
 
     useInitialEffect(() => {
         dispatch(fetchArticleById(id));
@@ -71,17 +68,21 @@ export const FetchArticleById: FC<FetchArticleByIdProps> = memo((props) => {
     return (
         <div className={classNames(cls.FetchArticleById, {}, [className])}>
             <div className={cls.header}>
-                <Button theme={ButtonTheme.OUTLINE} onClick={onClickBackToList}>
-                    {t("Назад к списку")}
-                </Button>
+                <AppLink to={RoutePath.articles}>
+                    <Button theme={ButtonTheme.OUTLINE}>
+                        {t("Назад к списку")}
+                    </Button>
+                </AppLink>
+
                 {isCanEdit && (
-                    <Button
-                        theme={ButtonTheme.BACKGROUND}
-                        onClick={onEditArticle}
+                    <AppLink
+                        to={`${RoutePath.article_details}${id}/edit`}
                         className={cls.editBtn}
                     >
-                        {t("Редактировать")}
-                    </Button>
+                        <Button theme={ButtonTheme.BACKGROUND}>
+                            {t("Редактировать")}
+                        </Button>
+                    </AppLink>
                 )}
             </div>
             <ArticleDetails article={article} isLoading={isLoading} />
