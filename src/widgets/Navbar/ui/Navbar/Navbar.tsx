@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import { LoginModal } from "features/AuthByUsername";
-import { getUserAuthData, userActions } from "entities/User";
-import { useAppDispatch } from "shared/hooks";
+import { getUserAuthData } from "entities/User";
 import { RoutePath } from "shared/const";
 import { classNames } from "shared/lib";
 import { AppLink, Button, ButtonTheme, HStack } from "shared/ui";
 import cls from "./Navbar.module.scss";
+import { UserMenu } from "../UserMenu/UserMenu";
 
 interface NavbarProps {
     className?: string;
@@ -16,7 +16,6 @@ interface NavbarProps {
 
 export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const { t } = useTranslation();
-    const dispatch = useAppDispatch();
     const [isAuthModal, setIsAuthModal] = useState(false);
     const authData = useSelector(getUserAuthData);
 
@@ -27,10 +26,6 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false);
     }, []);
-
-    const onLogout = useCallback(() => {
-        dispatch(userActions.logout());
-    }, [dispatch]);
 
     return authData ? (
         <header>
@@ -45,9 +40,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                         {t("Создать статью")}
                     </Button>
                 </AppLink>
-                <Button theme={ButtonTheme.BACKGROUND} onClick={onLogout}>
-                    {t("Выйти")}
-                </Button>
+                <UserMenu />
             </HStack>
         </header>
     ) : (

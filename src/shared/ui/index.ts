@@ -10,7 +10,7 @@ export { Input, InputTheme, InputSize } from "./Input/Input";
 export { Loader } from "./Loader/Loader";
 export { Modal } from "./Modal/Modal";
 export { Portal } from "./Portal/Portal";
-export { Popup } from "./Popup/Popup";
+export { Popup, Position } from "./Popup/Popup";
 export { Tabs, TabItem } from "./Tabs/Tabs";
 export { Text, TextTheme, TextAlign, TextWeight, TextSize } from "./Text/Text";
 export { Select, SelectOption } from "./Select/Select";

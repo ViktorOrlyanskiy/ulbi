@@ -14,8 +14,7 @@
     border-radius: 3px;
     transition: all 0.3s;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background: var(--hover-bg-color);
     }
 }
@@ -26,8 +25,7 @@
     border-radius: 3px;
     transition: all 0.3s;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background: var(--inverted-primary-bg-color);
         box-shadow: 0 0 5px 0 var(--inverted-primary-bg-color);
     }

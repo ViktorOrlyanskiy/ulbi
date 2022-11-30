@@ -1,0 +1,19 @@
+.trigger {
+    cursor: pointer;
+}
+
+.popup {
+    padding: 10px 0;
+    background: var(--secondary-bg-color);
+    border-radius: 6px;
+}
+
+.item {
+    width: 100%;
+    padding: 4px 30px;
+    transition: all 0.1s;
+
+    &:hover {
+        background: var(--hover-bg-color);
+    }
+}

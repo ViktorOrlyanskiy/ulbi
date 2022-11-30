@@ -12,7 +12,7 @@ import { classNames } from "shared/lib";
 import { Portal } from "shared/ui";
 import styles from "./Popup.module.scss";
 
-enum Position {
+export const enum Position {
     TOP_LEFT = "top/left",
     TOP_RIGHT = "top/right",
     TOP_CENTER = "top/center",
@@ -59,9 +59,11 @@ const getPositionPopup = (
 
 interface PopupProps {
     triggerRef: MutableRefObject<HTMLElement | null>;
-    idScrollElement: string; // id родительского элемента в котором расположен trigger
     maxHeightPopup: number;
     hiddenPopup: () => void;
+    idScrollElement?: string; // id родительского элемента в котором расположен trigger
+    maxWidth?: boolean;
+    position?: Position;
     marginFromTrigger?: number;
     className?: string;
 }
@@ -72,6 +74,8 @@ export const Popup: FC<PopupProps> = (props) => {
         idScrollElement,
         maxHeightPopup,
         hiddenPopup,
+        maxWidth,
+        position,
         marginFromTrigger = 4,
         className,
         children,
@@ -79,57 +83,136 @@ export const Popup: FC<PopupProps> = (props) => {
 
     const parentElementWithScroll = useRef<HTMLElement | null>(null);
     const bodyRef = useRef<HTMLDivElement | null>(null);
+    const timerRef = useRef() as MutableRefObject<
+        ReturnType<typeof setTimeout>
+    >;
 
-    const [widthPopup, setWidthPopup] = useState<number | undefined>(0);
-    const [topPopup, setTopPopup] = useState<number | undefined>(0);
-    const [bottomPopup, setBottomPopup] = useState<number | undefined>(0);
-    const [leftPopup, setLeftPopup] = useState<number | undefined>(0);
+    const [widthPopup, setWidthPopup] = useState<number | undefined>(undefined);
+    const [topPopup, setTopPopup] = useState<number | undefined>(undefined);
+    const [bottomPopup, setBottomPopup] = useState<number | undefined>(
+        undefined
+    );
+    const [leftPopup, setLeftPopup] = useState<number | undefined>(undefined);
+    const [rightPopup, setRightPopup] = useState<number | undefined>(undefined);
 
-    const setRectPopup = useCallback(() => {
-        if (triggerRef?.current) {
-            const widthWindow = document.body.clientWidth;
-            const heightWindow = document.body.clientHeight;
-            const triggerRect = triggerRef?.current.getBoundingClientRect();
+    const setRectPopup = useCallback(
+        (position?: Position) => {
+            if (triggerRef?.current && bodyRef?.current) {
+                const fullWidthWindow = window.innerWidth; // включая scrollbar
+                const widthWindow = idScrollElement
+                    ? fullWidthWindow
+                    : document.body.clientWidth;
+                const heightWindow = document.body.clientHeight;
 
-            const parentRect =
-                parentElementWithScroll?.current?.getBoundingClientRect();
+                const triggerRect = triggerRef?.current.getBoundingClientRect();
+                const parentRect =
+                    parentElementWithScroll?.current?.getBoundingClientRect();
+                const bodyRect = bodyRef?.current.getBoundingClientRect();
 
-            const positionPopup = getPositionPopup(
-                widthWindow,
-                heightWindow,
-                triggerRect,
-                marginFromTrigger,
-                maxHeightPopup,
-                parentRect
-            );
+                const positionPopup =
+                    position ||
+                    getPositionPopup(
+                        widthWindow,
+                        heightWindow,
+                        triggerRect,
+                        marginFromTrigger,
+                        maxHeightPopup,
+                        parentRect
+                    );
 
-            if (positionPopup === Position.BOTTOM_LEFT) {
-                setTopPopup(triggerRect.bottom + marginFromTrigger);
-                setBottomPopup(undefined);
-                setLeftPopup(triggerRect.left);
-                setWidthPopup(triggerRect.width);
+                switch (positionPopup) {
+                    case Position.TOP_LEFT:
+                        setTopPopup(undefined);
+                        setBottomPopup(
+                            heightWindow - triggerRect.top + marginFromTrigger
+                        );
+                        setLeftPopup(triggerRect.left);
+                        setRightPopup(undefined);
+                        break;
+
+                    case Position.TOP_CENTER:
+                        setTopPopup(undefined);
+                        setBottomPopup(
+                            heightWindow - triggerRect.top + marginFromTrigger
+                        );
+                        // 1 - поправка в расчеты
+                        setLeftPopup(
+                            triggerRect.left +
+                                1 -
+                                (bodyRect.width - triggerRect.width) / 2
+                        );
+                        setRightPopup(undefined);
+                        break;
+
+                    case Position.TOP_RIGHT:
+                        setTopPopup(undefined);
+                        setBottomPopup(
+                            heightWindow - triggerRect.top + marginFromTrigger
+                        );
+                        setLeftPopup(undefined);
+                        setRightPopup(widthWindow - triggerRect.right);
+                        break;
+
+                    case Position.BOTTOM_LEFT:
+                        setTopPopup(triggerRect.bottom + marginFromTrigger);
+                        setBottomPopup(undefined);
+                        setLeftPopup(triggerRect.left);
+                        setRightPopup(undefined);
+                        break;
+
+                    case Position.BOTTOM_CENTER:
+                        setTopPopup(triggerRect.bottom + marginFromTrigger);
+                        setBottomPopup(undefined);
+                        // 1 - поправка в расчеты
+                        setLeftPopup(
+                            triggerRect.left +
+                                1 -
+                                (bodyRect.width - triggerRect.width) / 2
+                        );
+                        setRightPopup(undefined);
+                        break;
+
+                    case Position.BOTTOM_RIGHT:
+                        setTopPopup(triggerRect.bottom + marginFromTrigger);
+                        setBottomPopup(undefined);
+                        setLeftPopup(undefined);
+                        setRightPopup(widthWindow - triggerRect.right);
+                        break;
+
+                    case Position.HIDDEN:
+                        hiddenPopup();
+                        break;
+
+                    default:
+                        hiddenPopup();
+                        break;
+                }
+
+                if (maxWidth) {
+                    setWidthPopup(triggerRect.width);
+                }
             }
-            if (positionPopup === Position.TOP_LEFT) {
-                setTopPopup(undefined);
-                setBottomPopup(
-                    heightWindow - triggerRect.top + marginFromTrigger
-                );
-                setLeftPopup(triggerRect.left);
-                setWidthPopup(triggerRect.width);
-            }
-            if (positionPopup === Position.HIDDEN) {
+        },
+        [
+            maxWidth,
+            triggerRef,
+            maxHeightPopup,
+            marginFromTrigger,
+            idScrollElement,
+            hiddenPopup,
+        ]
+    );
+
+    const onClose = useCallback(
+        (e: globalThis.MouseEvent) => {
+            const childrenElement = e.target as HTMLElement;
+
+            if (bodyRef.current && !bodyRef.current.contains(childrenElement)) {
                 hiddenPopup();
             }
-        }
-    }, [triggerRef, maxHeightPopup, marginFromTrigger, hiddenPopup]);
-
-    const onClose = useCallback((e: globalThis.MouseEvent) => {
-        const childrenElement = e.target as HTMLElement;
-
-        if (bodyRef.current && !bodyRef.current.contains(childrenElement)) {
-            // hiddenPopup();
-        }
-    }, []);
+        },
+        [hiddenPopup]
+    );
 
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
@@ -140,10 +223,26 @@ export const Popup: FC<PopupProps> = (props) => {
         [hiddenPopup]
     );
 
+    // первая отрисовка компонента
     useLayoutEffect(() => {
-        setRectPopup();
-    }, [setRectPopup]);
+        setRectPopup(position);
+    }, [setRectPopup, position]);
 
+    // контролирует события мыши и клавиатуры
+    useEffect(() => {
+        timerRef.current = setTimeout(() => {
+            document.addEventListener("click", onClose);
+            document.addEventListener("keydown", onKeyDown);
+        }, 50);
+
+        return () => {
+            clearTimeout(timerRef.current);
+            document.removeEventListener("click", onClose);
+            document.removeEventListener("keydown", onKeyDown);
+        };
+    }, [onClose, onKeyDown]);
+
+    // контролирует позициорирование
     useEffect(() => {
         if (idScrollElement) {
             parentElementWithScroll.current =
@@ -152,24 +251,18 @@ export const Popup: FC<PopupProps> = (props) => {
             parentElementWithScroll.current = document.body;
         }
 
-        document.addEventListener("click", onClose);
-        document.addEventListener("keydown", onKeyDown);
-        window.addEventListener("resize", setRectPopup);
-        parentElementWithScroll.current?.addEventListener(
-            "scroll",
-            setRectPopup
+        window.addEventListener("resize", () => setRectPopup());
+        parentElementWithScroll.current?.addEventListener("scroll", () =>
+            setRectPopup()
         );
 
         return () => {
-            document.removeEventListener("click", onClose);
-            document.removeEventListener("keydown", onKeyDown);
-            window.removeEventListener("resize", setRectPopup);
-            parentElementWithScroll.current?.removeEventListener(
-                "scroll",
-                setRectPopup
+            window.removeEventListener("resize", () => setRectPopup());
+            parentElementWithScroll.current?.removeEventListener("scroll", () =>
+                setRectPopup()
             );
         };
-    }, [idScrollElement, setRectPopup, onClose, onKeyDown]);
+    }, [idScrollElement, setRectPopup]);
 
     const styleProperties: CSSProperties = {
         position: "absolute",
@@ -177,6 +270,7 @@ export const Popup: FC<PopupProps> = (props) => {
         top: topPopup,
         bottom: bottomPopup,
         left: leftPopup,
+        right: rightPopup,
         width: widthPopup,
         height: maxHeightPopup,
     };
