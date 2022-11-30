@@ -35,6 +35,7 @@ export const CountrySelect: FC<CountrySelectProps> = memo((props) => {
             onChange={onChangeHandler}
             options={options}
             readonly={readonly}
+            idScrollElement="scroll-element"
         />
     );
 });

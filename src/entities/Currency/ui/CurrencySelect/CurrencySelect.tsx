@@ -33,6 +33,7 @@ export const CurrencySelect: FC<CurrencySelectProps> = memo((props) => {
             onChange={onChangeHandler}
             options={options}
             readonly={readonly}
+            idScrollElement="scroll-element"
         />
     );
 });

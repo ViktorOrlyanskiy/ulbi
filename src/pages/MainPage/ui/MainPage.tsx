@@ -2,40 +2,33 @@ import { FC, memo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Page } from "widgets/Page";
 import { BugButton } from "app/providers/ErrorBoundary";
-import { Checkbox, Popup, Select } from "shared/ui";
-
-const options = [
-    { value: "csv", content: "CSV" },
-    { value: "xlsx", content: "XLSX" },
-];
+import { Button, ButtonTheme, Checkbox, Popup, Select } from "shared/ui";
 
 const MainPage: FC = memo(() => {
     const { t } = useTranslation("main");
     const [isOpen, setIsOpen] = useState(false);
     const refTrigger = useRef<HTMLDivElement | null>(null);
     const onClick = () => {
-        setIsOpen((prev: boolean) => !prev);
+        setIsOpen((prev) => !prev);
     };
 
     return (
         <Page>
             {t("Главная")}
             <BugButton />
-            {/* <Select options={options} label="2222" /> */}
-
-            {/* <div
-                ref={refTrigger}
-                style={{ width: 100, height: 30, background: "red" }}
-                onClick={onClick}
-            />
+            {/* <div ref={refTrigger}>
+                <Button theme={ButtonTheme.OUTLINE} onClick={onClick}>
+                    TRIGGER
+                </Button>
+            </div>
             {isOpen && (
                 <Popup
-                    refTrigger={refTrigger}
+                    triggerRef={refTrigger}
                     idScrollElement="scroll-element"
-                    maxHeightPopup={50}
-                    hiddenPopup={onClick}
+                    maxHeightPopup={300}
+                    hiddenPopup={() => console.log(1)}
                 >
-                    11111111
+                    fkkfkfkfk
                 </Popup>
             )} */}
         </Page>

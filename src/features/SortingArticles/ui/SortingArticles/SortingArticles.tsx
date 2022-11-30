@@ -145,12 +145,14 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
                     options={sortOptions}
                     onChange={onChangeSort}
                     className={cls.select}
+                    idScrollElement="scroll-element"
                 />
                 <Select
                     value={order}
                     options={orderOptions}
                     onChange={onChangeOrder}
                     className={cls.select}
+                    idScrollElement="scroll-element"
                 />
                 <ArticlesViewSwitcher view={view} onViewClick={onChangeView} />
             </HStack>
