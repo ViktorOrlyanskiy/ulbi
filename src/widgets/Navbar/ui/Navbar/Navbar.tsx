@@ -33,32 +33,36 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     }, [dispatch]);
 
     return authData ? (
-        <HStack
-            max
-            justify="end"
-            gap="12"
-            className={classNames(cls.Navbar, {}, [className])}
-        >
-            <AppLink to={RoutePath.article_create}>
-                <Button theme={ButtonTheme.OUTLINE}>
-                    {t("Создать статью")}
+        <header>
+            <HStack
+                max
+                justify="end"
+                gap="12"
+                className={classNames(cls.Navbar, {}, [className])}
+            >
+                <AppLink to={RoutePath.article_create}>
+                    <Button theme={ButtonTheme.OUTLINE}>
+                        {t("Создать статью")}
+                    </Button>
+                </AppLink>
+                <Button theme={ButtonTheme.BACKGROUND} onClick={onLogout}>
+                    {t("Выйти")}
                 </Button>
-            </AppLink>
-            <Button theme={ButtonTheme.BACKGROUND} onClick={onLogout}>
-                {t("Выйти")}
-            </Button>
-        </HStack>
+            </HStack>
+        </header>
     ) : (
-        <HStack
-            max
-            justify="end"
-            gap="12"
-            className={classNames(cls.Navbar, {}, [className])}
-        >
-            <Button theme={ButtonTheme.BACKGROUND} onClick={onShowModal}>
-                {t("Войти")}
-            </Button>
-            <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-        </HStack>
+        <header>
+            <HStack
+                max
+                justify="end"
+                gap="12"
+                className={classNames(cls.Navbar, {}, [className])}
+            >
+                <Button theme={ButtonTheme.BACKGROUND} onClick={onShowModal}>
+                    {t("Войти")}
+                </Button>
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+            </HStack>
+        </header>
     );
 });

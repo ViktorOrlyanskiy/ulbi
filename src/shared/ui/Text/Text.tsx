@@ -25,6 +25,8 @@ export enum TextWeight {
     BOLD = "bold",
 }
 
+type TitleTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
 interface TextProps {
     className?: string;
     title?: string;
@@ -33,6 +35,7 @@ interface TextProps {
     size?: TextSize;
     align?: TextAlign;
     weight?: TextWeight;
+    TitleTag?: TitleTag;
 }
 
 export const Text: FC<TextProps> = memo((props) => {
@@ -44,6 +47,7 @@ export const Text: FC<TextProps> = memo((props) => {
         size = TextSize.M,
         align = TextAlign.LEFT,
         weight = TextWeight.NORMAL,
+        TitleTag = "h6",
     } = props;
     return (
         <div
@@ -55,7 +59,7 @@ export const Text: FC<TextProps> = memo((props) => {
                 cls[weight],
             ])}
         >
-            {title && <p className={cls.title}>{title}</p>}
+            {title && <TitleTag className={cls.title}>{title}</TitleTag>}
             {text && <p className={cls.text}>{text}</p>}
         </div>
     );

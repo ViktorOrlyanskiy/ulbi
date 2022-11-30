@@ -34,7 +34,12 @@ const gapClasses: Record<FlexGap, string> = {
     40: cls.gap_40,
 };
 
-export interface FlexProps {
+type DivProps = DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+>;
+
+export interface FlexProps extends DivProps {
     className?: string;
     justify?: FlexJustify;
     align?: FlexAlign;

@@ -56,7 +56,7 @@ export const Page: FC<PageProps> = (props) => {
     });
 
     return (
-        <section
+        <main
             id="scroll-element"
             ref={wrapperRef}
             onScroll={onScroll}
@@ -73,6 +73,6 @@ export const Page: FC<PageProps> = (props) => {
             //     {t("Загрузить еще")}
             // </Button>
             null}
-        </section>
+        </main>
     );
 };
