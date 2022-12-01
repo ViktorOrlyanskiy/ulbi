@@ -20,3 +20,4 @@
 - написать обработку ошибки в ArticlesList
 - добавить виртуализацию списка
 - написать eslint плагин
+- вынести useParams из фичи EditableprofileCard

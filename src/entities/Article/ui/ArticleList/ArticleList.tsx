@@ -58,7 +58,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props) => {
         <div
             className={classNames(cls.ArticleList, {}, [className, cls[view]])}
         >
-            {!!articles.length && articles.map(renderArticle)}
+            {articles && !!articles.length && articles.map(renderArticle)}
             {isLoading && getSkeletons(view)}
         </div>
     );

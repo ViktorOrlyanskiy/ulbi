@@ -18,8 +18,10 @@ import { SortingArticlesSchema } from "features/SortingArticles";
 import { RecommendedArticlesSchema } from "features/FetchRecommendedArticles";
 import { ArticleDetailsSchema } from "features/FetchArticleById";
 import { ProfileSchema } from "features/EditableProfileCard";
+import { $rtkApi } from "shared/api/rtkApi";
 
 export interface StateSchema {
+    [$rtkApi.reducerPath]: ReturnType<typeof $rtkApi.reducer>;
     counter: CounterSchema;
     user: UserSchema;
     page: PageSchema;
