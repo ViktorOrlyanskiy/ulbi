@@ -1,3 +1,50 @@
 .Textarea {
-    color: red;
+    width: 100%;
+    padding: 3px 10px;
+    resize: none;
+}
+
+.outline {
+    color: var(--primary-text-color);
+    background-color: transparent;
+    border: 1px solid var(--active-bg-color);
+    border-radius: 3px;
+
+    &:focus {
+        box-shadow: 0 0 4px 0 var(--hover-bg-color);
+    }
+}
+
+.outlineInverted {
+    color: var(--primary-text-color);
+    background-color: transparent;
+    border: 1px solid var(--active-bg-color);
+    border-radius: 3px;
+
+    &:focus {
+        box-shadow: 0 0 4px 0 var(--hover-bg-color);
+    }
+}
+
+.size_m {
+    font: var(--font-m);
+}
+
+.size_l {
+    font: var(--font-l);
+}
+
+.size_xl {
+    font: var(--font-xl);
+}
+
+// сброс стилей для состояния readonly
+.readonly {
+    color: var(--primary-text-color);
+    background-color: transparent;
+    border: 1px solid var(--transparent-bg-color);
+
+    &:focus {
+        box-shadow: none;
+    }
 }

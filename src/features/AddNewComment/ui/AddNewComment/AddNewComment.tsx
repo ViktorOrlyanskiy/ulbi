@@ -7,7 +7,7 @@ import {
     useDynamicModuleLoader,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
-import { Button, ButtonTheme, HStack, Input } from "shared/ui";
+import { Button, ButtonTheme, HStack, Textarea } from "shared/ui";
 import {
     getNewCommentError,
     getNewCommentText,
@@ -52,7 +52,7 @@ const AddNewComment: FC<AddNewCommentProps> = memo((props) => {
             gap="12"
             className={classNames(cls.AddNewComment, {}, [className])}
         >
-            <Input
+            <Textarea
                 placeholder={t("Введите текст комментария")}
                 value={text}
                 onChange={onChangeComment}

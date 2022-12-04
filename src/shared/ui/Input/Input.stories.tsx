@@ -13,6 +13,13 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
+export const OutlineValue = Template.bind({});
+OutlineValue.args = {
+    value: "Text",
+    theme: InputTheme.OUTLINE,
+    size: InputSize.M,
+};
+
 export const OutlineM = Template.bind({});
 OutlineM.args = {
     placeholder: "Text",
@@ -40,6 +47,13 @@ OutlineDark.args = {
     theme: InputTheme.OUTLINE,
 };
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const OutlineDarkValue = Template.bind({});
+OutlineDarkValue.args = {
+    value: "Text",
+    theme: InputTheme.OUTLINE,
+};
+OutlineDarkValue.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const Password = Template.bind({});
 Password.args = {

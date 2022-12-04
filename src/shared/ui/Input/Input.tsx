@@ -6,6 +6,7 @@ export enum InputTheme {
     OUTLINE = "outline",
     OUTLINE_INVERTED = "outlineInverted",
 }
+
 export enum InputSize {
     M = "size_m",
     L = "size_l",

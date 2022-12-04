@@ -2,18 +2,12 @@ import { FC, memo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Page } from "widgets/Page";
 import { BugButton } from "app/providers/ErrorBoundary";
-import {
-    Button,
-    ButtonTheme,
-    Checkbox,
-    Popup,
-    Position,
-    Select,
-} from "shared/ui";
+import { Button, ButtonTheme, Checkbox, Popup, Position } from "shared/ui";
 
 const MainPage: FC = memo(() => {
     const { t } = useTranslation("main");
     const [isOpen, setIsOpen] = useState(false);
+    const [text, setText] = useState("");
     const refTrigger = useRef<HTMLDivElement | null>(null);
     const onClick = () => {
         setIsOpen((prev) => !prev);
@@ -23,7 +17,7 @@ const MainPage: FC = memo(() => {
         <Page>
             {t("Главная")}
             {/* <BugButton /> */}
-            <div
+            {/* <div
                 ref={refTrigger}
                 style={{ width: 100, border: "1px solid red" }}
             >
@@ -41,7 +35,7 @@ const MainPage: FC = memo(() => {
                 >
                     22222
                 </Popup>
-            )}
+            )} */}
         </Page>
     );
 });

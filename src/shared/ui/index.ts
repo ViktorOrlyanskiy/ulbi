@@ -12,6 +12,7 @@ export { Modal } from "./Modal/Modal";
 export { Portal } from "./Portal/Portal";
 export { Popup, Position } from "./Popup/Popup";
 export { Tabs, TabItem } from "./Tabs/Tabs";
+export { Textarea, TextareaTheme, TextareaSize } from "./Textarea/Textarea";
 export { Text, TextTheme, TextAlign, TextWeight, TextSize } from "./Text/Text";
 export { Select, SelectOption } from "./Select/Select";
 export { Skeleton } from "./Skeleton/Skeleton";
