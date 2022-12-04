@@ -3,3 +3,4 @@ node_modules
 .fttemplates
 /build
 storybook-static
+reports
