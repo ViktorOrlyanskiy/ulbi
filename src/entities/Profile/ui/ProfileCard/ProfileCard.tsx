@@ -84,6 +84,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     readonly={readonly}
                     value={data?.first}
                     onChange={onChangeFirstname}
+                    data-testid="ProfileCard.first"
                 />
             </HStack>
             <HStack max justify="between" gap="12" className={cls.item}>
@@ -92,6 +93,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     readonly={readonly}
                     value={data?.lastname}
                     onChange={onChangeLastname}
+                    data-testid="ProfileCard.lastname"
                 />
             </HStack>
             <HStack max justify="between" gap="12" className={cls.item}>
@@ -109,6 +111,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     readonly={readonly}
                     value={data?.city}
                     onChange={onChangeCity}
+                    data-testid="ProfileCard.city"
                 />
             </HStack>
             <HStack max justify="between" gap="12" className={cls.item}>
@@ -117,6 +120,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     readonly={readonly}
                     value={data?.username}
                     onChange={onChangeUsername}
+                    data-testid="ProfileCard.username"
                 />
             </HStack>
             <HStack max justify="between" gap="12" className={cls.item}>

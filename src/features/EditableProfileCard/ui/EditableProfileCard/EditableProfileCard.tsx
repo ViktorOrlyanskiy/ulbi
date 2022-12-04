@@ -138,6 +138,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
                             <Button
                                 theme={ButtonTheme.BACKGROUND}
                                 onClick={onEdit}
+                                data-testid="EditableProfileCard.EditButton"
                             >
                                 {t("Редактировать")}
                             </Button>
@@ -147,12 +148,14 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
                             <Button
                                 theme={ButtonTheme.OUTLINE}
                                 onClick={onCancelEdit}
+                                data-testid="EditableProfileCard.CancelButton"
                             >
                                 {t("Отменить")}
                             </Button>
                             <Button
                                 theme={ButtonTheme.BACKGROUND}
                                 onClick={onSave}
+                                data-testid="EditableProfileCard.SaveButton"
                             >
                                 {t("Сохранить")}
                             </Button>
@@ -165,6 +168,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = (props) => {
                         theme={TextTheme.ERROR}
                         text={validateErrorTranslates[err]}
                         key={err}
+                        data-testid="EditableProfileCard.Error"
                     />
                 ))}
             <ProfileCard

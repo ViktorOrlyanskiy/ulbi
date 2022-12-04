@@ -36,6 +36,8 @@ interface TextProps {
     align?: TextAlign;
     weight?: TextWeight;
     TitleTag?: TitleTag;
+
+    "data-testid"?: string;
 }
 
 export const Text: FC<TextProps> = memo((props) => {
@@ -48,6 +50,7 @@ export const Text: FC<TextProps> = memo((props) => {
         align = TextAlign.LEFT,
         weight = TextWeight.NORMAL,
         TitleTag = "h6",
+        "data-testid": dataTestId = "Text",
     } = props;
     return (
         <div
@@ -59,8 +62,19 @@ export const Text: FC<TextProps> = memo((props) => {
                 cls[weight],
             ])}
         >
-            {title && <TitleTag className={cls.title}>{title}</TitleTag>}
-            {text && <p className={cls.text}>{text}</p>}
+            {title && (
+                <TitleTag
+                    className={cls.title}
+                    data-testid={`${dataTestId}.Title`}
+                >
+                    {title}
+                </TitleTag>
+            )}
+            {text && (
+                <p className={cls.text} data-testid={`${dataTestId}.Text`}>
+                    {text}
+                </p>
+            )}
         </div>
     );
 });
