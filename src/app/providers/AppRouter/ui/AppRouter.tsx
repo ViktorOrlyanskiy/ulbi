@@ -6,12 +6,16 @@ import { RequireAuth } from "./RequireAuth";
 
 export const AppRouter: FC = memo(() => {
     const renderWithWrapper = useCallback(
-        ({ path, element, authOnly }: AppRoutesProps) => (
+        ({ path, element, authOnly, roles }: AppRoutesProps) => (
             <Route
                 key={path}
                 path={path}
                 element={
-                    authOnly ? <RequireAuth>{element}</RequireAuth> : element
+                    authOnly ? (
+                        <RequireAuth roles={roles}>{element}</RequireAuth>
+                    ) : (
+                        element
+                    )
                 }
             />
         ),

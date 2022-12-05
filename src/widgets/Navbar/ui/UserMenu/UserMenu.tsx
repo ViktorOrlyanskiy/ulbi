@@ -1,10 +1,14 @@
-import { getUserAuthData, userActions } from "entities/User";
+import {
+    getUserAuthData,
+    isUserAdmin,
+    isUserManager,
+    userActions,
+} from "entities/User";
 import { FC, memo, useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { RoutePath } from "shared/const";
 import { useAppDispatch } from "shared/hooks";
-import { classNames } from "shared/lib";
 import {
     AppLink,
     Avatar,
@@ -20,13 +24,16 @@ interface UserMenuProps {
     className?: string;
 }
 
-export const UserMenu: FC<UserMenuProps> = memo((props) => {
-    const { className } = props;
+export const UserMenu: FC<UserMenuProps> = memo(() => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const triggerRef = useRef<HTMLDivElement | null>(null);
     const [isOpen, setOpen] = useState(false);
+
     const authData = useSelector(getUserAuthData);
+    const isAdmin = useSelector(isUserAdmin);
+    const isManager = useSelector(isUserManager);
+    const isAdminPanelAvailable = isAdmin || isManager;
 
     const onToggle = useCallback(() => {
         setOpen((prev) => !prev);
@@ -45,12 +52,20 @@ export const UserMenu: FC<UserMenuProps> = memo((props) => {
                 <Popup
                     triggerRef={triggerRef}
                     marginFromTrigger={15}
-                    maxHeightPopup={90}
+                    maxHeightPopup={125}
                     hiddenPopup={onToggle}
                     position={Position.BOTTOM_RIGHT}
                     className={cls.popup}
                 >
                     <VStack gap="4">
+                        {isAdminPanelAvailable && (
+                            <AppLink
+                                to={RoutePath.admin_panel}
+                                className={cls.item}
+                            >
+                                {t("Админпанель")}
+                            </AppLink>
+                        )}
                         <AppLink
                             to={`${RoutePath.profile}${authData?.id}`}
                             className={cls.item}
