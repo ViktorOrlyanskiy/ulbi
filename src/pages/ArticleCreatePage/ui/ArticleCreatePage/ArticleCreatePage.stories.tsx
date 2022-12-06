@@ -4,21 +4,21 @@ import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
 import ArticleCreatePage from "./ArticleCreatePage";
 
 export default {
-    title: "defaultCategory/ArticleCreatePage",
+    title: "pages/ArticleCreatePage",
     component: ArticleCreatePage,
     argTypes: {
         backgroundColor: { control: "color" },
     },
+    decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof ArticleCreatePage>;
 
 const Template: ComponentStory<typeof ArticleCreatePage> = (args) => (
     <ArticleCreatePage {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {};
-Primary.decorators = [StoreDecorator({})];
+export const Light = Template.bind({});
+Light.args = {};
 
-export const PrimaryDark = Template.bind({});
-PrimaryDark.args = {};
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+export const Dark = Template.bind({});
+Dark.args = {};
+Dark.decorators = [ThemeDecorator(Theme.DARK)];

@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "app/providers/ThemeProvider";
-import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
+import { StoreDecorator } from "app/config/storybook";
+import { Article } from "entities/Article";
 import { FetchRecommendedArticles } from "./FetchRecommendedArticles";
 
 export default {
-    title: "defaultCategory/FetchRecommendedArticles",
+    title: "features/articles/FetchRecommendedArticles",
     component: FetchRecommendedArticles,
     argTypes: {
         backgroundColor: { control: "color" },
@@ -15,10 +15,32 @@ const Template: ComponentStory<typeof FetchRecommendedArticles> = (args) => (
     <FetchRecommendedArticles {...args} />
 );
 
+const article: Article = {
+    id: "1",
+    img: "",
+    createdAt: "",
+    views: 123,
+    user: { id: "1", username: "123" },
+    blocks: [],
+    type: [],
+    title: "123",
+    subtitle: "123",
+};
+
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [StoreDecorator({})];
-
-export const PrimaryDark = Template.bind({});
-PrimaryDark.args = {};
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+Primary.parameters = {
+    mockData: [
+        {
+            url: `${__API__}/articles?_limit=3`,
+            method: "GET",
+            status: 200,
+            response: [
+                { ...article, id: "1" },
+                { ...article, id: "2" },
+                { ...article, id: "3" },
+            ],
+        },
+    ],
+};

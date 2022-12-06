@@ -11,7 +11,7 @@ import {
     SortingArticles,
 } from "features/SortingArticles";
 import { FetchArticles, fetchNextArticles } from "features/FetchArticles";
-import { useAppDispatch, useDebounce } from "shared/hooks";
+import { useAppDispatch } from "shared/hooks";
 import { classNames } from "shared/lib";
 import cls from "./ArticlesPage.module.scss";
 

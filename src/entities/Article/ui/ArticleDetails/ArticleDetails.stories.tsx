@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { StoreDecorator } from "app/config/storybook";
 import { ArticleDetails } from "./ArticleDetails";
 import {
     Article,
@@ -83,7 +82,7 @@ const article: Article = {
 };
 
 export default {
-    title: "defaultCategory/ArticleDetails",
+    title: "entities/ArticleDetails",
     component: ArticleDetails,
     argTypes: {
         backgroundColor: { control: "color" },
@@ -95,25 +94,7 @@ const Template: ComponentStory<typeof ArticleDetails> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
-Primary.decorators = [
-    StoreDecorator({
-        articleDetails: { data: article },
-    }),
-];
+Primary.args = { article };
 
 export const Loading = Template.bind({});
-Loading.args = {};
-Loading.decorators = [
-    StoreDecorator({
-        articleDetails: { isLoading: true },
-    }),
-];
-
-export const Error = Template.bind({});
-Error.args = {};
-Error.decorators = [
-    StoreDecorator({
-        articleDetails: { error: "Произошла ошибка" },
-    }),
-];
+Loading.args = { isLoading: true };

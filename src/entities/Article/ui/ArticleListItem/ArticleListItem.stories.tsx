@@ -48,12 +48,12 @@ const article: Article = {
     ],
 };
 
-export const LightTile = Template.bind({});
-LightTile.args = { article, view: ArticleView.GRID };
+export const LightGrid = Template.bind({});
+LightGrid.args = { article, view: ArticleView.GRID };
 
 export const LightList = Template.bind({});
 LightList.args = { article, view: ArticleView.LIST };
 
-export const DarkTile = Template.bind({});
-DarkTile.args = { article, view: ArticleView.GRID };
-DarkTile.decorators = [ThemeDecorator(Theme.DARK)];
+export const DarkGrid = Template.bind({});
+DarkGrid.args = { article, view: ArticleView.GRID };
+DarkGrid.decorators = [ThemeDecorator(Theme.DARK)];

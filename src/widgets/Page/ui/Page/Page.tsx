@@ -1,5 +1,5 @@
 import { StateSchema } from "app/providers/StoreProvider";
-import { FC, MutableRefObject, UIEvent, useRef } from "react";
+import { FC, MutableRefObject, ReactNode, UIEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -19,6 +19,7 @@ interface PageProps {
     className?: string;
     isSaveScroll?: boolean;
     onScrollEnd?: () => void;
+    children: ReactNode;
 }
 
 export const Page: FC<PageProps> = (props) => {

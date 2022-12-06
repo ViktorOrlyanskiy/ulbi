@@ -31,7 +31,7 @@ import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
 import cls from "./FetchArticleById.module.scss";
 
 interface FetchArticleByIdProps {
-    id: string;
+    id?: string;
     className?: string;
 }
 
@@ -51,7 +51,9 @@ export const FetchArticleById: FC<FetchArticleByIdProps> = memo((props) => {
     const isCanEdit = useSelector(getCanEditArticle);
 
     useInitialEffect(() => {
-        dispatch(fetchArticleById(id));
+        if (id) {
+            dispatch(fetchArticleById(id));
+        }
     });
 
     if (error) {

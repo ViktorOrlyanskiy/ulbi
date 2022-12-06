@@ -27,7 +27,7 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
                 ])}
             >
                 <HStack gap="12" className={cls.header}>
-                    <Skeleton width={30} height={30} borderRadius="50%" />
+                    <Skeleton width={40} height={40} borderRadius="50%" />
                     <Skeleton width={100} height={16} />
                 </HStack>
                 <Skeleton width="100%" height={50} />
@@ -41,7 +41,7 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
                 to={`${RoutePath.profile}${comment?.user.id}`}
                 className={cls.header}
             >
-                <Avatar src={comment?.user.avatar} size={30} />
+                <Avatar src={comment?.user.avatar} size={40} />
                 <Text title={comment?.user.username} weight={TextWeight.BOLD} />
             </AppLink>
             <Text text={comment?.text} />

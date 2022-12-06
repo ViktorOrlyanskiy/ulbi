@@ -24,7 +24,7 @@ import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByAr
 import cls from "./ArticleComments.module.scss";
 
 export interface ArticleCommentsProps {
-    id: string;
+    id?: string;
     className?: string;
 }
 
@@ -51,7 +51,9 @@ const ArticleComments: FC<ArticleCommentsProps> = memo((props) => {
     );
 
     useInitialEffect(() => {
-        dispatch(fetchCommentsByArticleId(id));
+        if (id) {
+            dispatch(fetchCommentsByArticleId(id));
+        }
     });
     return (
         <Suspense fallback={<Loader />}>

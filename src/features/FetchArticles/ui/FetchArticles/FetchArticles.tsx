@@ -1,5 +1,6 @@
 import { FC, memo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import {
     ArticleList,
     ArticleSort,
@@ -15,6 +16,7 @@ import {
     useInitialEffect,
 } from "shared/hooks";
 import { classNames } from "shared/lib";
+import { Text, TextAlign, TextTheme } from "shared/ui";
 import { SortOrder } from "shared/types";
 import {
     getArticlesError,
@@ -46,6 +48,7 @@ export const FetchArticles: FC<FetchArticlesProps> = memo((props) => {
     useDynamicModuleLoader(reducers, false);
     const { sort, order, view, search, type, className } = props;
     const dispatch = useAppDispatch();
+    const { t } = useTranslation("articles");
     const isComponentDidMount = useComponentDidMount();
 
     const articles = useSelector(getArticles.selectAll);
@@ -82,6 +85,18 @@ export const FetchArticles: FC<FetchArticlesProps> = memo((props) => {
 
         // eslint-disable-next-line
     }, [fetchData]);
+
+    if (error) {
+        return (
+            <div className={classNames(cls.FetchArticles, {}, [className])}>
+                <Text
+                    theme={TextTheme.ERROR}
+                    align={TextAlign.CENTER}
+                    text={t("Произошла ошибка при загрузки страницы")}
+                />
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.FetchArticles, {}, [className])}>

@@ -4,7 +4,7 @@ import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
 import { SortingArticles } from "./SortingArticles";
 
 export default {
-    title: "defaultCategory/SortingArticles",
+    title: "features/articles/SortingArticles",
     component: SortingArticles,
     argTypes: {
         backgroundColor: { control: "color" },

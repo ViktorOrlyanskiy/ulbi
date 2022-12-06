@@ -4,21 +4,21 @@ import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
 import ArticleEditPage from "./ArticleEditPage";
 
 export default {
-    title: "defaultCategory/ArticleEditPage",
+    title: "pages/ArticleEditPage",
     component: ArticleEditPage,
     argTypes: {
         backgroundColor: { control: "color" },
     },
+    decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof ArticleEditPage>;
 
 const Template: ComponentStory<typeof ArticleEditPage> = (args) => (
     <ArticleEditPage {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {};
-Primary.decorators = [StoreDecorator({})];
+export const Light = Template.bind({});
+Light.args = {};
 
-export const PrimaryDark = Template.bind({});
-PrimaryDark.args = {};
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+export const Dark = Template.bind({});
+Dark.args = {};
+Dark.decorators = [ThemeDecorator(Theme.DARK)];

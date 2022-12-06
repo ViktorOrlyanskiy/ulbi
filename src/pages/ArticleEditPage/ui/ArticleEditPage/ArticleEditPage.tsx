@@ -13,6 +13,10 @@ const ArticleEditPage: FC<ArticleEditPageProps> = (props) => {
     const { t } = useTranslation("articles");
     const { id } = useParams<{ id: string }>();
 
-    return <Page className={classNames("", {}, [className])}>1</Page>;
+    return (
+        <Page className={classNames("", {}, [className])}>
+            {t("Редактирование статьи")}
+        </Page>
+    );
 };
 export default memo(ArticleEditPage);

@@ -1,10 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "app/providers/ThemeProvider";
-import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
+import { ThemeDecorator } from "app/config/storybook";
+import { ArticleView } from "entities/Article";
 import { ArticlesViewSwitcher } from "./ArticlesViewSwitcher";
 
 export default {
-    title: "defaultCategory/ArticlesViewSwitcher",
+    title: "features/articles/ArticlesViewSwitcher",
     component: ArticlesViewSwitcher,
     argTypes: {
         backgroundColor: { control: "color" },
@@ -16,9 +17,8 @@ const Template: ComponentStory<typeof ArticlesViewSwitcher> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
-Primary.decorators = [StoreDecorator({})];
+Primary.args = { view: ArticleView.GRID };
 
 export const PrimaryDark = Template.bind({});
-PrimaryDark.args = {};
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+PrimaryDark.args = { view: ArticleView.GRID };
+PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];

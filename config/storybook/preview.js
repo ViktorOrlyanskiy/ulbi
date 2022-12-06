@@ -4,6 +4,7 @@ import {
     ThemeDecorator,
     RouterDecorator,
     StoreDecorator,
+    SuspenseDecorator,
 } from "../../src/app/config/storybook";
 import { Theme } from "../../src/app/providers/ThemeProvider";
 
@@ -21,3 +22,4 @@ addDecorator(StyleDecorator);
 // addDecorator(StoreDecorator);
 addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(RouterDecorator);
+addDecorator(SuspenseDecorator);

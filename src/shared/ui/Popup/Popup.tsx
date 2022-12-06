@@ -7,6 +7,7 @@ import {
     CSSProperties,
     useLayoutEffect,
     useRef,
+    ReactNode,
 } from "react";
 import { classNames } from "shared/lib";
 import { Portal } from "shared/ui";
@@ -66,6 +67,7 @@ interface PopupProps {
     position?: Position;
     marginFromTrigger?: number;
     className?: string;
+    children: ReactNode;
 }
 
 export const Popup: FC<PopupProps> = (props) => {
@@ -126,7 +128,8 @@ export const Popup: FC<PopupProps> = (props) => {
                         setBottomPopup(
                             heightWindow - triggerRect.top + marginFromTrigger
                         );
-                        setLeftPopup(triggerRect.left);
+
+                        setLeftPopup(triggerRect.left + 1); // 1 - поправка в расчеты
                         setRightPopup(undefined);
                         break;
 
@@ -156,7 +159,7 @@ export const Popup: FC<PopupProps> = (props) => {
                     case Position.BOTTOM_LEFT:
                         setTopPopup(triggerRect.bottom + marginFromTrigger);
                         setBottomPopup(undefined);
-                        setLeftPopup(triggerRect.left);
+                        setLeftPopup(triggerRect.left + 1); // 1 - поправка в расчеты
                         setRightPopup(undefined);
                         break;
 

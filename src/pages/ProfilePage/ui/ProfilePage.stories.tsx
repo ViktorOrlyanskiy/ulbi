@@ -34,25 +34,6 @@ Light.decorators = [
     }),
 ];
 
-export const LightEdit = Template.bind({});
-LightEdit.args = {};
-LightEdit.decorators = [
-    StoreDecorator({
-        profile: {
-            form: {
-                first: "FirstName",
-                lastname: "LastName",
-                age: 65,
-                city: "Moscow",
-                username: "admin",
-                country: Country.Russia,
-                currency: Currency.EUR,
-            },
-            readonly: false,
-        },
-    }),
-];
-
 export const Dark = Template.bind({});
 Dark.args = {};
 Dark.decorators = [

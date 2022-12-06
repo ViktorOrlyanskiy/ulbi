@@ -24,6 +24,9 @@ interface UserMenuProps {
     className?: string;
 }
 
+const HEIGHT_ITEM = 32;
+const FIXED_HEIGHT = 27;
+
 export const UserMenu: FC<UserMenuProps> = memo(() => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
@@ -34,6 +37,10 @@ export const UserMenu: FC<UserMenuProps> = memo(() => {
     const isAdmin = useSelector(isUserAdmin);
     const isManager = useSelector(isUserManager);
     const isAdminPanelAvailable = isAdmin || isManager;
+
+    const heightPopup = isAdminPanelAvailable
+        ? HEIGHT_ITEM * 3 + FIXED_HEIGHT
+        : HEIGHT_ITEM * 2 + FIXED_HEIGHT;
 
     const onToggle = useCallback(() => {
         setOpen((prev) => !prev);
@@ -52,7 +59,7 @@ export const UserMenu: FC<UserMenuProps> = memo(() => {
                 <Popup
                     triggerRef={triggerRef}
                     marginFromTrigger={15}
-                    maxHeightPopup={125}
+                    maxHeightPopup={heightPopup}
                     hiddenPopup={onToggle}
                     position={Position.BOTTOM_RIGHT}
                     className={cls.popup}

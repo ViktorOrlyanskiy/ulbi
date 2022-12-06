@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { StoreDecorator } from "app/config/storybook";
+import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
+import { Theme } from "app/providers/ThemeProvider";
 import {
     Article,
     ArticleBlockType,
@@ -83,7 +84,7 @@ const article: Article = {
 };
 
 export default {
-    title: "defaultCategory/ArticleDetailsPage",
+    title: "pages/ArticleDetailsPage",
     component: ArticleDetailsPage,
     argTypes: {
         backgroundColor: { control: "color" },
@@ -94,10 +95,49 @@ const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => (
     <ArticleDetailsPage {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {};
-Primary.decorators = [
+export const Light = Template.bind({});
+Light.args = {};
+Light.decorators = [
     StoreDecorator({
         articleDetails: { data: article },
     }),
 ];
+Light.parameters = {
+    mockData: [
+        {
+            url: `${__API__}/articles?_limit=4`,
+            method: "GET",
+            status: 200,
+            response: [
+                { ...article, id: "1" },
+                { ...article, id: "2" },
+                { ...article, id: "3" },
+                { ...article, id: "4" },
+            ],
+        },
+    ],
+};
+
+export const Dark = Template.bind({});
+Dark.args = {};
+Dark.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({
+        articleDetails: { data: article },
+    }),
+];
+Dark.parameters = {
+    mockData: [
+        {
+            url: `${__API__}/articles?_limit=4`,
+            method: "GET",
+            status: 200,
+            response: [
+                { ...article, id: "1" },
+                { ...article, id: "2" },
+                { ...article, id: "3" },
+                { ...article, id: "4" },
+            ],
+        },
+    ],
+};

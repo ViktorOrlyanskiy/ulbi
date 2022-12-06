@@ -12,8 +12,8 @@ import { Popup } from "shared/ui";
 import ChevronIcon from "./chevronDown.svg";
 import cls from "./Select.module.scss";
 
-const HEIGHT_EMPTY_BLOCK = 8; // задается в css файле равен padding в .body
-const HEIGHT_OPTION = 26; // подбирается
+const HEIGHT_EMPTY_BLOCK = 10; // задается в css файле равен padding в .body
+const HEIGHT_OPTION = 25; // подбирается
 
 export interface SelectOption {
     value: string;
@@ -30,7 +30,7 @@ const getMaxHeightPopup = (
     heightOption: number,
     heightEmptyBlock: number
 ) => {
-    const PADDING_POPUP = 8; // задается в css файле равен padding в .body
+    const PADDING_POPUP = 0; // задается в css файле равен padding в .body
 
     if (options.length > 4) {
         return heightOption * 4 + heightEmptyBlock;
@@ -72,8 +72,10 @@ export const Select: FC<SelectProps> = memo((props) => {
     );
 
     const onToggle = useCallback(() => {
-        setOpen((prev) => !prev);
-    }, []);
+        if (!readonly) {
+            setOpen((prev) => !prev);
+        }
+    }, [readonly]);
 
     const onChangeValue = useCallback(
         (e: MouseEvent<HTMLDivElement>) => {
@@ -106,7 +108,7 @@ export const Select: FC<SelectProps> = memo((props) => {
     }, [label, value, options]);
 
     const modsHeader = { [cls.open]: isOpen, [cls.readonly]: readonly };
-    const stylesBody = { height: heightPopup - HEIGHT_EMPTY_BLOCK * 2 };
+    const stylesBody = { height: heightPopup - HEIGHT_EMPTY_BLOCK };
 
     return (
         <div className={classNames(cls.Select, {}, [className])}>
@@ -120,6 +122,7 @@ export const Select: FC<SelectProps> = memo((props) => {
             </div>
             {isOpen && (
                 <Popup
+                    maxWidth
                     triggerRef={headerRef}
                     idScrollElement={idScrollElement}
                     maxHeightPopup={heightPopup}
