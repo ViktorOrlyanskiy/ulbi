@@ -7,13 +7,15 @@ import { buildBabelLoader } from "./loaders/buildBabelLoader";
 export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     const { isDev } = options;
     const cssLoader = buildCssLoader(isDev);
-    const babelLoader = buildBabelLoader(options);
 
-    const typescriptLoader = {
-        test: /\.tsx?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-    };
+    const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
+
+    // const typescriptLoader = {
+    //     test: /\.tsx?$/,
+    //     use: "ts-loader",
+    //     exclude: /node_modules/,
+    // };
 
     const svgLoader = buildSvgLoader();
 
@@ -26,5 +28,12 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
         ],
     };
 
-    return [babelLoader, typescriptLoader, cssLoader, svgLoader, fileLoader];
+    return [
+        codeBabelLoader,
+        tsxCodeBabelLoader,
+        // typescriptLoader,
+        cssLoader,
+        svgLoader,
+        fileLoader,
+    ];
 }
