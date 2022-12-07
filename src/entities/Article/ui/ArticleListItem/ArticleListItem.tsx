@@ -12,12 +12,8 @@ import {
     Icon,
     Text,
 } from "shared/ui";
-import {
-    Article,
-    ArticleBlockType,
-    ArticleTextBlock,
-    ArticleView,
-} from "../../model/types/article";
+import { ArticleView, ArticleBlockType } from "../../model/consts/consts";
+import { Article, ArticleTextBlock } from "../../model/types/article";
 import { ArticleBlockText } from "../ArticleBlockText/ArticleBlockText";
 import cls from "./ArticleListItem.module.scss";
 

@@ -7,7 +7,7 @@ import React, {
     useCallback,
     MutableRefObject,
 } from "react";
-import { classNames, Mods } from "shared/lib";
+import { classNames } from "shared/lib";
 import { Portal } from "shared/ui";
 import cls from "./Modal.module.scss";
 
@@ -32,7 +32,7 @@ export const Modal: FC<ModalProps> = (props) => {
         ReturnType<typeof setTimeout>
     >;
 
-    const mods: Mods = {
+    const mods = {
         [cls.opened]: isMounted,
         [cls.isClosing]: isClosing,
     };
@@ -75,7 +75,7 @@ export const Modal: FC<ModalProps> = (props) => {
         if (isMounted) {
             window.addEventListener("keydown", onKeyDown);
         }
- 
+
         return () => {
             clearTimeout(timerRefOne.current);
             clearTimeout(timerRefTwo.current);

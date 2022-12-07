@@ -1,1 +1,1 @@
-export { SortOrder } from "./sortOrder";
+export type { SortOrder } from "./sortOrder";

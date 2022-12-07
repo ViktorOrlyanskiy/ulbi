@@ -3,11 +3,11 @@ import { Theme } from "app/providers/ThemeProvider";
 import { ThemeDecorator } from "app/config/storybook";
 import { ArticleListItem } from "./ArticleListItem";
 import {
-    Article,
     ArticleType,
     ArticleBlockType,
     ArticleView,
-} from "../../model/types/article";
+} from "../../model/consts/consts";
+import { Article } from "../../model/types/article";
 
 export default {
     title: "entities/ArticleListItem",

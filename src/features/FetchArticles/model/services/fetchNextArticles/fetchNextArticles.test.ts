@@ -1,4 +1,4 @@
-// import { TestAsyncThunk } from "app/config/tests";
+import { TestAsyncThunk } from "app/config/tests";
 // import { fetchArticlesList } from "../fetchArticlesList";
 // import { fetchNextArticles } from "./fetchNextArticles";
 

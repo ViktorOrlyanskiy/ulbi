@@ -6,4 +6,5 @@ export { useInfiniteScroll } from "./useInfiniteScroll";
 export { useThrottle } from "./useThrottle";
 export { useDebounce } from "./useDebounce";
 export { useComponentDidMount } from "./useComponentDidMount";
-export { useDynamicModuleLoader, ReducersList } from "./useDynamicModuleLoader";
+export { useDynamicModuleLoader } from "./useDynamicModuleLoader";
+export type { ReducersList } from "./useDynamicModuleLoader";

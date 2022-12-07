@@ -3,11 +3,8 @@ import CalendarIcon from "shared/assets/icons/articles/calendar.svg";
 import EyeIcon from "shared/assets/icons/articles/eye.svg";
 import { classNames } from "shared/lib";
 import { Avatar, HStack, Icon, Skeleton, Text, TextSize } from "shared/ui";
-import {
-    Article,
-    ArticleBlock,
-    ArticleBlockType,
-} from "../../model/types/article";
+import { ArticleBlockType } from "../../model/consts/consts";
+import { Article, ArticleBlock } from "../../model/types/article";
 import { ArticleBlockCode } from "../ArticleBlockCode/ArticleBlockCode";
 import { ArticleBlockImage } from "../ArticleBlockImage/ArticleBlockImage";
 import { ArticleBlockText } from "../ArticleBlockText/ArticleBlockText";
