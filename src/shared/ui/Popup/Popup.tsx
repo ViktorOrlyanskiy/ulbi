@@ -10,7 +10,7 @@ import {
     ReactNode,
 } from "react";
 import { classNames } from "shared/lib";
-import { Portal } from "shared/ui";
+import { Portal } from "../Portal/Portal";
 import styles from "./Popup.module.scss";
 
 export const enum Position {

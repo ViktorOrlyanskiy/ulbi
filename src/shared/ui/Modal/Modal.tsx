@@ -8,7 +8,7 @@ import React, {
     MutableRefObject,
 } from "react";
 import { classNames } from "shared/lib";
-import { Portal } from "shared/ui";
+import { Portal } from "../Portal/Portal";
 import cls from "./Modal.module.scss";
 
 interface ModalProps {

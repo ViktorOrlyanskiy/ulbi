@@ -1,7 +1,7 @@
-import { Country } from "entities/Country";
 import { FC, memo, useCallback } from "react";
 import { classNames } from "shared/lib";
 import { Select } from "shared/ui";
+import { Country } from "../../model/consts/consts";
 
 interface CountrySelectProps {
     className?: string;

@@ -8,7 +8,7 @@ import {
     useRef,
 } from "react";
 import { checkLengthString, classNames } from "shared/lib";
-import { Popup } from "shared/ui";
+import { Popup } from "../Popup/Popup";
 import ChevronIcon from "./chevronDown.svg";
 import cls from "./Select.module.scss";
 
