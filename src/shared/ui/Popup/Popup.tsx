@@ -275,7 +275,7 @@ export const Popup: FC<PopupProps> = (props) => {
         left: leftPopup,
         right: rightPopup,
         width: widthPopup,
-        height: maxHeightPopup,
+        maxHeight: maxHeightPopup,
     };
 
     return (
