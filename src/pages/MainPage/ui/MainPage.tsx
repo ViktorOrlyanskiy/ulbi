@@ -1,8 +1,8 @@
 import { FC, memo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Page } from "widgets/Page";
-import { BugButton } from "app/providers/ErrorBoundary";
-import { Button, ButtonTheme, Checkbox, Popup, Position } from "shared/ui";
+import { Page } from "@/widgets/Page";
+import { BugButton } from "@/app/providers/ErrorBoundary";
+import { Button, ButtonTheme, Checkbox, Popup, Position } from "@/shared/ui";
 
 const MainPage: FC = memo(() => {
     const { t } = useTranslation("main");

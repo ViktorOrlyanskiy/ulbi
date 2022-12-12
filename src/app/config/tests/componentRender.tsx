@@ -3,8 +3,8 @@ import { I18nextProvider } from "react-i18next";
 import { MemoryRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import { ReducersMapObject } from "@reduxjs/toolkit";
-import { StateSchema, StoreProvider } from "app/providers/StoreProvider";
-import i18nForTests from "app/config/i18n/i18nForTest";
+import { StateSchema, StoreProvider } from "@/app/providers/StoreProvider";
+import i18nForTests from "@/app/config/i18n/i18nForTest";
 
 export interface renderWithRouterOptions {
     route?: string;

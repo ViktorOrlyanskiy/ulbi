@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { classNames } from "shared/lib";
 import { YMaps, Map as Maps, Placemark, GeoObject } from "react-yandex-maps";
+import { classNames } from "@/shared/lib";
 import cls from "./Map.module.scss";
 
 interface MapProps {

@@ -2,12 +2,12 @@ import { FC, memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import { LoginModal } from "features/AuthByUsername";
-import { FetchNotifications } from "features/FetchNotifications";
-import { getUserAuthData } from "entities/User";
-import { RoutePath } from "shared/const";
-import { classNames } from "shared/lib";
-import { AppLink, Button, ButtonTheme, HStack } from "shared/ui";
+import { LoginModal } from "@/features/AuthByUsername";
+import { FetchNotifications } from "@/features/FetchNotifications";
+import { getUserAuthData } from "@/entities/User";
+import { RoutePath } from "@/shared/const";
+import { classNames } from "@/shared/lib";
+import { AppLink, Button, ButtonTheme, HStack } from "@/shared/ui";
 import cls from "./Navbar.module.scss";
 import { UserMenu } from "../UserMenu/UserMenu";
 

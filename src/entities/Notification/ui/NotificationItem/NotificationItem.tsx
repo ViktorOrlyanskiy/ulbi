@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
-import { Notification } from "entities/Notification";
-import { classNames } from "shared/lib";
-import { Text, TextSize } from "shared/ui";
+import { Notification } from "@/entities/Notification";
+import { classNames } from "@/shared/lib";
+import { Text, TextSize } from "@/shared/ui";
 import cls from "./NotificationItem.module.scss";
 
 interface NotificationItemProps {

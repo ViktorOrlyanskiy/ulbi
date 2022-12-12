@@ -1,9 +1,9 @@
 import { FC, memo, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import { classNames } from "shared/lib";
-import { LangSwitcher } from "widgets/LangSwitcher";
-import { ThemeSwitcher } from "widgets/ThemeSwitcher";
-import { HStack, BurgerButton } from "shared/ui";
+import { classNames } from "@/shared/lib";
+import { LangSwitcher } from "@/widgets/LangSwitcher";
+import { ThemeSwitcher } from "@/widgets/ThemeSwitcher";
+import { HStack, BurgerButton } from "@/shared/ui";
 import { getSidebarItems } from "../../model/selectors/getSidebarItems";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import cls from "./Sidebar.module.scss";

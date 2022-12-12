@@ -1,17 +1,17 @@
-import { StateSchema } from "app/providers/StoreProvider";
 import { FC, MutableRefObject, ReactNode, UIEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { StateSchema } from "@/app/providers/StoreProvider";
 import {
     useAppDispatch,
     useInfiniteScroll,
     useInitialEffect,
     useThrottle,
-} from "shared/hooks";
-import { classNames } from "shared/lib";
-import { Button, ButtonTheme } from "shared/ui";
-import { getPageScrollByPath } from "widgets/Page/model/selectors/page";
+} from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
+import { Button, ButtonTheme } from "@/shared/ui";
+import { getPageScrollByPath } from "@/widgets/Page/model/selectors/page";
 import { pageActions } from "../../model/slice/pageSlice";
 import cls from "./Page.module.scss";
 

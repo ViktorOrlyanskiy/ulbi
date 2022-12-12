@@ -1,8 +1,8 @@
 import { FC, memo } from "react";
-import CalendarIcon from "shared/assets/icons/articles/calendar.svg";
-import EyeIcon from "shared/assets/icons/articles/eye.svg";
-import { classNames } from "shared/lib";
-import { Avatar, HStack, Icon, Skeleton, Text, TextSize } from "shared/ui";
+import CalendarIcon from "@/shared/assets/icons/articles/calendar.svg";
+import EyeIcon from "@/shared/assets/icons/articles/eye.svg";
+import { classNames } from "@/shared/lib";
+import { Avatar, HStack, Icon, Skeleton, Text, TextSize } from "@/shared/ui";
 import { ArticleBlockType } from "../../model/consts/consts";
 import { Article, ArticleBlock } from "../../model/types/article";
 import { ArticleBlockCode } from "../ArticleBlockCode/ArticleBlockCode";

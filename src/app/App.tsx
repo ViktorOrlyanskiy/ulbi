@@ -1,12 +1,12 @@
-import { getUserInited, userActions } from "entities/User";
 import { FC, memo, Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { getUserInited, userActions } from "@/entities/User";
 
-import { Navbar } from "widgets/Navbar";
-import { PageLoader } from "widgets/PageLoader";
-import { Sidebar } from "widgets/Sidebar";
-import { useAppDispatch, useTheme } from "shared/hooks";
-import { classNames } from "shared/lib";
+import { Navbar } from "@/widgets/Navbar";
+import { PageLoader } from "@/widgets/PageLoader";
+import { Sidebar } from "@/widgets/Sidebar";
+import { useAppDispatch, useTheme } from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
 import { AppRouter } from "./providers/AppRouter";
 
 export const App: FC = memo(() => {

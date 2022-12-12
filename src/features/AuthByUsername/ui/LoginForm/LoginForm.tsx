@@ -1,13 +1,13 @@
 import { FC, KeyboardEvent, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { classNames } from "shared/lib";
+import { classNames } from "@/shared/lib";
 import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
-} from "shared/hooks";
-import { Button, ButtonTheme, Input, Text, TextTheme, VStack } from "shared/ui";
+} from "@/shared/hooks";
+import { Button, ButtonTheme, Input, Text, TextTheme, VStack } from "@/shared/ui";
 
 import { loginActions, loginReducer } from "../../model/slice/loginSlice";
 import { loginByUsername } from "../../model/services/loginByUsername/loginByUsername";

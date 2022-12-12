@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "app/providers/ThemeProvider";
-import { ThemeDecorator } from "app/config/storybook";
-import { Text } from "shared/ui";
+import { Theme } from "@/app/providers/ThemeProvider";
+import { ThemeDecorator } from "@/app/config/storybook";
+import { Text } from "@/shared/ui";
 import { Card, CardSize, CardTheme } from "./Card";
 
 export default {

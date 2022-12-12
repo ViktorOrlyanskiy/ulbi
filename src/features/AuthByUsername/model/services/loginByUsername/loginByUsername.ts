@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ThunkConfig } from "app/providers/StoreProvider";
-import { User, userActions } from "entities/User";
+import { ThunkConfig } from "@/app/providers/StoreProvider";
+import { User, userActions } from "@/entities/User";
 
 // если сервер присылает разные коды, можно создать перечисления для каждого кода
 

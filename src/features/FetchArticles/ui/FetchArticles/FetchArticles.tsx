@@ -6,7 +6,7 @@ import {
     ArticleSort,
     ArticleType,
     ArticleView,
-} from "entities/Article";
+} from "@/entities/Article";
 import {
     ReducersList,
     useAppDispatch,
@@ -14,10 +14,10 @@ import {
     useDebounce,
     useDynamicModuleLoader,
     useInitialEffect,
-} from "shared/hooks";
-import { classNames } from "shared/lib";
-import { Text, TextAlign, TextTheme } from "shared/ui";
-import { SortOrder } from "shared/types";
+} from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
+import { Text, TextAlign, TextTheme } from "@/shared/ui";
+import { SortOrder } from "@/shared/types";
 import {
     getArticlesError,
     getArticlesInited,

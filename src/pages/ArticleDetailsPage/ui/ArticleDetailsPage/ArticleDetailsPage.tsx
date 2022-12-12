@@ -1,11 +1,11 @@
 import { FC, memo } from "react";
 import { useParams } from "react-router-dom";
 
-import { Page } from "widgets/Page";
-import { ArticleComments } from "widgets/ArticleComments";
-import { FetchRecommendedArticles } from "features/FetchRecommendedArticles";
-import { FetchArticleById } from "features/FetchArticleById";
-import { classNames } from "shared/lib";
+import { Page } from "@/widgets/Page";
+import { ArticleComments } from "@/widgets/ArticleComments";
+import { FetchRecommendedArticles } from "@/features/FetchRecommendedArticles";
+import { FetchArticleById } from "@/features/FetchArticleById";
+import { classNames } from "@/shared/lib";
 import cls from "./ArticleDetailsPage.module.scss";
 
 interface ArticleDetailsPageProps {

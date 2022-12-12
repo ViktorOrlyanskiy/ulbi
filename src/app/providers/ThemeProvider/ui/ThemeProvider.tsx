@@ -1,5 +1,5 @@
 import { FC, ReactNode, useMemo, useState } from "react";
-import { LOCAL_STORAGE_THEME_KEY } from "shared/const";
+import { LOCAL_STORAGE_THEME_KEY } from "@/shared/const";
 import { ThemeContext, Theme, ThemeContextProps } from "../lib/ThemeContext";
 
 const defaultTheme =

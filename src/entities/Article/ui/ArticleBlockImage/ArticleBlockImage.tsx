@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
-import { classNames } from "shared/lib";
-import { Text, TextAlign } from "shared/ui";
+import { classNames } from "@/shared/lib";
+import { Text, TextAlign } from "@/shared/ui";
 import cls from "./ArticleBlockImage.module.scss";
 import { ArticleImageBlock } from "../../model/types/article";
 

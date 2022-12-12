@@ -1,11 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "app/providers/ThemeProvider";
+import { Theme } from "@/app/providers/ThemeProvider";
 import {
     StoreDecorator,
     ThemeDecorator,
     AdditionalStyleDecorator,
-} from "app/config/storybook";
-import { UserRole } from "entities/User";
+} from "@/app/config/storybook";
+import { UserRole } from "@/entities/User";
 import { UserMenu } from "./UserMenu";
 
 export default {

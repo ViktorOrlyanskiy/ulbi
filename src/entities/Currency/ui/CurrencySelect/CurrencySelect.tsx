@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from "react";
-import { classNames } from "shared/lib";
-import { Select } from "shared/ui";
+import { classNames } from "@/shared/lib";
+import { Select } from "@/shared/ui";
 import { Currency } from "../../model/consts/consts";
 
 interface CurrencySelectProps {

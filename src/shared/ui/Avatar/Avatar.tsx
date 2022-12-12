@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { classNames } from "shared/lib";
+import { classNames } from "@/shared/lib";
 import AvatarImg from "./default-avatar.png";
 import cls from "./Avatar.module.scss";
 

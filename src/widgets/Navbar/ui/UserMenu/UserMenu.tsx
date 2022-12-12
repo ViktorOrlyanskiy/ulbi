@@ -6,9 +6,9 @@ import {
     isUserAdmin,
     isUserManager,
     userActions,
-} from "entities/User";
-import { RoutePath } from "shared/const";
-import { useAppDispatch } from "shared/hooks";
+} from "@/entities/User";
+import { RoutePath } from "@/shared/const";
+import { useAppDispatch } from "@/shared/hooks";
 import {
     AppLink,
     Avatar,
@@ -17,7 +17,7 @@ import {
     Dropdown,
     Position,
     VStack,
-} from "shared/ui";
+} from "@/shared/ui";
 import cls from "./UserMenu.module.scss";
 
 interface UserMenuProps {

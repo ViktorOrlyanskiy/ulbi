@@ -5,9 +5,9 @@ import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
-} from "shared/hooks";
-import { classNames } from "shared/lib";
-import { Button, ButtonTheme, HStack, Textarea } from "shared/ui";
+} from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
+import { Button, ButtonTheme, HStack, Textarea } from "@/shared/ui";
 import {
     getNewCommentError,
     getNewCommentText,

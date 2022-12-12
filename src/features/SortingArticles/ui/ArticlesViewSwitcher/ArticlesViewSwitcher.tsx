@@ -1,9 +1,9 @@
 import { FC, memo, useCallback } from "react";
-import { classNames } from "shared/lib";
-import ListIcon from "shared/assets/icons/list.svg";
-import GridIcon from "shared/assets/icons/grid.svg";
-import { ArticleView } from "entities/Article";
-import { Button, ButtonTheme, Icon } from "shared/ui";
+import { classNames } from "@/shared/lib";
+import ListIcon from "@/shared/assets/icons/list.svg";
+import GridIcon from "@/shared/assets/icons/grid.svg";
+import { ArticleView } from "@/entities/Article";
+import { Button, ButtonTheme, Icon } from "@/shared/ui";
 import cls from "./ArticlesViewSwitcher.module.scss";
 
 interface ArticlesViewSwitcherProps {

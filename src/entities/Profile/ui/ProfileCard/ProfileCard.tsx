@@ -1,8 +1,8 @@
-import { Country, CountrySelect } from "entities/Country";
-import { Currency, CurrencySelect } from "entities/Currency";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { classNames } from "shared/lib";
+import { Country, CountrySelect } from "@/entities/Country";
+import { Currency, CurrencySelect } from "@/entities/Currency";
+import { classNames } from "@/shared/lib";
 import {
     Avatar,
     HStack,
@@ -12,8 +12,8 @@ import {
     TextTheme,
     TextWeight,
     VStack,
-} from "shared/ui";
-import { TextAlign } from "shared/ui/Text/Text";
+} from "@/shared/ui";
+import { TextAlign } from "@/shared/ui/Text/Text";
 
 import { Profile } from "../../model/types/profile";
 import cls from "./ProfileCard.module.scss";

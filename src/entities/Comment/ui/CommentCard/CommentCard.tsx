@@ -1,8 +1,8 @@
 import { FC, memo } from "react";
-import { classNames } from "shared/lib";
-import { Comment } from "entities/Comment";
-import { RoutePath } from "shared/const";
-import { AppLink, Avatar, HStack, Skeleton, Text, TextWeight } from "shared/ui";
+import { classNames } from "@/shared/lib";
+import { Comment } from "@/entities/Comment";
+import { RoutePath } from "@/shared/const";
+import { AppLink, Avatar, HStack, Skeleton, Text, TextWeight } from "@/shared/ui";
 import cls from "./CommentCard.module.scss";
 
 interface CommentCardProps {

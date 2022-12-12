@@ -2,15 +2,15 @@ import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import { ArticleDetails } from "entities/Article";
-import { RoutePath } from "shared/const";
+import { ArticleDetails } from "@/entities/Article";
+import { RoutePath } from "@/shared/const";
 import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
     useInitialEffect,
-} from "shared/hooks";
-import { classNames } from "shared/lib";
+} from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
 import {
     AppLink,
     Button,
@@ -19,7 +19,7 @@ import {
     Text,
     TextAlign,
     TextTheme,
-} from "shared/ui";
+} from "@/shared/ui";
 import {
     getArticleDetailsData,
     getArticleDetailsError,

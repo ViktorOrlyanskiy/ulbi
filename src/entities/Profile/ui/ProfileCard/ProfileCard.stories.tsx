@@ -1,8 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "app/providers/ThemeProvider";
-import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
-import { Country } from "entities/Country";
-import { Currency } from "entities/Currency";
+import { Theme } from "@/app/providers/ThemeProvider";
+import { StoreDecorator, ThemeDecorator } from "@/app/config/storybook";
+import { Country } from "@/entities/Country";
+import { Currency } from "@/entities/Currency";
 import { ProfileCard } from "./ProfileCard";
 
 export default {

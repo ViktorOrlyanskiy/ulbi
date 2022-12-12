@@ -6,7 +6,7 @@ import {
     useRef,
     useState,
 } from "react";
-import { classNames, overflow } from "shared/lib";
+import { classNames, overflow } from "@/shared/lib";
 import cls from "./Textarea.module.scss";
 
 export enum TextareaTheme {

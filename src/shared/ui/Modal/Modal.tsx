@@ -7,7 +7,7 @@ import React, {
     useCallback,
     MutableRefObject,
 } from "react";
-import { classNames } from "shared/lib";
+import { classNames } from "@/shared/lib";
 import { Portal } from "../Portal/Portal";
 import cls from "./Modal.module.scss";
 

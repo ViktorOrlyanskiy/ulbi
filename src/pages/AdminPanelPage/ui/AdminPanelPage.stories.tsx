@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { ThemeDecorator, StoreDecorator } from "app/config/storybook";
-import { Theme } from "app/providers/ThemeProvider";
+import { ThemeDecorator, StoreDecorator } from "@/app/config/storybook";
+import { Theme } from "@/app/providers/ThemeProvider";
 import AdminPanelPage from "./AdminPanelPage";
 
 export default {

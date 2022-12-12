@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { Page } from "widgets/Page";
+import { Page } from "@/widgets/Page";
 import {
     getInited,
     getOrder,
@@ -9,10 +9,10 @@ import {
     getType,
     getView,
     SortingArticles,
-} from "features/SortingArticles";
-import { FetchArticles, fetchNextArticles } from "features/FetchArticles";
-import { useAppDispatch } from "shared/hooks";
-import { classNames } from "shared/lib";
+} from "@/features/SortingArticles";
+import { FetchArticles, fetchNextArticles } from "@/features/FetchArticles";
+import { useAppDispatch } from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
 import cls from "./ArticlesPage.module.scss";
 
 interface ArticlesPageProps {

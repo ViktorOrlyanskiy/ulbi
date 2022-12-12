@@ -3,17 +3,17 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { Country } from "entities/Country";
-import { Currency } from "entities/Currency";
-import { ProfileCard, ValidateProfileError } from "entities/Profile";
+import { Country } from "@/entities/Country";
+import { Currency } from "@/entities/Currency";
+import { ProfileCard, ValidateProfileError } from "@/entities/Profile";
 import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
     useInitialEffect,
-} from "shared/hooks";
-import { classNames } from "shared/lib";
-import { Button, ButtonTheme, HStack, Text, TextTheme } from "shared/ui";
+} from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
+import { Button, ButtonTheme, HStack, Text, TextTheme } from "@/shared/ui";
 
 import { getCanEdit } from "../../model/selectors/getCanEdit/getCatEdit";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";

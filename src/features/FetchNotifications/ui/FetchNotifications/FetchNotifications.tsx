@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
-import { NotificationsList } from "entities/Notification";
-import { classNames } from "shared/lib";
+import { NotificationsList } from "@/entities/Notification";
+import { classNames } from "@/shared/lib";
 import {
     Dropdown,
     Icon,
@@ -9,8 +9,8 @@ import {
     Text,
     TextAlign,
     TextTheme,
-} from "shared/ui";
-import BellIcon from "shared/assets/icons/bell.svg";
+} from "@/shared/ui";
+import BellIcon from "@/shared/assets/icons/bell.svg";
 import { useFetchNotifications } from "../../api/notifications";
 import cls from "./FetchNotifications.module.scss";
 
@@ -24,7 +24,7 @@ export const FetchNotifications: FC<FetchNotificationsProps> = memo(() => {
         isLoading,
         error,
     } = useFetchNotifications(null, {
-        pollingInterval: 10000,
+        pollingInterval: 20000,
     });
 
     return (

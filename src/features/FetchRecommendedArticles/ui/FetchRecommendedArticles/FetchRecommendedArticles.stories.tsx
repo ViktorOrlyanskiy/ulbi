@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { StoreDecorator } from "app/config/storybook";
-import { Article } from "entities/Article";
+import { StoreDecorator } from "@/app/config/storybook";
+import { Article } from "@/entities/Article";
 import { FetchRecommendedArticles } from "./FetchRecommendedArticles";
 
 export default {

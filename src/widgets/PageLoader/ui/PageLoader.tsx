@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
-import { classNames } from "shared/lib";
-import { HStack, Loader } from "shared/ui";
+import { classNames } from "@/shared/lib";
+import { HStack, Loader } from "@/shared/ui";
 import cls from "./PageLoader.module.scss";
 
 interface PageLoaderProps {

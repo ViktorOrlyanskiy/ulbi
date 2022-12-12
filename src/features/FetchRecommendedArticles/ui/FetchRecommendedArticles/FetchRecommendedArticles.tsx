@@ -1,9 +1,9 @@
 import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
-import { ArticleList } from "entities/Article";
-import { useInitialEffect } from "shared/hooks";
-import { classNames } from "shared/lib";
-import { Text } from "shared/ui";
+import { ArticleList } from "@/entities/Article";
+import { useInitialEffect } from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
+import { Text } from "@/shared/ui";
 import { useFetchRecomandedArticles } from "../../api/recommendedArticlesApi";
 import cls from "./FetchRecommendedArticles.module.scss";
 

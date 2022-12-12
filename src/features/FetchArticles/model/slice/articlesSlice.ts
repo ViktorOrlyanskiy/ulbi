@@ -3,9 +3,9 @@ import {
     createSlice,
     PayloadAction,
 } from "@reduxjs/toolkit";
-import { StateSchema } from "app/providers/StoreProvider";
-import { Article, ArticleView } from "entities/Article";
-import { LOCAL_STORAGE_ARTICLES_VIEW } from "shared/const/localStorage";
+import { StateSchema } from "@/app/providers/StoreProvider";
+import { Article, ArticleView } from "@/entities/Article";
+import { LOCAL_STORAGE_ARTICLES_VIEW } from "@/shared/const/localStorage";
 import { fetchArticlesList } from "../services/fetchArticlesList";
 import { ArticlesSchema } from "../types/articlesSchema";
 

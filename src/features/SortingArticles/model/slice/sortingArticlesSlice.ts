@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ArticleView, ArticleSort, ArticleType } from "entities/Article";
+import { ArticleView, ArticleSort, ArticleType } from "@/entities/Article";
 import {
     LOCAL_STORAGE_ARTICLES_SORT,
     LOCAL_STORAGE_ARTICLES_ORDER,
     LOCAL_STORAGE_ARTICLES_VIEW,
     LOCAL_STORAGE_ARTICLES_SEARCH,
     LOCAL_STORAGE_ARTICLES_TYPE,
-} from "shared/const";
-import { SortOrder } from "shared/types";
+} from "@/shared/const";
+import { SortOrder } from "@/shared/types";
 import { checksEquality } from "../../lib/checksEquality";
 import { SortingArticlesSchema } from "../types/sortingArticlesSchema";
 

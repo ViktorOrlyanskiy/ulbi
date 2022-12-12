@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
-import { Theme } from "app/providers/ThemeProvider";
-import { Article } from "entities/Article";
+import { StoreDecorator, ThemeDecorator } from "@/app/config/storybook";
+import { Theme } from "@/app/providers/ThemeProvider";
+import { Article } from "@/entities/Article";
 import ArticlesPage from "./ArticlesPage";
 
 export default {

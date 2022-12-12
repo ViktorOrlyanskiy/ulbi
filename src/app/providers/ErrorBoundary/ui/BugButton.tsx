@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Button, ButtonTheme } from "shared/ui";
+import { Button, ButtonTheme } from "@/shared/ui";
 
 // компонент для тестирования
 export const BugButton: FC = () => {

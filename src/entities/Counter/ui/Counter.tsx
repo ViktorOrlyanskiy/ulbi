@@ -2,8 +2,8 @@ import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import { useAppDispatch } from "shared/hooks";
-import { Button } from "shared/ui";
+import { useAppDispatch } from "@/shared/hooks";
+import { Button } from "@/shared/ui";
 import { counterActions } from "../model/slice/counterSlice";
 import { getCounterValue } from "../model/selectors/getCounterValue/getCounterValue";
 

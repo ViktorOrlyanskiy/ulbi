@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { componentRender } from "app/config/tests";
-import { Country } from "entities/Country";
-import { Currency } from "entities/Currency";
-import { Profile } from "entities/Profile";
-import { $api } from "shared/api/axiosApi";
+import { componentRender } from "@/app/config/tests";
+import { Country } from "@/entities/Country";
+import { Currency } from "@/entities/Currency";
+import { Profile } from "@/entities/Profile";
+import { $api } from "@/shared/api/axiosApi";
 import { profileReducer } from "../../model/slice/profileSlice";
 import { EditableProfileCard } from "./EditableProfileCard";
 

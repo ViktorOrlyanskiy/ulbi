@@ -1,5 +1,5 @@
-import { StateSchema } from "app/providers/StoreProvider";
-import { ArticleView, ArticleSort, ArticleType } from "entities/Article";
+import { StateSchema } from "@/app/providers/StoreProvider";
+import { ArticleView, ArticleSort, ArticleType } from "@/entities/Article";
 
 export const getSort = (state: StateSchema) =>
     state.sortingArticles?.sort || ArticleSort.CREATED;

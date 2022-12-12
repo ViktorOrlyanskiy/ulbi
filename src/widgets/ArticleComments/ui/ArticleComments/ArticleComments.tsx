@@ -1,16 +1,16 @@
-import { CommentList } from "entities/Comment";
-import { AddNewComment } from "features/AddNewComment";
 import { FC, memo, Suspense, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { AddNewComment } from "@/features/AddNewComment";
+import { CommentList } from "@/entities/Comment";
 import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
     useInitialEffect,
-} from "shared/hooks";
-import { classNames } from "shared/lib";
-import { Loader, Text, TextSize } from "shared/ui";
+} from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
+import { Loader, Text, TextSize } from "@/shared/ui";
 import {
     getArticleCommentsError,
     getArticleCommentsIsLoading,

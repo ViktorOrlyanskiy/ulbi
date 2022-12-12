@@ -34,6 +34,7 @@ export default {
         "\\.svg": path.resolve(__dirname, "jestEmptyComponent.tsx"),
         "\\.png": path.resolve(__dirname, "jestEmptyComponent.tsx"),
         "\\.jpe?g": path.resolve(__dirname, "jestEmptyComponent.tsx"),
+        "^@/(.*)$": "<rootDir>/src/$1",
     },
     testMatch: [
         // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
@@ -46,7 +47,7 @@ export default {
             {
                 publicPath: "<rootDir>/reports/init",
                 filename: "report.html",
-                // openReport: true,
+                openReport: true,
                 inlineSource: true,
             },
         ],

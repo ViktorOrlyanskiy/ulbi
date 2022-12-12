@@ -2,15 +2,15 @@ import { FC, memo, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { ArticleView, ArticleSort, ArticleType } from "entities/Article";
-import { addQueryParams, classNames } from "shared/lib";
+import { ArticleView, ArticleSort, ArticleType } from "@/entities/Article";
+import { addQueryParams, classNames } from "@/shared/lib";
 import {
     ReducersList,
     useAppDispatch,
     useDynamicModuleLoader,
     useInitialEffect,
-} from "shared/hooks";
-import { SortOrder } from "shared/types";
+} from "@/shared/hooks";
+import { SortOrder } from "@/shared/types";
 import {
     HStack,
     Input,
@@ -21,7 +21,7 @@ import {
     Tabs,
     Text,
     TextSize,
-} from "shared/ui";
+} from "@/shared/ui";
 
 import {
     getSort,

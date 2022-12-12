@@ -1,5 +1,5 @@
-import { ArticleSort, ArticleView, ArticleType } from "entities/Article";
-import { SortOrder } from "shared/types";
+import { ArticleSort, ArticleView, ArticleType } from "@/entities/Article";
+import { SortOrder } from "@/shared/types";
 
 export interface FiltersFromUrl {
     sort: ArticleSort | null;

@@ -5,7 +5,7 @@ import {
     InputHTMLAttributes,
     ChangeEventHandler,
 } from "react";
-import { classNames } from "shared/lib";
+import { classNames } from "@/shared/lib";
 import cls from "./Checkbox.module.scss";
 
 export enum CheckboxSize {

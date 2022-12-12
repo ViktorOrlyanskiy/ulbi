@@ -1,7 +1,7 @@
-import { Notification } from "entities/Notification";
 import { FC, memo } from "react";
-import { classNames } from "shared/lib";
-import { Skeleton, VStack } from "shared/ui";
+import { Notification } from "@/entities/Notification";
+import { classNames } from "@/shared/lib";
+import { Skeleton, VStack } from "@/shared/ui";
 import { NotificationItem } from "../NotificationItem/NotificationItem";
 import cls from "./NotificationsList.module.scss";
 

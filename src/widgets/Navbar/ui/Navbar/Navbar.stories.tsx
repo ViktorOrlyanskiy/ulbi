@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "app/providers/ThemeProvider";
-import { StoreDecorator, ThemeDecorator } from "app/config/storybook";
-import { UserRole } from "entities/User";
+import { Theme } from "@/app/providers/ThemeProvider";
+import { StoreDecorator, ThemeDecorator } from "@/app/config/storybook";
+import { UserRole } from "@/entities/User";
 import { Navbar } from "./Navbar";
 
 export default {

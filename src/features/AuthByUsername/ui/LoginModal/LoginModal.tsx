@@ -1,7 +1,7 @@
 import { FC, memo, Suspense, useEffect } from "react";
-import { useAppDispatch } from "shared/hooks";
-import { classNames } from "shared/lib";
-import { Loader, Modal } from "shared/ui";
+import { useAppDispatch } from "@/shared/hooks";
+import { classNames } from "@/shared/lib";
+import { Loader, Modal } from "@/shared/ui";
 
 import { loginActions } from "../../model/slice/loginSlice";
 import { LoginFormAsync } from "../LoginForm/LoginForm.async";
