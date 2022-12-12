@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import { LoginModal } from "features/AuthByUsername";
+import { FetchNotifications } from "features/FetchNotifications";
 import { getUserAuthData } from "entities/User";
 import { RoutePath } from "shared/const";
 import { classNames } from "shared/lib";
@@ -40,6 +41,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                         {t("Создать статью")}
                     </Button>
                 </AppLink>
+                <FetchNotifications />
                 <UserMenu />
             </HStack>
         </header>

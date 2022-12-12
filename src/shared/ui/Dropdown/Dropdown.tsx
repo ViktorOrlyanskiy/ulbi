@@ -40,7 +40,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
                     maxHeightPopup={maxHeightPopup}
                     hiddenPopup={onToggle}
                     position={position}
-                    className={className}
+                    className={`${cls.popup} ${className}`}
                 >
                     {children}
                 </Popup>

@@ -1,0 +1,23 @@
+.NotificationItem {
+    width: 100%;
+    padding: 5px;
+    background: var(--primary-bg-color);
+    border: 1px solid var(--active-bg-color);
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px 1px var(--hover-bg-color);
+}
+
+.link {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        top: 5px;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        background-color: var(--primary-link-color);
+        border-radius: 50%;
+        content: "";
+    }
+}

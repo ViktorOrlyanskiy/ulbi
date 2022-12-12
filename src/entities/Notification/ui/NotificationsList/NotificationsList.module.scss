@@ -1,0 +1,10 @@
+.NotificationsList {
+    min-width: 300px;
+    max-height: 250px;
+    padding: 0 5px 5px 0;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}

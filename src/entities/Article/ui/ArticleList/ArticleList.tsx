@@ -9,7 +9,7 @@ import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkele
 import cls from "./ArticleList.module.scss";
 
 interface ArticleListProps {
-    articles: Article[];
+    articles?: Article[];
     isLoading?: boolean;
     view?: ArticleView;
     className?: string;
@@ -47,7 +47,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props) => {
         />
     );
 
-    if (!isLoading && !articles.length) {
+    if (!isLoading && !articles?.length) {
         return (
             <div className={classNames(cls.ArticleList, {}, [className])}>
                 <Text title={t("Статьи не найдены")} />

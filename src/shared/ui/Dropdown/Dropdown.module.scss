@@ -1,4 +1,12 @@
 .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
     cursor: pointer;
+    user-select: none;
+}
+
+.popup {
+    box-shadow: 0 2px 4px 2px var(--hover-bg-color);
 }
