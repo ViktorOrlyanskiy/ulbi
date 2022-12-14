@@ -20,3 +20,4 @@ export type { SelectOption } from "./Select/Select";
 export { Skeleton } from "./Skeleton/Skeleton";
 export { HStack, VStack } from "./Stack";
 export { Dropdown } from "./Dropdown/Dropdown";
+export { StarRating } from "./StarRating/StarRating";

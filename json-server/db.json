@@ -612,6 +612,22 @@
             "id": "fXrOanF"
         }
     ],
+    "article-rating": [
+        {
+            "id": "1",
+            "rate": 4,
+            "feedback": "Хорошая статья",
+            "userId": "1",
+            "articleId": "1"
+        },
+        {
+            "id": "2",
+            "rate": 2,
+            "feedback": "Хорошая статья",
+            "userId": "1",
+            "articleId": "2"
+        }
+    ],
     "users": [
         {
             "id": "1",
