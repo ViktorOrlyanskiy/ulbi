@@ -4,7 +4,6 @@ import {
     useEffect,
     useState,
     useCallback,
-    memo,
     useRef,
 } from "react";
 import { checkLengthString, classNames } from "@/shared/lib";
@@ -15,18 +14,18 @@ import cls from "./Select.module.scss";
 const HEIGHT_EMPTY_BLOCK = 10; // задается в css файле равен padding в .body
 const HEIGHT_OPTION = 25; // подбирается
 
-export interface SelectOption {
-    value: string;
+export interface SelectOption<T extends string> {
+    value: T;
     content: string;
 }
 
-const searchField = (field: string, options: SelectOption[]) => {
+const searchField = (field: string, options: SelectOption<string>[]) => {
     const option = options.find((item) => item.value === field);
     return option?.content;
 };
 
 const getMaxHeightPopup = (
-    options: SelectOption[],
+    options: SelectOption<string>[],
     heightOption: number,
     heightEmptyBlock: number
 ) => {
@@ -38,17 +37,17 @@ const getMaxHeightPopup = (
     return heightOption * options.length + PADDING_POPUP * 2;
 };
 
-interface SelectProps {
-    options: SelectOption[];
+interface SelectProps<T extends string> {
+    options: SelectOption<T>[];
     idScrollElement: string;
     className?: string;
     label?: string;
-    value?: string;
-    onChange?: (value: string) => void;
+    value?: T;
+    onChange?: (value: T) => void;
     readonly?: boolean;
 }
 
-export const Select: FC<SelectProps> = memo((props) => {
+export const Select = <T extends string>(props: SelectProps<T>) => {
     const {
         options,
         idScrollElement,
@@ -81,7 +80,7 @@ export const Select: FC<SelectProps> = memo((props) => {
         (e: MouseEvent<HTMLDivElement>) => {
             const { value } = e.currentTarget.dataset;
             const content = e.currentTarget.innerHTML;
-            onChange?.(value || "");
+            onChange?.((value || "") as T);
             setCurrentContent(content || "");
             setOpen(false);
         },
@@ -149,4 +148,4 @@ export const Select: FC<SelectProps> = memo((props) => {
             )}
         </div>
     );
-});
+};

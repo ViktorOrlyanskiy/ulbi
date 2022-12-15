@@ -64,7 +64,7 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
     const searchFromUrl = searchParams.get("search");
     const typeFromUrl = searchParams.get("type");
 
-    const sortOptions = useMemo<SelectOption[]>(
+    const sortOptions = useMemo<SelectOption<ArticleSort>[]>(
         () => [
             { value: ArticleSort.CREATED, content: t("дате создания") },
             { value: ArticleSort.TITLE, content: t("названию") },
@@ -73,7 +73,7 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
         [t]
     );
 
-    const orderOptions = useMemo<SelectOption[]>(
+    const orderOptions = useMemo<SelectOption<SortOrder>[]>(
         () => [
             { value: "asc", content: t("по возрастанию") },
             { value: "desc", content: t("по убыванию") },
@@ -92,15 +92,15 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
     );
 
     const onChangeSort = useCallback(
-        (newSort: string) => {
-            dispatch(sortingArticlesActions.setSort(newSort as ArticleSort));
+        (newSort: ArticleSort) => {
+            dispatch(sortingArticlesActions.setSort(newSort));
         },
         [dispatch]
     );
 
     const onChangeOrder = useCallback(
-        (newOrder: string) => {
-            dispatch(sortingArticlesActions.setOrder(newOrder as SortOrder));
+        (newOrder: SortOrder) => {
+            dispatch(sortingArticlesActions.setOrder(newOrder));
         },
         [dispatch]
     );
@@ -140,14 +140,14 @@ export const SortingArticles: FC<SortingArticlesProps> = memo((props) => {
         <div className={classNames("", {}, [className])}>
             <HStack gap="12">
                 <Text title={t("Сортировать по")} size={TextSize.S} />
-                <Select
+                <Select<ArticleSort>
                     value={sort}
                     options={sortOptions}
                     onChange={onChangeSort}
                     className={cls.select}
                     idScrollElement="scroll-element"
                 />
-                <Select
+                <Select<SortOrder>
                     value={order}
                     options={orderOptions}
                     onChange={onChangeOrder}
