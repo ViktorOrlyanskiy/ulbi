@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import { getUserAuthData, getUserRoles, UserRole } from "@/entities/User";
-import { RoutePath } from "@/shared/const";
+import { getRouteForbidden, getRouteMain } from "@/shared/const";
 
 interface RequireAuthProps {
     children: React.ReactNode;
@@ -31,7 +31,7 @@ export function RequireAuth({
     if (!isAuth) {
         // редирект на главную страницу если пользователь не авторизован
         return (
-            <Navigate to={RoutePath.main} state={{ from: location }} replace />
+            <Navigate to={getRouteMain()} state={{ from: location }} replace />
         );
     }
 
@@ -39,7 +39,7 @@ export function RequireAuth({
         // редирект на страницу "нет доступа" если у пользователя нет нужной роли
         return (
             <Navigate
-                to={RoutePath.forbidden}
+                to={getRouteForbidden()}
                 state={{ from: location }}
                 replace
             />

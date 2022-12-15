@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { LoginModal } from "@/features/AuthByUsername";
 import { FetchNotifications } from "@/features/FetchNotifications";
 import { getUserAuthData } from "@/entities/User";
-import { RoutePath } from "@/shared/const";
+import { getRouteArticleCreate } from "@/shared/const";
 import { classNames } from "@/shared/lib";
 import { AppLink, Button, ButtonTheme, HStack } from "@/shared/ui";
 import cls from "./Navbar.module.scss";
@@ -36,7 +36,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                 gap="12"
                 className={classNames(cls.Navbar, {}, [className])}
             >
-                <AppLink to={RoutePath.article_create}>
+                <AppLink to={getRouteArticleCreate()}>
                     <Button theme={ButtonTheme.OUTLINE}>
                         {t("Создать статью")}
                     </Button>

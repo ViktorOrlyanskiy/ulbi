@@ -1,8 +1,15 @@
 import { FC, memo } from "react";
 import { classNames } from "@/shared/lib";
 import { Comment } from "@/entities/Comment";
-import { RoutePath } from "@/shared/const";
-import { AppLink, Avatar, HStack, Skeleton, Text, TextWeight } from "@/shared/ui";
+import { getRouteProfile } from "@/shared/const";
+import {
+    AppLink,
+    Avatar,
+    HStack,
+    Skeleton,
+    Text,
+    TextWeight,
+} from "@/shared/ui";
 import cls from "./CommentCard.module.scss";
 
 interface CommentCardProps {
@@ -38,7 +45,7 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
             <AppLink
-                to={`${RoutePath.profile}${comment?.user.id}`}
+                to={getRouteProfile(comment.user.id)}
                 className={cls.header}
             >
                 <Avatar src={comment?.user.avatar} size={40} />

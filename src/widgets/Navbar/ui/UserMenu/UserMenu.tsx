@@ -7,7 +7,7 @@ import {
     isUserManager,
     userActions,
 } from "@/entities/User";
-import { RoutePath } from "@/shared/const";
+import { getRouteAdminPanel, getRouteProfile } from "@/shared/const";
 import { useAppDispatch } from "@/shared/hooks";
 import {
     AppLink,
@@ -46,12 +46,12 @@ export const UserMenu: FC<UserMenuProps> = memo(() => {
         >
             <VStack gap="4">
                 {isAdminPanelAvailable && (
-                    <AppLink to={RoutePath.admin_panel} className={cls.item}>
+                    <AppLink to={getRouteAdminPanel()} className={cls.item}>
                         {t("Админпанель")}
                     </AppLink>
                 )}
                 <AppLink
-                    to={`${RoutePath.profile}${authData?.id}`}
+                    to={getRouteProfile(authData!.id)}
                     className={cls.item}
                 >
                     {t("Профиль")}

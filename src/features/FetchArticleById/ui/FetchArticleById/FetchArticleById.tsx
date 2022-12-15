@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import { ArticleDetails } from "@/entities/Article";
-import { RoutePath } from "@/shared/const";
+import { getRouteArticleEdit, getRouteArticles } from "@/shared/const";
 import {
     ReducersList,
     useAppDispatch,
@@ -71,15 +71,15 @@ export const FetchArticleById: FC<FetchArticleByIdProps> = memo((props) => {
     return (
         <div className={classNames(cls.FetchArticleById, {}, [className])}>
             <HStack>
-                <AppLink to={RoutePath.articles}>
+                <AppLink to={getRouteArticles()}>
                     <Button theme={ButtonTheme.OUTLINE}>
                         {t("Назад к списку")}
                     </Button>
                 </AppLink>
 
-                {isCanEdit && (
+                {isCanEdit && id && (
                     <AppLink
-                        to={`${RoutePath.article_details}${id}/edit`}
+                        to={getRouteArticleEdit(id)}
                         className={cls.editBtn}
                     >
                         <Button theme={ButtonTheme.BACKGROUND}>

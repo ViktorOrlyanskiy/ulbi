@@ -1,8 +1,8 @@
 import { FC, HTMLAttributeAnchorTarget, memo } from "react";
 import { useTranslation } from "react-i18next";
 import EyeIcon from "@/shared/assets/icons/articles/eye.svg";
-import { RoutePath } from "@/shared/const";
 import { classNames } from "@/shared/lib";
+import { getRouteArticleDetails } from "@/shared/const";
 import {
     AppLink,
     Avatar,
@@ -61,7 +61,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                     <div className={cls.footer}>
                         <AppLink
                             target={target}
-                            to={RoutePath.article_details + article.id}
+                            to={getRouteArticleDetails(article.id)}
                         >
                             <Button theme={ButtonTheme.OUTLINE}>
                                 {t("Читать далее")}
@@ -82,7 +82,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
     return (
         <AppLink
             target={target}
-            to={RoutePath.article_details + article.id}
+            to={getRouteArticleDetails(article.id)}
             className={classNames("", {}, [className, cls[view]])}
         >
             <Card className={cls.card}>

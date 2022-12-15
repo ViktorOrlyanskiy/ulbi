@@ -11,14 +11,14 @@
             "title": "Уведомление 2",
             "description": "Произошло какое-то событие",
             "userId": "1",
-            "href": "http://localhost:3000/admin"
+            "href": "http://localhost:3000/admin-panel"
         },
         {
             "id": "3",
             "title": "Уведомление 3",
             "description": "Произошло какое-то событие",
             "userId": "1",
-            "href": "http://localhost:3000/admin"
+            "href": "http://localhost:3000/admin-panel"
         },
         {
             "id": "4",

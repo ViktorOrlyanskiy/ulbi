@@ -1,7 +1,6 @@
 import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { NotificationsList } from "@/entities/Notification";
-import { classNames } from "@/shared/lib";
 import {
     Dropdown,
     Icon,
