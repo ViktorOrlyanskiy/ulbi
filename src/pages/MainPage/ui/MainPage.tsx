@@ -15,7 +15,7 @@ const MainPage: FC = memo(() => {
     };
 
     return (
-        <Page>
+        <Page data-testid="MainPage">
             {t("Главная")}
             <Counter />
             {/* <BugButton /> */}

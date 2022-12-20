@@ -14,8 +14,9 @@ import { Button, ButtonTheme } from "@/shared/ui";
 import { getPageScrollByPath } from "@/widgets/Page/model/selectors/page";
 import { pageActions } from "../../model/slice/pageSlice";
 import cls from "./Page.module.scss";
+import { TestProps } from "@/shared/types";
 
-interface PageProps {
+interface PageProps extends TestProps {
     className?: string;
     isSaveScroll?: boolean;
     onScrollEnd?: () => void;
@@ -59,6 +60,8 @@ export const Page: FC<PageProps> = (props) => {
     return (
         <main
             id="scroll-element"
+            // eslint-disable-next-line react/destructuring-assignment
+            data-testid={props["data-testid"] ?? "Page"}
             ref={wrapperRef}
             onScroll={onScroll}
             className={classNames(cls.Page, {}, [className])}

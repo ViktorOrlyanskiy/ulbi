@@ -5,6 +5,10 @@ import cls from "./NotFoundPage.module.scss";
 
 const NotFoundPage: FC = memo(() => {
     const { t } = useTranslation();
-    return <Page className={cls.NotFoundPage}>{t("Страница не найдена")}</Page>;
+    return (
+        <Page data-testid="NotFoundPage" className={cls.NotFoundPage}>
+            {t("Страница не найдена")}
+        </Page>
+    );
 });
 export default NotFoundPage;

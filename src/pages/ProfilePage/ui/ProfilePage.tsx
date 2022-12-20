@@ -9,7 +9,7 @@ const ProfilePage: FC<ProfilePageProps> = memo(() => {
     const { t } = useTranslation("profile");
 
     return (
-        <Page>
+        <Page data-testid="ProfilePage">
             <EditableProfileCard />
         </Page>
     );
