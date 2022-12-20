@@ -1,4 +1,5 @@
 export { Avatar } from "./Avatar/Avatar";
+export { AppImage } from "./AppImage/AppImage";
 export { AppLink, AppLinkTheme } from "./AppLink/AppLink";
 export { Button, ButtonTheme, ButtonSize } from "./Button/Button";
 export { BurgerButton } from "./BurgerButton/BurgerButton";

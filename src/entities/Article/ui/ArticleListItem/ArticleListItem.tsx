@@ -4,12 +4,14 @@ import EyeIcon from "@/shared/assets/icons/articles/eye.svg";
 import { classNames } from "@/shared/lib";
 import { getRouteArticleDetails } from "@/shared/const";
 import {
+    AppImage,
     AppLink,
     Avatar,
     Button,
     ButtonTheme,
     Card,
     Icon,
+    Skeleton,
     Text,
 } from "@/shared/ui";
 import { ArticleView, ArticleBlockType } from "../../model/consts/consts";
@@ -47,7 +49,8 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                     </div>
                     <Text title={article.title} className={cls.title} />
                     <Text text={article.type.join(" ")} className={cls.types} />
-                    <img
+                    <AppImage
+                        fallback={<Skeleton width="100%" height={250} />}
                         src={article.img}
                         alt={article.title}
                         className={cls.img}
@@ -87,7 +90,8 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
         >
             <Card className={cls.card}>
                 <div className={cls.image}>
-                    <img
+                    <AppImage
+                        fallback={<Skeleton width="100%" height={185} />}
                         src={article.img}
                         alt={article.title}
                         className={cls.img}

@@ -25,6 +25,6 @@ $color-thumb: rgb(129 129 129);
     // Firefox
     body {
         scrollbar-width: thin;
-        scrollbar-color: $color-track $color-thumb;
+        scrollbar-color: $color-thumb $color-track;
     }
 }
