@@ -1,5 +1,11 @@
 import { useCallback, useRef } from "react";
 
+/**
+ * Реализует работу setInterval
+ * @param callback
+ * @param delay
+ * @returns
+ */
 export function useThrottle(callback: (...args: any[]) => void, delay: number) {
     const throttleRef = useRef(false);
 

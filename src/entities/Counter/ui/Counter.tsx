@@ -31,9 +31,7 @@ export const Counter: FC<CounterProps> = memo(() => {
             <Button data-testid="increment-btn" onClick={handleInc}>
                 {t("increment")}
             </Button>
-            <Button data-testid="decrement-btn" onClick={handleFive}>
-                {t("five")}
-            </Button>
+            <Button onClick={handleFive}>{t("five")}</Button>
             <Button data-testid="decrement-btn" onClick={handleDec}>
                 {t("decrement")}
             </Button>

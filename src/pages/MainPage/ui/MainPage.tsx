@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Page } from "@/widgets/Page";
 import { BugButton } from "@/app/providers/ErrorBoundary";
 import { Button, ButtonTheme, Checkbox, Popup, Position } from "@/shared/ui";
-import { Counter } from "@/entities/Counter";
 
 const MainPage: FC = memo(() => {
     const { t } = useTranslation("main");
@@ -17,7 +16,6 @@ const MainPage: FC = memo(() => {
     return (
         <Page data-testid="MainPage">
             {t("Главная")}
-            <Counter />
             {/* <BugButton /> */}
             {/* <div
                 ref={refTrigger}

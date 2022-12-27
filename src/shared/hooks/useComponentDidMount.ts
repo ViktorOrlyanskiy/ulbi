@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 
-// показывает что компонент монтировался
+/**
+ * Возвращает true если элемент монтировался
+ * @returns флаг boolean
+ */
 export function useComponentDidMount() {
     const ref = useRef<boolean | null>();
 

@@ -7,6 +7,11 @@ interface UseHoveBind {
 
 type useHoverResult = [boolean, UseHoveBind];
 
+/**
+ * Обрабатывает наведение курсора на элемент
+ * @returns кортеж [isHover, onMouseEnter, onMouseLeave]
+ */
+
 export function useHover(): useHoverResult {
     const [isHover, setIsHover] = useState(false);
 

@@ -23,6 +23,7 @@ export const enum Position {
     HIDDEN = "hidden",
 }
 
+// TODO нужно дописать расчеты для всех сценариев
 const getPositionPopup = (
     widthWindow: number,
     heightWindow: number,

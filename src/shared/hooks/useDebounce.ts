@@ -1,6 +1,12 @@
 import { MutableRefObject, useCallback, useRef } from "react";
 
-// вызывает callback через время задержки - delay
+/**
+ * Реализует работу setTimeout
+ * @param callback
+ * @param delay
+ * @returns
+ */
+
 export function useDebounce(callback: (...args: any[]) => void, delay: number) {
     const timer = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 

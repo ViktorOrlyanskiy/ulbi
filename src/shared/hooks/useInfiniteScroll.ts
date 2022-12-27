@@ -6,6 +6,11 @@ export interface UseInfiniteScrollOptions {
     wrapperRef: MutableRefObject<HTMLElement>;
 }
 
+/**
+ * Вызывает callback когда triggerRef попадает во viewport
+ * @param param0 объект типа UseInfiniteScrollOptions
+ */
+
 export function useInfiniteScroll({
     callback,
     triggerRef,

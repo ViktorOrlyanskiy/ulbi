@@ -1,5 +1,12 @@
 import React, { MutableRefObject, useCallback, useEffect, useRef } from "react";
 
+/**
+ * Закрывает Popup если сделан клик вне элемента ref
+ * @param ref - элемент по которому можно кликать
+ * @param isOpen - флаг рендера элемента
+ * @param setIsOpen - функция изменения флага рендера
+ */
+
 export function useOutsideClick(
     ref: React.MutableRefObject<any>,
     isOpen: boolean,
