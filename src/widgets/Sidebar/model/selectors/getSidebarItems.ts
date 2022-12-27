@@ -4,22 +4,18 @@ import {
     getRouteAbout,
     getRouteArticles,
     getRouteMain,
-    getRouteMap,
     getRouteProfile,
 } from "@/shared/const";
 import MainIcon from "@/shared/assets/icons/sidebar/home.svg";
 import AboutIcon from "@/shared/assets/icons/sidebar/about.svg";
 import ProfileIcon from "@/shared/assets/icons/sidebar/profile.svg";
 import ArticlesIcon from "@/shared/assets/icons/sidebar/article.svg";
-import MapIcon from "@/shared/assets/icons/sidebar/map.svg";
 import { SidebarItemType } from "../types/item";
 
 export const getSidebarItems = createSelector(getUserAuthData, (userData) => {
     const sidebarItemsList: SidebarItemType[] = [
         { path: getRouteMain(), text: "Главная", Icon: MainIcon },
         { path: getRouteAbout(), text: "О нас", Icon: AboutIcon },
-
-        { path: getRouteMap(), text: "Карта", Icon: MapIcon },
     ];
 
     if (userData) {

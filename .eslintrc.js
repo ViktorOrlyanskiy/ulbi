@@ -10,6 +10,7 @@ module.exports = {
         "plugin:i18next/recommended",
         "plugin:react-hooks/recommended",
         "prettier",
+        "plugin:storybook/recommended",
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
@@ -23,7 +24,9 @@ module.exports = {
     rules: {
         "react/jsx-filename-extension": [
             2,
-            { extensions: [".js", ".jsx", ".tsx"] },
+            {
+                extensions: [".js", ".jsx", ".tsx"],
+            },
         ],
         "import/no-unresolved": "off",
         "import/prefer-default-export": "off",
@@ -63,15 +66,22 @@ module.exports = {
         "react-hooks/exhaustive-deps": "error",
         "no-param-reassign": "off",
         "no-undef": "off",
-        "react/prop-types": "off", // из-за мемо ругается
+        "react/prop-types": "off",
+        // из-за мемо ругается
         "jsx-a11y/label-has-associated-control": "off",
         "react/no-array-index-key": "off",
     },
-    globals: { __IS_DEV__: true, __API__: true, __PROJECT__: true },
+    globals: {
+        __IS_DEV__: true,
+        __API__: true,
+        __PROJECT__: true,
+    },
     overrides: [
         {
             files: ["**/src/**/*.test.{ts,tsx}"],
-            rules: { "i18next/no-literal-string": "off" },
+            rules: {
+                "i18next/no-literal-string": "off",
+            },
         },
     ],
 };

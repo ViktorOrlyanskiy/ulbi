@@ -18,7 +18,12 @@ export const Avatar = memo((props: AvatarProps) => {
 
     const styles = { width: size, height: size };
     const fallback = <Skeleton width={size} height={size} borderRadius="50%" />;
-    const errorfallback = <Icon Svg={AvatarImg} size={size} />;
+    const errorfallback = (
+        <AppImage
+            src={AvatarImg}
+            className={classNames(cls.Avatar, {}, [className])}
+        />
+    );
 
     return (
         <AppImage

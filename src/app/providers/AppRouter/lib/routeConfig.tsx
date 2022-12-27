@@ -3,7 +3,6 @@ import { MainPage } from "@/pages/MainPage";
 import { AboutPage } from "@/pages/AboutPage";
 import { ProfilePage } from "@/pages/ProfilePage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
-import { MapPage } from "@/pages/MapPage";
 import { ArticlesPage } from "@/pages/ArticlesPage";
 import { ArticleDetailsPage } from "@/pages/ArticleDetailsPage";
 import { ArticleCreatePage } from "@/pages/ArticleCreatePage";
@@ -21,7 +20,6 @@ import {
     getRouteArticles,
     getRouteForbidden,
     getRouteMain,
-    getRouteMap,
     getRouteProfile,
 } from "@/shared/const";
 
@@ -46,11 +44,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <ProfilePage />,
         authOnly: true,
     },
-    [AppRoutes.MAP]: {
-        path: getRouteMap(),
-        element: <MapPage />,
-        authOnly: false,
-    },
+
     [AppRoutes.ARTICLES]: {
         path: getRouteArticles(),
         element: <ArticlesPage />,
