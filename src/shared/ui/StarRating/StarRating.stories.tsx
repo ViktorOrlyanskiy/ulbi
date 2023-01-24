@@ -1,10 +1,9 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Theme } from "@/app/providers/ThemeProvider";
-import { StoreDecorator, ThemeDecorator } from "@/app/config/storybook";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { StoreDecorator } from "@/app/config/storybook";
 import { StarRating } from "./StarRating";
 
 export default {
-    title: "defaultCategory/StarRating",
+    title: "shared/StarRating",
     component: StarRating,
     argTypes: {
         backgroundColor: { control: "color" },
@@ -18,7 +17,3 @@ const Template: ComponentStory<typeof StarRating> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [StoreDecorator({})];
-
-export const PrimaryDark = Template.bind({});
-PrimaryDark.args = {};
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];

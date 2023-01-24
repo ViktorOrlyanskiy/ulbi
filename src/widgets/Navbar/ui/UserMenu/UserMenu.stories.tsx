@@ -23,7 +23,9 @@ const Template: ComponentStory<typeof UserMenu> = (args) => (
 
 export const LightUser = Template.bind({});
 LightUser.args = {};
-LightUser.decorators = [StoreDecorator({})];
+LightUser.decorators = [
+    StoreDecorator({ user: { authData: { roles: [UserRole.USER] } } }),
+];
 
 export const LightAdmin = Template.bind({});
 LightAdmin.args = {};
@@ -33,4 +35,7 @@ LightAdmin.decorators = [
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+Dark.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({ user: { authData: { roles: [UserRole.ADMIN] } } }),
+];

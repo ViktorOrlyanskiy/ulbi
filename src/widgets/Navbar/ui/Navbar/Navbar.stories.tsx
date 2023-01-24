@@ -12,6 +12,14 @@ export default {
     },
 } as ComponentMeta<typeof Navbar>;
 
+const notification: Notification = {
+    id: "1",
+    title: "Title 1",
+    description: "Description 1",
+    userId: "1",
+    href: "href",
+};
+
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
 
 export const Light = Template.bind({});
@@ -23,11 +31,37 @@ AuthAdmin.args = {};
 AuthAdmin.decorators = [
     StoreDecorator({ user: { authData: { roles: [UserRole.ADMIN] } } }),
 ];
+AuthAdmin.parameters = {
+    mockData: [
+        {
+            url: `${__API__}/notifications`,
+            method: "GET",
+            status: 200,
+            response: [
+                { ...notification, id: "1" },
+                { ...notification, id: "2" },
+                { ...notification, id: "3" },
+            ],
+        },
+    ],
+};
 
 export const AuthUser = Template.bind({});
 AuthUser.args = {};
-AuthUser.decorators = [StoreDecorator({ user: { authData: {} } })];
-
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+AuthUser.decorators = [
+    StoreDecorator({ user: { authData: { roles: [UserRole.USER] } } }),
+];
+AuthUser.parameters = {
+    mockData: [
+        {
+            url: `${__API__}/notifications`,
+            method: "GET",
+            status: 200,
+            response: [
+                { ...notification, id: "1" },
+                { ...notification, id: "2" },
+                { ...notification, id: "3" },
+            ],
+        },
+    ],
+};
